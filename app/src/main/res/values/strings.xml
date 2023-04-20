@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">HueveriaNietoClientes</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <!-- Tools -->
+    <string name="type_something">Type something</string>
+
+
+    <!-- Title -->
+    <string name="hueveria_nieto">Huevería Nieto</string>
+
+    <!-- Menu's -->
+    <!-- Bottom menu -->
+    <string name="home_bottom_menu">Inicio</string>
+    <string name="menu_bottom_menu">Menú</string>
+    <string name="profile_bottom_menu">Perfil</string>
+    <string name="settings_bottom_menu">Ajustes</string>
+    <!-- Lateral menu -->
+    <string name="open_lateral_menu">Abrir</string>
+    <string name="close_lateral_menu">Cerrar</string>
+    <string name="orders_lateral_menu">Pedidos y repartos</string>
+    <string name="economy_lateral_menu">Economía</string>
+    <string name="farm_lateral_menu">Granja</string>
+    <string name="material_lateral_menu">Material</string>
+    <string name="users_lateral_menu">Usuarios y clientes</string>
+
+
+    <!-- Login -->
+    <string name="user_text_input_layout">Usuario</string>
+    <string name="password_text_input_layout">Contraseña</string>
+    <string name="logo_image_description_content">Logo icon</string>
+    <string name="content_description_error_icon">Error icon</string>
+    <string name="login_button">Entrar</string>
+
 </resources>

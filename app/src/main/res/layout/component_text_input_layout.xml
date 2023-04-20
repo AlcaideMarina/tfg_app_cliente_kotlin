@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/light_gray_color"
+        app:boxCornerRadiusBottomEnd="@dimen/size16"
+        app:boxCornerRadiusBottomStart="@dimen/size16"
+        app:boxCornerRadiusTopEnd="@dimen/size16"
+        app:boxCornerRadiusTopStart="@dimen/size16"
+        app:boxStrokeColor="@color/light_gray_color"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/textSize16"
+            tools:text="@string/type_something" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!-- TODO: Añadir la imagen correspondiente -->
+        <ImageView
+            android:id="@+id/error_icon"
+            android:layout_width="@dimen/size16"
+            android:layout_height="@dimen/size16"
+            android:layout_marginHorizontal="@dimen/size8"
+            android:layout_marginVertical="2dp"
+            android:contentDescription="@string/content_description_error_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/error_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/type_something" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
