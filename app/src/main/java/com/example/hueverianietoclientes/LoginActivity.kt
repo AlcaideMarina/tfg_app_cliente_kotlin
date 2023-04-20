@@ -94,7 +94,7 @@ class LoginActivity : BaseActivity() {
 
                     if (user != null) {
                         val db = Firebase.firestore
-                        db.collection("user_info")
+                        db.collection("client_info")
                             .whereEqualTo("uid", user.uid)
                             .whereEqualTo("deleted", false)
                             .limit(1)
