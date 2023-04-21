@@ -1,12 +1,13 @@
-package com.example.hueverianietoclientes
+package com.example.hueverianietoclientes.ui.views.login
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.viewModels
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.databinding.ActivityLoginBinding
 import com.example.hueverianietoclientes.domain.model.ModalDialogModel
@@ -17,12 +18,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var alertDialog: HNModalDialog
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun injection() {
         // TODO: sin implementar
@@ -60,12 +64,7 @@ class LoginActivity : BaseActivity() {
         this.binding.passwordTextInputLayout.getTextInputEditTextComponent()
             .addTextChangedListener(watcher)
 
-        this.binding.loginButton.setOnClickListener {
-            it.hideSoftInput()
-            val email: String = this.binding.userTextInputLayout.getText()
-            val password: String = this.binding.passwordTextInputLayout.getText()
-            checkCredentials(email.trim(), password)
-        }
+        this.binding.loginButton.setOnClickListener { login(it) }
 
     }
 
@@ -79,6 +78,15 @@ class LoginActivity : BaseActivity() {
                         || this@LoginActivity.binding.passwordTextInputLayout.getText().isEmpty())
         }
 
+    }
+
+    private fun login(view: View) {
+        view.hideSoftInput()
+        val email: String = this.binding.userTextInputLayout.getText()
+        val password: String = this.binding.passwordTextInputLayout.getText()
+        if (email != "" && password != "") {
+            loginViewModel.login(email, password)
+        }
     }
 
     private fun checkCredentials(email: String, password: String) {
