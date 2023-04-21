@@ -14,6 +14,8 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun configureUI()
     protected abstract fun setListeners()
 
+    protected abstract fun updateUI(state: BaseState)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
