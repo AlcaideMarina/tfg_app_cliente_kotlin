@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected abstract fun injection()
     protected abstract fun setUp()
     protected abstract fun configureUI()
     protected abstract fun setListeners()
@@ -25,7 +24,6 @@ abstract class BaseActivity : AppCompatActivity() {
             this.javaClass.simpleName,
             "Calling activity onCreate(): " + this.javaClass.simpleName
         )
-        injection()
         setUp()
         configureUI()
         setListeners()

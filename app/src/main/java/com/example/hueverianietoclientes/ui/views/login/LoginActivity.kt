@@ -32,10 +32,6 @@ class LoginActivity : BaseActivity() {
     private lateinit var alertDialog: HNModalDialog
     private val loginViewModel: LoginViewModel by viewModels()
 
-    override fun injection() {
-        // TODO: sin implementar
-    }
-
     override fun setUp() {
         this.binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
