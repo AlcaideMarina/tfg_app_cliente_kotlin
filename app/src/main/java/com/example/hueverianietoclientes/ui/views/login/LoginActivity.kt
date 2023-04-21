@@ -7,8 +7,11 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseActivity
+import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.databinding.ActivityLoginBinding
 import com.example.hueverianietoclientes.domain.model.ModalDialogModel
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
@@ -19,6 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
@@ -54,6 +58,12 @@ class LoginActivity : BaseActivity() {
         this.binding.loginButton.isEnabled = false
 
         this.alertDialog = HNModalDialog(this)
+
+        lifecycleScope.launchWhenStarted {
+            loginViewModel.viewState.collect {viewState ->
+                updateUI(viewState)
+            }
+        }
 
     }
 
@@ -193,6 +203,23 @@ class LoginActivity : BaseActivity() {
             Constants.loginInvalidPasswordError -> "El usuario y/o contraseña no son correctas. Por favor, revisa los datos y vuelve a intentarlo."
             else -> "Se ha producido un error inesperado. Por favor, inténtalo más tarde.\nError: $errorMessage"
         }
+    }
+
+    override fun updateUI(state: BaseState) {
+        try {
+            with(state as LoginViewState) {
+                with(binding) {
+                    this.loadingComponent.isVisible = state.isLoading
+                    if (!state.isValidEmail) {
+                        setPopUp(errorMap(Constants.loginBadFormattedEmailError))
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, e.message.toString())
+        }
+
+
     }
 
     companion object {
