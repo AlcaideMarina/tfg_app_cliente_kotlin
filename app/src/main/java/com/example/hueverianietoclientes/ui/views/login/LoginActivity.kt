@@ -1,6 +1,7 @@
 package com.example.hueverianietoclientes.ui.views.login
 
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -22,7 +23,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
@@ -48,6 +48,7 @@ class LoginActivity : BaseActivity() {
         this.binding.userTextInputLayout.setHintText(
             resources.getString(R.string.user_text_input_layout)
         )
+        this.binding.userTextInputLayout.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
         this.binding.passwordTextInputLayout.setHintText(
             resources.getString(R.string.password_text_input_layout)
         )
