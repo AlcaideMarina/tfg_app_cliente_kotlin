@@ -53,4 +53,8 @@ class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : View
         _viewState.value = LoginViewState(isLoading = false)
     }
 
+    fun navigateToMainActivity() {
+
+    }
+
 }

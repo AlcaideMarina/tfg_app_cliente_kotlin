@@ -14,6 +14,8 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun configureUI()
     protected abstract fun setListeners()
 
+    protected abstract fun setObservers()
+
     protected abstract fun updateUI(state: BaseState)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setUp()
         configureUI()
         setListeners()
+        setObservers()
     }
 
     override fun onStart() {

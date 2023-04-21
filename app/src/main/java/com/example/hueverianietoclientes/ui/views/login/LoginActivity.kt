@@ -78,6 +78,17 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    override fun setObservers() {
+        loginViewModel.alertDialog.observe(this) { clientLoginData ->
+            if (clientLoginData.error) {
+                setPopUp("Ha habido un error en el login. Por favor, revisa los datos y comprueba que tengas acceso a internet.")
+            }
+        }
+        loginViewModel.navigateToMainActivity.observe(this) { event ->
+            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity() }
+        }
+    }
+
     private val watcher: TextWatcher = object : TextWatcher {
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
