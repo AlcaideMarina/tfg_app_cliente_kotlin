@@ -82,7 +82,7 @@ class LoginActivity : BaseActivity() {
             }
         }
         loginViewModel.navigateToMainActivity.observe(this) { event ->
-            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity() }
+            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity(this, null) }
         }
     }
 

@@ -1,21 +1,27 @@
 package com.example.hueverianietoclientes.ui.views.login
 
+import android.content.Context
+import android.content.Intent
+import android.os.Parcelable
 import android.service.autofill.UserData
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.core.Event
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.ClientLoginData
 import com.example.hueverianietoclientes.data.network.LoginResponse
 import com.example.hueverianietoclientes.domain.usecase.LoginUseCase
+import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
 @HiltViewModel
 class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : ViewModel() {
@@ -53,8 +59,11 @@ class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : View
         _viewState.value = LoginViewState(isLoading = false)
     }
 
-    fun navigateToMainActivity() {
-
+    fun navigateToMainActivity(context: Context, clientData: Parcelable?) {
+        val intent = Intent(context, MainActivity::class.java)
+        //intent.putExtra("client_data", clientData)
+        context.startActivity(intent)
+        (context as BaseActivity).finish()
     }
 
 }
