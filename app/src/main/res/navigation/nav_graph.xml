@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myprofile.MyProfileFragment"
+        android:label="MyProfileFragment" />
 </navigation>

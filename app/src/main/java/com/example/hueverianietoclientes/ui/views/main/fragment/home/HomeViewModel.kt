@@ -2,7 +2,11 @@ package com.example.hueverianietoclientes.ui.views.main.fragment.home
 
 import android.content.Context
 import android.os.Parcelable
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.domain.usecase.HomeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +21,13 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
 
     // TODO: Falta la función que active el caso de uso - Logout
 
-    fun navigateToMyProfile(context: Context, clientData: Parcelable?) {
-        // TODO
+    fun navigateToMyProfile(view: View?) {
+        // TODO: bundleOf
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myProfileFragment)
+            ?: Log.e(
+                HomeViewModel::class.simpleName,
+                "Error en la navegación a Mi perfil"
+            )
     }
 
     fun navigateToFacturation(context: Context, clientData: Parcelable?) {
