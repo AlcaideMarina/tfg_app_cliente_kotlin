@@ -1,4 +1,4 @@
-package com.example.hueverianietoclientes.ui.views.main.fragment
+package com.example.hueverianietoclientes.ui.views.main.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,14 +16,17 @@ import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.databinding.FragmentHomeBinding
 import com.example.hueverianietoclientes.domain.model.GridItemModel
+import com.example.hueverianietoclientes.domain.usecase.HomeUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridViewAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +41,12 @@ class HomeFragment : BaseFragment() {
 
     override fun configureUI() {
         setMenuRecyclerView()
+
+        lifecycleScope.launchWhenStarted {
+            homeViewModel.viewState.collect {viewState ->
+                updateUI(viewState)
+            }
+        }
     }
 
     override fun setObservers() {
