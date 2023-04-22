@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
             setOf(R.id.homeFragment)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        configNav("")
+        configNav("", false)
     }
 
     override fun configureUI() {
@@ -55,9 +55,9 @@ class MainActivity : BaseActivity() {
         // Not necessary
     }
 
-    fun configNav(title: String) {
+    fun configNav(title: String, setHome: Boolean) {
         this.binding.topBar.title = title
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(setHome)
     }
 
 }

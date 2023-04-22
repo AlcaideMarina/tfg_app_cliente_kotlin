@@ -33,7 +33,7 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Home")
+        (activity as MainActivity).configNav("Home", true)
         this.binding = FragmentHomeBinding
             .inflate(inflater, container, false)
         return this.binding.root
@@ -67,7 +67,11 @@ class HomeFragment : BaseFragment() {
 
     private fun setMenuRecyclerView() {
         val menuOptions: List<GridItemModel> = listOf(
-            GridItemModel("Mi perfil", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Mi perfil'") },
+            GridItemModel(
+                "Mi perfil",
+                AppCompatResources.getDrawable(
+                    requireContext(), R.drawable.ic_launcher_foreground)!!
+            ) { this.homeViewModel.navigateToMyProfile(this.view) },
             GridItemModel("Facturación", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Facturación'") },
             GridItemModel("Mis pedidos", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Mis pedidos'") },
             GridItemModel("Nuevo pedido", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Nuevo pedido'") },
