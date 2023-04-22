@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
         navController = binding.fragmentContainerView.getFragment<NavHostFragment>().navController
         this.binding.topBar.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(
-            setOf()
+            setOf(R.id.homeFragment)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         configNav("")
