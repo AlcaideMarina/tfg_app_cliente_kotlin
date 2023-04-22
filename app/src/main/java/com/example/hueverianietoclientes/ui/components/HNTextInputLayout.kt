@@ -17,7 +17,6 @@ import com.google.android.material.textfield.TextInputLayout
 open class HNTextInputLayout : TextInputLayout, BaseComponent {
 
     private var isMandatory: Boolean = false
-    private var errorText: String? = null
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -30,11 +29,6 @@ open class HNTextInputLayout : TextInputLayout, BaseComponent {
             .from(context)
             .inflate(R.layout.component_text_input_layout, this, true)
     )
-
-    private fun setErrorTextAndIcon(text: String, drawable: Drawable?) {
-        this.binding.errorText.text = text
-        this.binding.errorIcon.setImageDrawable(drawable)
-    }
 
     /// Text Input Layout ///
     fun setHintText(hint: String) {
