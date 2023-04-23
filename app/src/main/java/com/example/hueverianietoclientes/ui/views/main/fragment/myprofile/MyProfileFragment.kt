@@ -68,6 +68,8 @@ class MyProfileFragment : BaseFragment() {
     }
 
     private fun setTextFields() {
+        val phone1 = clientData.phone[0].entries.iterator().next()
+        val phone2 = clientData.phone[1].entries.iterator().next()
         with(this.binding) {
             companyTextInputLayout.setInputText(clientData.company)
             directionTextInputLayout.setInputText(clientData.direction)
@@ -75,10 +77,10 @@ class MyProfileFragment : BaseFragment() {
             provinceTextInputLayout.setInputText(clientData.province)
             postalCodeTextInputLayout.setInputText(clientData.postalCode.toString())
             cifTextInputLayout.setInputText(clientData.cif)
-            phoneTextInputLayoutPhone1.setInputText("clientData.phone[0].keys")
-            phoneTextInputLayoutName1.setInputText("clientData.phone[0].values")
-            phoneTextInputLayoutPhone2.setInputText("clientData.phone[0].keys")
-            phoneTextInputLayoutName2.setInputText("clientData.phone[0].values")
+            phoneTextInputLayoutPhone1.setInputText(phone1.key)
+            phoneTextInputLayoutName1.setInputText(phone1.value.toString())
+            phoneTextInputLayoutPhone2.setInputText(phone2.key)
+            phoneTextInputLayoutName2.setInputText(phone2.value.toString())
             userTextInputLayout.setInputText(clientData.user)
             emailTextInputLayout.setInputText(clientData.email)
         }
