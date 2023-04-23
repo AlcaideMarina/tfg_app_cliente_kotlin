@@ -6,7 +6,7 @@ import java.sql.Timestamp
 
 @Parcelize
 data class OrderData (
-    val aproxDeliveryDateTime: Timestamp,
+    val approxDeliveryDateTime: Timestamp,
     val createdBy: String,
     val deliveryDatetime: Timestamp?,
     val deliveryDni: String?,
@@ -15,7 +15,7 @@ data class OrderData (
     val notes: String?,
     val order: Map<String, Map<String, Long>>,
     val orderDatetime: Timestamp?,
-    val oderId: Long,
+    val orderId: Long,
     val paid: Boolean,
     val paymentMethod: Long,
     val status: Long,
