@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseComponent
 import com.example.hueverianietoclientes.databinding.ComponentDropdownBinding
 import com.google.android.material.textfield.TextInputLayout
 
-open class HNDropdown : TextInputLayout, BaseComponent {
+open class HNDropdown : CoordinatorLayout, BaseComponent {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
