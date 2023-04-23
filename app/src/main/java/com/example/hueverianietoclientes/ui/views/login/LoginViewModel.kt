@@ -14,6 +14,7 @@ import com.example.hueverianietoclientes.core.Event
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.ClientLoginData
 import com.example.hueverianietoclientes.data.network.LoginResponse
+import com.example.hueverianietoclientes.domain.usecase.GetClientDataUseCase
 import com.example.hueverianietoclientes.domain.usecase.LoginUseCase
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,10 @@ import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
 @HiltViewModel
-class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : ViewModel() {
+class LoginViewModel @Inject constructor (
+    val loginUseCase: LoginUseCase,
+    val getClientDataUseCase: GetClientDataUseCase
+) : ViewModel() {
 
     private val _viewState = MutableStateFlow(LoginViewState())
     val viewState: StateFlow<LoginViewState> get() = _viewState
@@ -34,6 +38,9 @@ class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : View
 
     private var _navigateToMainActivity = MutableLiveData<Event<Boolean>>()
     val navigateToMainActivity: LiveData<Event<Boolean>> get() = _navigateToMainActivity
+
+    private var _clientData = MutableLiveData<ClientData>()
+    val clientData: LiveData<ClientData> get() = _clientData
 
     private fun checkValidEmail(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
@@ -46,8 +53,17 @@ class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : View
                         _alertDialog.value = ClientLoginData(email, password, true)
                         _viewState.value = LoginViewState(false)
                     }
-                    LoginResponse.Success -> {
-                        _navigateToMainActivity.value = Event(true)
+                    is LoginResponse.Success -> {
+                        when(val client = getClientDataUseCase(result.uid)) {
+                            null -> {
+                                _alertDialog.value = ClientLoginData(email, password, true)
+                                _viewState.value = LoginViewState(false)
+                            }
+                            else -> {
+                                _clientData.value = client!!
+                                _navigateToMainActivity.value = Event(true)
+                            }
+                        }
                     }
                 }
             }
@@ -59,9 +75,9 @@ class LoginViewModel @Inject constructor (val loginUseCase: LoginUseCase) : View
         _viewState.value = LoginViewState(isLoading = false)
     }
 
-    fun navigateToMainActivity(context: Context, clientData: Parcelable?) {
+    fun navigateToMainActivity(context: Context, clientData: Parcelable) {
         val intent = Intent(context, MainActivity::class.java)
-        //intent.putExtra("client_data", clientData)
+        intent.putExtra("client_data", clientData)
         context.startActivity(intent)
         (context as BaseActivity).finish()
     }

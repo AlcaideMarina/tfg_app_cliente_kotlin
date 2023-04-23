@@ -6,10 +6,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthenticationService @Inject constructor(private val firebase: FirebaseClient) {
+class AuthenticationService @Inject constructor(private val firebaseClient: FirebaseClient) {
 
     suspend fun login(email: String, password: String) : LoginResponse = runCatching {
-        firebase.auth.signInWithEmailAndPassword(email, password).await()
+        firebaseClient.auth.signInWithEmailAndPassword(email, password).await()
     }.toLoginResult()
 
     private fun Result<AuthResult>.toLoginResult() = when (val result = getOrNull()) {
@@ -17,7 +17,7 @@ class AuthenticationService @Inject constructor(private val firebase: FirebaseCl
         else -> {
             val userId = result.user
             checkNotNull(userId)
-            LoginResponse.Success
+            LoginResponse.Success(userId.uid, null)
         }
     }
 

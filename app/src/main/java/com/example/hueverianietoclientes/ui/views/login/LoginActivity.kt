@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.base.BaseState
+import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.ActivityLoginBinding
 import com.example.hueverianietoclientes.domain.model.ModalDialogModel
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
@@ -31,6 +32,7 @@ class LoginActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var alertDialog: HNModalDialog
     private val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var clientData: ClientData
 
     override fun setUp() {
         this.binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -81,8 +83,11 @@ class LoginActivity : BaseActivity() {
                 setPopUp("Ha habido un error en el login. Por favor, revisa los datos y comprueba que tengas acceso a internet.")
             }
         }
+        loginViewModel.clientData.observe(this) { clientData ->
+            this.clientData = clientData
+        }
         loginViewModel.navigateToMainActivity.observe(this) { event ->
-            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity(this, null) }
+            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity(this, clientData) }
         }
     }
 
