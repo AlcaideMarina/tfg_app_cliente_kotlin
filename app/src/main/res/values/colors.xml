@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="colorPrimary">@color/red_primary_color</color>
+    <color name="colorPrimaryDark">@color/black_color</color>
+    <color name="colorAccent">@color/red_gray_secondary_color</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +12,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Basic colors -->
+
+    <color name="black_color">#212121</color>
+    <color name="red_primary_color">#CC1E1B</color>
+    <color name="red_gray_secondary_color">#DFD1D1</color>
+    <color name="dark_gray_color">#464444</color>
+    <color name="brown_color">#C99D7A</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="gray_color">#999999</color>
+    <color name="light_gray_color">#C4C4C4</color>
+    <color name="light_gray_color2">#80C4C4C4</color>
+
 </resources>
