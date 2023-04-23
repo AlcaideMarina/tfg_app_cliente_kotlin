@@ -23,7 +23,7 @@ object ClientUtils {
     }
 
     // TODO: Investigar cómo comprobar si data["phone"] es List<Map<String, Long>>
-    fun mapToParcelable(data: MutableMap<String, Any?>, documentId: String?): ClientData {
+    fun mapToParcelable(data: MutableMap<String, Any?>, documentId: String): ClientData {
         return ClientData(
             data["cif"] as String,
             data["city"] as String,

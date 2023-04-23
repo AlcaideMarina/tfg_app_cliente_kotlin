@@ -19,5 +19,5 @@ data class ClientData(
     var province: String,
     var uid: String,
     var user: String,
-    var documentId: String?
+    var documentId: String
 ) : Parcelable
