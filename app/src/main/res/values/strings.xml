@@ -51,6 +51,7 @@
     <string name="in_cash">Al contado</string>
     <string name="per_receipt">Por recibo</string>
     <string name="transfer">Transferencia</string>
+    <string name="price_pending">Pendiente de precio</string>
     <string name="backordered">En reparto</string>
     <string name="in_delivery">En reparto</string>
     <string name="delivered">Entregado</string>

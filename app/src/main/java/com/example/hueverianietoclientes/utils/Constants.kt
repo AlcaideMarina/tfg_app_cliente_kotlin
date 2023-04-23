@@ -24,10 +24,11 @@ object Constants {
     )
 
     val orderStatus : Map<Int, Int> = mapOf(
-        R.string.backordered to 0,
-        R.string.in_delivery to 1,
-        R.string.delivered to 2,
-        R.string.delivery_attempt to 3
+        R.string.price_pending to 0,
+        R.string.backordered to 1,
+        R.string.in_delivery to 2,
+        R.string.delivered to 3,
+        R.string.delivery_attempt to 4
     )
 
 }
