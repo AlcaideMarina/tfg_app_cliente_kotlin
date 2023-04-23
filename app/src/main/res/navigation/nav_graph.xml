@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeFragment"
-        android:label="Home" >
+        android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myprofile.MyProfileFragment"
-        android:label="Mi perfil" >
+        android:label="MyProfileFragment" >
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
