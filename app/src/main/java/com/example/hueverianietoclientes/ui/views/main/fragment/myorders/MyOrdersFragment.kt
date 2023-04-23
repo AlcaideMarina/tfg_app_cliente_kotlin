@@ -9,7 +9,9 @@ import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.FragmentMyOrdersBinding
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyOrdersFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMyOrdersBinding

@@ -44,5 +44,5 @@ open class HNDropdown : TextInputLayout, BaseComponent {
     fun setOnClickListener(listener: AdapterView.OnItemClickListener) {
         this.binding.autoCompleteTextView.onItemClickListener = listener
     }
-    
+
 }
