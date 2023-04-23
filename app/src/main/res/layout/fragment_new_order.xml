@@ -191,6 +191,26 @@
 
         </LinearLayout> -->
 
+        <TextView
+            android:id="@+id/price_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="En un plazo de 24h nos pondremos en contacto con usted para confirmar el precio de cada producto, así como para confirmar la compra."
+            android:layout_marginTop="32dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.example.hueverianietoclientes.ui.components.HNButton
+            android:id="@+id/confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/price_warning"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 

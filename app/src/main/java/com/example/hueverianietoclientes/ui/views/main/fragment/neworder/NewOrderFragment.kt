@@ -42,6 +42,8 @@ class NewOrderFragment : BaseFragment() {
         getPaymentMethodDropdownValues()
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
+        this.binding.confirmButton.setText("CONFIRMAR")
+        this.binding.confirmButton.setOnClickListener {  }
     }
 
     override fun setObservers() {
