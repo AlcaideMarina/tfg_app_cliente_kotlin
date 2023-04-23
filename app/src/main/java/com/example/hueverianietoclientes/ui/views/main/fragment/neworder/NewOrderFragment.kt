@@ -42,7 +42,6 @@ class NewOrderFragment : BaseFragment() {
         getPaymentMethodDropdownValues()
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
-        //TODO("Not yet implemented")
     }
 
     override fun setObservers() {

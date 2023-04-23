@@ -166,7 +166,30 @@
 
         </LinearLayout>
 
+        <!-- <LinearLayout
+            android:id="@+id/notes_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/size16"
+            app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <TextView
+                android:id="@+id/notes_text_view"
+                android:layout_marginTop="@dimen/size8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Notas:" />
+
+            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                android:id="@+id/notes_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/size16"/>
+
+        </LinearLayout> -->
 
 
 
