@@ -27,7 +27,7 @@ class MyProfileFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Mi perfil", true)
+        (activity as MainActivity).configNav(true)
         clientData = (activity as MainActivity).clientData
         this.binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         return this.binding.root

@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Home", false)
+        (activity as MainActivity).configNav(false)
         this.binding = FragmentHomeBinding
             .inflate(inflater, container, false)
         return this.binding.root
