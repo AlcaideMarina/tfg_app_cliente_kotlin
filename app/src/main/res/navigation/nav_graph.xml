@@ -11,11 +11,22 @@
         <action
             android:id="@+id/action_homeFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myOrdersFragment"
+            app:destination="@id/myOrdersFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myprofile.MyProfileFragment"
         android:label="Mi perfil" >
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOrdersFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myorders.MyOrdersFragment"
+        android:label="Mis pedidos" >
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />

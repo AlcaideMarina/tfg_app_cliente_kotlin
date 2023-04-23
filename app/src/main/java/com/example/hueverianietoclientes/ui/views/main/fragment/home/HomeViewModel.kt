@@ -34,8 +34,12 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
         // TODO
     }
 
-    fun navigateToMyOrders(context: Context, clientData: Parcelable?) {
-        // TODO
+    fun navigateToMyOrders(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myOrdersFragment, bundle)
+            ?: Log.e(
+                HomeViewModel::class.java.simpleName,
+            "Error en la navegación a 'Mis pedidos'"
+            )
     }
 
     fun navigateToNewOrder(context: Context, clientData: Parcelable?) {
