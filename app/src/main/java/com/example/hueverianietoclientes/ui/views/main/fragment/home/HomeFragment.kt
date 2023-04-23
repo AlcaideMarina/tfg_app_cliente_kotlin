@@ -91,7 +91,17 @@ class HomeFragment : BaseFragment() {
                     this.view,
                     bundleOf("clientData" to clientData))
               },
-            GridItemModel("Nuevo pedido", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Nuevo pedido'") },
+            GridItemModel(
+                "Nuevo pedido",
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_launcher_foreground)!!
+            ) {
+                this.homeViewModel.navigateToNewOrder(
+                    this.view,
+                    bundleOf("clientData" to clientData)
+                )
+              },
             GridItemModel("Ajustes", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Ajustes'") }
         )
         val manager = CustomGridLayoutManager(this.context, 2)

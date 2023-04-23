@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_myOrdersFragment"
             app:destination="@id/myOrdersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newOrderFragment"
+            app:destination="@id/newOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -27,6 +30,14 @@
         android:id="@+id/myOrdersFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myorders.MyOrdersFragment"
         android:label="Mis pedidos" >
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+    </fragment>
+    <fragment
+        android:id="@+id/newOrderFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.neworder.NewOrderFragment"
+        android:label="Nuevo pedido" >
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
