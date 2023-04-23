@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,7 +34,7 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Home", true)
+        (activity as MainActivity).configNav("Home", false)
         this.binding = FragmentHomeBinding
             .inflate(inflater, container, false)
         return this.binding.root
@@ -71,7 +72,7 @@ class HomeFragment : BaseFragment() {
                 "Mi perfil",
                 AppCompatResources.getDrawable(
                     requireContext(), R.drawable.ic_launcher_foreground)!!
-            ) { this.homeViewModel.navigateToMyProfile(this.view) },
+            ) { this.homeViewModel.navigateToMyProfile(this.view, bundleOf("clientData" to (activity as MainActivity).clientData)) },
             GridItemModel("Facturación", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Facturación'") },
             GridItemModel("Mis pedidos", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Mis pedidos'") },
             GridItemModel("Nuevo pedido", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Nuevo pedido'") },

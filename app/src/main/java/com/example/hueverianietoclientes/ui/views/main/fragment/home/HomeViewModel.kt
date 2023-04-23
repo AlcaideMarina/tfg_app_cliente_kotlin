@@ -1,6 +1,7 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.home
 
 import android.content.Context
+import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
@@ -21,9 +22,8 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
 
     // TODO: Falta la función que active el caso de uso - Logout
 
-    fun navigateToMyProfile(view: View?) {
-        // TODO: bundleOf
-        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myProfileFragment)
+    fun navigateToMyProfile(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myProfileFragment, bundle)
             ?: Log.e(
                 HomeViewModel::class.simpleName,
                 "Error en la navegación a Mi perfil"

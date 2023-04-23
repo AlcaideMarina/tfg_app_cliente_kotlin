@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.myprofile.MyProfileFragment"
-        android:label="MyProfileFragment" />
+        android:label="MyProfileFragment" >
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+    </fragment>
 </navigation>

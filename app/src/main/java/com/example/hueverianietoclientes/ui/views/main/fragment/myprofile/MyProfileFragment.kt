@@ -1,14 +1,21 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.myprofile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.databinding.FragmentMyProfileBinding
+import com.example.hueverianietoclientes.ui.views.login.LoginActivity
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyProfileFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMyProfileBinding
@@ -24,20 +31,22 @@ class MyProfileFragment : BaseFragment() {
     }
 
     override fun configureUI() {
-        this.binding.saveCancelButtonLinearLayout.visibility = View.GONE
-        this.binding.modifyButton.setText("MODIFICAR")
-        this.binding.saveButton.setText("GUARDAR")
-        this.binding.cancelButton.setText("CANCELAR")
+
     }
 
     override fun setObservers() {
-        //TODO("Not yet implemented")
+        // It is not necessary, this is a static screen
     }
 
     override fun setListeners() {
+        // It is not necessary, this is a static screen
     }
 
     override fun updateUI(state: BaseState) {
-        //TODO("Not yet implemented")
+        // It is not necessary, this is a static screen
+    }
+
+    companion object {
+        private val TAG = MyProfileFragment::class.java.simpleName
     }
 }

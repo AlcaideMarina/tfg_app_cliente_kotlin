@@ -1,5 +1,6 @@
 package com.example.hueverianietoclientes.ui.views.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.base.BaseState
+import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +26,14 @@ class MainActivity : BaseActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val mainViewModel : MainViewModel by viewModels()
-
+    lateinit var clientData: ClientData
     override fun setUp() {
+        clientData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("client_data", ClientData::class.java)!!
+        } else {
+            intent.getParcelableExtra<ClientData>("client_data")!!
+        }
+
         this.binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

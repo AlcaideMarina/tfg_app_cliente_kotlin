@@ -151,7 +151,7 @@
                 android:layout_marginTop="@dimen/size8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Ciudad:" />
+                android:text="CIF:" />
 
             <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
                 android:id="@+id/cif_text_input_layout"
@@ -280,49 +280,14 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/button_container"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/no_changes_allowed_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size32"
+            android:text="Lamentablemente, no está permitida la modificación de los datos de su perfil. Si desean modificar alguno, por favor, llámenos a Huevería Nieto, y estaremos encantados de atenderle."
             app:layout_constraintTop_toBottomOf="@id/email_text_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" >
-
-            <com.example.hueverianietoclientes.ui.components.HNButton
-                android:id="@+id/modify_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <LinearLayout
-                android:id="@+id/save_cancel_button_linear_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/modify_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal">
-
-                <com.example.hueverianietoclientes.ui.components.HNButton
-                    android:id="@+id/save_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"/>
-
-                <com.example.hueverianietoclientes.ui.components.HNButton
-                    android:id="@+id/cancel_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"/>
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
