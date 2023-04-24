@@ -1,12 +1,12 @@
 package com.example.hueverianietoclientes.data.network
 
 import android.os.Parcelable
+import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
-import java.sql.Timestamp
 
 @Parcelize
 data class OrderData (
-    val approxDeliveryDateTime: Timestamp,
+    val approxDeliveryDatetime: Timestamp,
     val createdBy: String,
     val deliveryDatetime: Timestamp?,
     val deliveryDni: String?,
