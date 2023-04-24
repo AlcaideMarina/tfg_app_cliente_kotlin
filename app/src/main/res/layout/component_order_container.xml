@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_rounded_red_gray_container"
     android:padding="@dimen/size16"
-    android:layout_marginTop="@dimen/size8">
+    android:layout_marginBottom="@dimen/size8">
 
     <LinearLayout
         android:id="@+id/texts_linear_layout"
@@ -17,8 +17,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -33,13 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Pedido - Reparto"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/company_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Empresa"
                 android:textSize="16sp" />
 
             <TextView
@@ -61,6 +55,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Información del reparto"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/delivery_dni_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="DNI de recogida"
                 android:textSize="16sp" />
 
 

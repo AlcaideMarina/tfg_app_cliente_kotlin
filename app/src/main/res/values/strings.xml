@@ -56,5 +56,6 @@
     <string name="in_delivery">En reparto</string>
     <string name="delivered">Entregado</string>
     <string name="delivery_attempt">Intento de entrega</string>
+    <string name="unknown_status">Estado desconocido</string>
 
 </resources>

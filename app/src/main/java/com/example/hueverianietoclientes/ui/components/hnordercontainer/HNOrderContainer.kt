@@ -44,8 +44,8 @@ class HNOrderContainer : ConstraintLayout, BaseComponent {
         this.binding.orderDeliveryText.text = deliveryText
     }
 
-    fun setCompanyText(companyText: String) {
-        this.binding.companyText.text = companyText
+    fun setDeliveryDNIText(companyText: String) {
+        this.binding.deliveryDniText.text = companyText
     }
 
     fun setOrderSummaryText(orderSummaryText: String) {

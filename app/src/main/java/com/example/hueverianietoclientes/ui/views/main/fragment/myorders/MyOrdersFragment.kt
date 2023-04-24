@@ -63,9 +63,9 @@ class MyOrdersFragment : BaseFragment() {
                         val orderContainerModel = OrderContainerModel(
                             orderData.orderDatetime,
                             orderData.orderId,
-                            clientData.company,
                             orderData.totalPrice ?: -1,
                             orderData.status,
+                            orderData.deliveryDni
                         ) { }
                         orderList.add(orderContainerModel)
                     }
