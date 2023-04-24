@@ -14,10 +14,11 @@
         android:layout_marginVertical="@dimen/size16">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/clients_recycler_view"
+            android:id="@+id/order_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size8"
+            android:visibility="gone"
             android:nestedScrollingEnabled="false"/>
 
         <com.example.hueverianietoclientes.ui.components.HNWarningContainer
@@ -27,6 +28,20 @@
             android:layout_gravity="center"
             android:visibility="gone"
             android:layout_marginVertical="32dp" />
+
+        <ProgressBar
+            android:id="@+id/loading_component"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="64dp"
+            android:elevation="2dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 

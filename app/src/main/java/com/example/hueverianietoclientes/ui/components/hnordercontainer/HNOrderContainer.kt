@@ -1,4 +1,4 @@
-package com.example.hueverianietoclientes.ui.components
+package com.example.hueverianietoclientes.ui.components.hnordercontainer
 
 import android.content.Context
 import android.util.AttributeSet
