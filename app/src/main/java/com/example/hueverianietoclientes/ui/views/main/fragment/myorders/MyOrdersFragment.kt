@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
@@ -16,6 +17,7 @@ class MyOrdersFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMyOrdersBinding
     private lateinit var clientData: ClientData
+    private val myOrdersViewModel : MyOrdersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +33,7 @@ class MyOrdersFragment : BaseFragment() {
     }
 
     override fun configureUI() {
+        this.myOrdersViewModel.getOrdersData(clientData.documentId)
         //TODO("Not yet implemented")
     }
 

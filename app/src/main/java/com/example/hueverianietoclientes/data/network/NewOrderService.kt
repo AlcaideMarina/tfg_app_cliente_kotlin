@@ -13,7 +13,7 @@ class NewOrderService @Inject constructor(
         firebaseClient.db
             .collection("client_info")
             .document(clientData.documentId)
-            .collection("order_data")
+            .collection("orders")
             .add(
                 OrderUtils.parcelableToMap(orderData)
             ).await()
