@@ -34,7 +34,7 @@ object OrderUtils {
             data["delivery_person"] as String?,
             data["notes"] as String?,
             data["order"] as Map<String, Map<String, Long>>,
-            data["order_datetime"] as Timestamp?,
+            data["order_datetime"] as Timestamp,
             data["order_id"] as Long,
             data["paid"] as Boolean,
             data["payment_method"] as Long,

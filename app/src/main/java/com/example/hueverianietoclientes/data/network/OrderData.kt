@@ -14,7 +14,7 @@ data class OrderData (
     val deliveryPerson: String?,
     val notes: String?,
     val order: Map<String, Map<String, Long>>,
-    val orderDatetime: Timestamp?,
+    val orderDatetime: Timestamp,
     val orderId: Long,
     val paid: Boolean,
     val paymentMethod: Long,
