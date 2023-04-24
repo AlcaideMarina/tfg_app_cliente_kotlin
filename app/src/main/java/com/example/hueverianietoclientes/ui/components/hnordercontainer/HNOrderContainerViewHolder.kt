@@ -36,6 +36,10 @@ class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         } else {
             this.binding.deliveryDniText.text = "DNI de recogida: " + orderContainerModel.deliveryDni
         }
+
+        this.binding.baseComponentOrderContainer.setOnClickListener(
+            orderContainerModel.onClickListener )
+
     }
 
 }

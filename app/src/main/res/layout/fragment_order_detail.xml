@@ -175,7 +175,8 @@
                     android:layout_height="match_parent"
                     android:text="€"
                     android:textSize="24sp"
-                    android:gravity="center"
+                    android:gravity="bottom"
+                    android:layout_marginBottom="@dimen/size16"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="16dp"/>
 
@@ -300,7 +301,7 @@
                 android:layout_marginTop="@dimen/size8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Albarán: " />
+                android:text="DNI de entrega: " />
 
             <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
                 android:id="@+id/delivery_dni_text_input_layout"

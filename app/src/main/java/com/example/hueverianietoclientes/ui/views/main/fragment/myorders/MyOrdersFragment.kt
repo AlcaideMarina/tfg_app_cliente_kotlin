@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -66,7 +67,10 @@ class MyOrdersFragment : BaseFragment() {
                             orderData.totalPrice ?: -1,
                             orderData.status,
                             orderData.deliveryDni
-                        ) { }
+                        ) {
+                            this.myOrdersViewModel.navigateToOrderDetail(
+                                view, bundleOf("orderData" to orderData))
+                        }
                         orderList.add(orderContainerModel)
                     }
                 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.OrderData
@@ -25,7 +26,8 @@ class OrderDetailFragment : BaseFragment() {
             inflater, container, false
         )
 
-        // TODO: Args
+        val args : OrderDetailFragmentArgs by navArgs()
+        this.orderData = args.orderData
 
         return this.binding.root
     }
