@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
+            android:layout_marginTop="@dimen/size16"
             app:layout_constraintTop_toBottomOf="@id/cif_text_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -183,8 +183,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <!-- TODO: Checkbox -->
 
         <LinearLayout
             android:id="@+id/order_date_text_layout"
