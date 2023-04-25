@@ -51,7 +51,7 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.deliveryNoteTextInputLayout.isEnabled = false
         this.binding.deliveryDniTextInputLayout.isEnabled = false
 
-        this.binding.orderIdTextView.text = this.orderData.orderId.toString()
+        this.binding.orderIdTextView.text = "ID pedido: " + this.orderData.orderId.toString()
 
         val phone1 = clientData.phone[0].entries.iterator().next()
         val phone2 = clientData.phone[1].entries.iterator().next()
