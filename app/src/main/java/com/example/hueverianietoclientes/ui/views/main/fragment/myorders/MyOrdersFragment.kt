@@ -69,7 +69,10 @@ class MyOrdersFragment : BaseFragment() {
                             orderData.deliveryDni
                         ) {
                             this.myOrdersViewModel.navigateToOrderDetail(
-                                view, bundleOf("orderData" to orderData))
+                                view, bundleOf(
+                                    "orderData" to orderData,
+                                    "clientData" to this.clientData
+                                ))
                         }
                         orderList.add(orderContainerModel)
                     }

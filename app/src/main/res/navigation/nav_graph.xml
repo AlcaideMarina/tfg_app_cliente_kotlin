@@ -52,5 +52,8 @@
         <argument
             android:name="orderData"
             app:argType="com.example.hueverianietoclientes.data.network.OrderData" />
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
     </fragment>
 </navigation>
