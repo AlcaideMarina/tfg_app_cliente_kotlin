@@ -29,11 +29,11 @@ class HNOrderContainer : ConstraintLayout, BaseComponent {
     }
 
     override fun getComponentContext(): Context {
-        TODO("Not yet implemented")
+        return context
     }
 
     override fun getView(): View {
-        TODO("Not yet implemented")
+        return this
     }
 
     fun setDateText(idText: String) {
