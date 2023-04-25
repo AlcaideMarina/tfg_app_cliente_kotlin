@@ -78,7 +78,7 @@ class MyOrdersFragment : BaseFragment() {
                     }
                 }
                 if (orderList.isEmpty()) {
-                    // Vacío
+                    // TODO: Vacío
                 } else {
                     this.binding.orderRecyclerView.layoutManager = LinearLayoutManager(context)
                     this.binding.orderRecyclerView.adapter = HNOrderContainerAdapter(orderList)
