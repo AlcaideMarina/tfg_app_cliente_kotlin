@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentOrderDetailBinding
+import com.example.hueverianietoclientes.domain.model.GridTextItemModel
+import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
+import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import java.util.StringTokenizer
+
 
 class OrderDetailFragment : BaseFragment() {
 
@@ -87,6 +91,57 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.deliveryPersonTextInputLayout.setInputText(this.orderData.deliveryPerson ?: "")
         this.binding.deliveryNoteTextInputLayout.setInputText(deliveryNote)
         this.binding.deliveryDniTextInputLayout.setInputText(orderData.deliveryDni ?: "")
+
+        val list = listOf<GridTextItemModel>(
+            GridTextItemModel(
+                true, "XL"
+            ),
+            GridTextItemModel(
+                false, null, false
+            ),
+            GridTextItemModel(
+                true, "€/ud"
+            ),
+            GridTextItemModel(
+                true, "L"
+            ),
+            GridTextItemModel(
+                false, null, false
+            ),
+            GridTextItemModel(
+                true, "€/ud"
+            ),
+            GridTextItemModel(
+                true, "M"
+            ),
+            GridTextItemModel(
+                false, null, false
+            ),
+            GridTextItemModel(
+                true, "€/ud"
+            ),
+            GridTextItemModel(
+                true, "S"
+            ),
+            GridTextItemModel(
+                false, null, false
+            ),
+            GridTextItemModel(
+                true, "€/ud"
+            ),
+        )
+
+        // todo: buscar la manera de pasar el ancho de columna
+        val manager = CustomGridLayoutManager(this.context, 4)
+        manager.setScrollEnabled(false)
+        manager.spanSizeLookup = object : SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (listOf(1, 4, 7, 10).contains(position)) 2 else 1
+            }
+        }
+
+        this.binding.orderRecyclerView.layoutManager = manager
+        this.binding.orderRecyclerView.adapter = HNGridTextAdapter(list)
 
     }
 
