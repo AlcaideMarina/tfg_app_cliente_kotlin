@@ -21,6 +21,7 @@ import com.example.hueverianietoclientes.ui.views.login.LoginActivity
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.utils.Constants
+import com.example.hueverianietoclientes.utils.OrderUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -64,6 +65,7 @@ class MyOrdersFragment : BaseFragment() {
                         val orderContainerModel = OrderContainerModel(
                             orderData.orderDatetime,
                             orderData.orderId,
+                            OrderUtils.getOrderSummary(OrderUtils.orderDataToBDOrderModel(orderData)),
                             orderData.totalPrice ?: -1,
                             orderData.status,
                             orderData.deliveryDni

@@ -6,7 +6,7 @@ import com.google.firebase.Timestamp
 class OrderContainerModel(
     var orderDate: Timestamp,
     var orderId: Long,
-    //var orderSummary: String,
+    var orderSummary: String = "...",
     var price: Long,
     var status: Long,
     var deliveryDni: String?,
