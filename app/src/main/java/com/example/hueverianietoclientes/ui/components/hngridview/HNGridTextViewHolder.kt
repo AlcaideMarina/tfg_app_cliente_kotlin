@@ -15,13 +15,21 @@ class HNGridTextViewHolder (view: View) :
 
     fun render(gridTextItemModel: GridTextItemModel) {
         if (gridTextItemModel.isTextView) {
-            this.binding.textViewGrid.visibility = View.VISIBLE
+            if (gridTextItemModel.isTextLeft) {
+                this.binding.leftTextViewGrid.visibility = View.VISIBLE
+                this.binding.rightTextViewGrid.visibility = View.GONE
+                this.binding.leftTextViewGrid.text = gridTextItemModel.text
+            } else {
+                this.binding.leftTextViewGrid.visibility = View.GONE
+                this.binding.rightTextViewGrid.visibility = View.VISIBLE
+                this.binding.rightTextViewGrid.text = gridTextItemModel.text
+            }
             this.binding.textInputLayoutGrid.visibility = View.GONE
-            this.binding.textViewGrid.text = gridTextItemModel.text
         } else {
-            this.binding.textViewGrid.visibility = View.GONE
+            this.binding.leftTextViewGrid.visibility = View.GONE
+            this.binding.rightTextViewGrid.visibility = View.GONE
             this.binding.textInputLayoutGrid.visibility = View.VISIBLE
-            this.binding.textInputLayoutGrid.setInputType(InputType.TYPE_CLASS_NUMBER)
+            this.binding.textInputLayoutGrid.setInputText(gridTextItemModel.text)
             this.binding.textInputLayoutGrid.isEnabled = gridTextItemModel.isEnabled
         }
     }
