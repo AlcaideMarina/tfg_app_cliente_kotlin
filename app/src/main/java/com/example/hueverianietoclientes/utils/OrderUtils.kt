@@ -53,7 +53,6 @@ object OrderUtils {
         val dbOrderModel = orderDataToBDOrderModel(orderData)
 
         return listOf(
-
             GridTextItemModel(
                 true, "XL"
             ),
@@ -137,6 +136,71 @@ object OrderUtils {
             ),
             GridTextItemModel(
                 true, (dbOrderModel.sBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
+            ),
+        )
+    }
+
+    fun getNewOrderGridModel() : List<GridTextItemModel> {
+        return listOf(
+            GridTextItemModel(
+                true, "XL"
+            ),
+            GridTextItemModel(
+                true, "Docena:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "Caja:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "L"
+            ),
+            GridTextItemModel(
+                true, "Docena:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "Caja:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "M"
+            ),
+            GridTextItemModel(
+                true, "Docena:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "Caja:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "S"
+            ),
+            GridTextItemModel(
+                true, "Docena:"
+            ),
+            GridTextItemModel(
+                false, "", true
+            ),
+            GridTextItemModel(
+                true, "Caja:"
+            ),
+            GridTextItemModel(
+                false, "", true
             ),
         )
     }
