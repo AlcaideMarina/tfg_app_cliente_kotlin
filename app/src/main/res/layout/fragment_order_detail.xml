@@ -171,6 +171,7 @@
                     android:paddingHorizontal="@dimen/size16"/>
 
                 <TextView
+                    android:id="@+id/euro_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="€"
@@ -224,7 +225,7 @@
                 android:layout_marginTop="@dimen/size8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Fecha enetrega: " />
+                android:text="Fecha entrega: " />
 
             <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
                 android:id="@+id/delivery_date_text_input_layout"
