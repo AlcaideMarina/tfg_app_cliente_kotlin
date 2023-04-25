@@ -16,6 +16,9 @@ import com.example.hueverianietoclientes.domain.model.GridTextItemModel
 import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
+import com.example.hueverianietoclientes.utils.Constants
+import com.example.hueverianietoclientes.utils.OrderUtils
+import com.example.hueverianietoclientes.utils.Utils
 
 
 class OrderDetailFragment : BaseFragment() {
@@ -43,105 +46,9 @@ class OrderDetailFragment : BaseFragment() {
 
     override fun configureUI() {
 
-        this.binding.companyTextInputLayout.isEnabled = false
-        this.binding.directionTextInputLayout.isEnabled = false
-        this.binding.cifTextInputLayout.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone1.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone2.isEnabled = false
-        this.binding.totalPriceTextInputLayout.isEnabled = false
-        this.binding.orderDateTextInputLayout.isEnabled = false
-        this.binding.deliveryDateTextInputLayout.isEnabled = false
-        this.binding.deliveryPersonTextInputLayout.isEnabled = false
-        this.binding.deliveryNoteTextInputLayout.isEnabled = false
-        this.binding.deliveryDniTextInputLayout.isEnabled = false
-
-        this.binding.orderIdTextView.text = "ID pedido: " + this.orderData.orderId.toString()
-
-        val phone1 = clientData.phone[0].entries.iterator().next()
-        val phone2 = clientData.phone[1].entries.iterator().next()
-
-        val priceStr: String
-        if (orderData.totalPrice == (-1).toLong()) {
-            priceStr = "Pendiente de confirmación"
-            this.binding.euroText.visibility = View.GONE
-        } else {
-            priceStr = orderData.totalPrice.toString()
-        }
-        val deliveryNote = if(orderData.deliveryNote == null) {
-            ""
-        } else {
-            this.orderData.deliveryNote.toString()
-        }
-
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
-        val deliveryDateStr = if(orderData.deliveryDatetime == null) {
-            ""
-        } else {
-            sdf.format(orderData.orderDatetime.toDate())
-        }
-
-        this.binding.companyTextInputLayout.setInputText(clientData.company)
-        this.binding.directionTextInputLayout.setInputText(clientData.direction)
-        this.binding.cifTextInputLayout.setInputText(clientData.cif)
-        this.binding.phoneTextInputLayoutPhone1.setInputText(phone1.value.toString())
-        this.binding.phoneTextInputLayoutPhone2.setInputText(phone2.value.toString())
-        this.binding.totalPriceTextInputLayout.setInputText(priceStr)
-        this.binding.orderDateTextInputLayout.setInputText(sdf.format(orderData.orderDatetime.toDate()))
-        this.binding.deliveryDateTextInputLayout.setInputText(deliveryDateStr)
-        this.binding.deliveryPersonTextInputLayout.setInputText(this.orderData.deliveryPerson ?: "")
-        this.binding.deliveryNoteTextInputLayout.setInputText(deliveryNote)
-        this.binding.deliveryDniTextInputLayout.setInputText(orderData.deliveryDni ?: "")
-
-        val list = listOf<GridTextItemModel>(
-            GridTextItemModel(
-                true, "XL"
-            ),
-            GridTextItemModel(
-                false, null, false
-            ),
-            GridTextItemModel(
-                true, "€/ud"
-            ),
-            GridTextItemModel(
-                true, "L"
-            ),
-            GridTextItemModel(
-                false, null, false
-            ),
-            GridTextItemModel(
-                true, "€/ud"
-            ),
-            GridTextItemModel(
-                true, "M"
-            ),
-            GridTextItemModel(
-                false, null, false
-            ),
-            GridTextItemModel(
-                true, "€/ud"
-            ),
-            GridTextItemModel(
-                true, "S"
-            ),
-            GridTextItemModel(
-                false, null, false
-            ),
-            GridTextItemModel(
-                true, "€/ud"
-            ),
-        )
-
-        // todo: buscar la manera de pasar el ancho de columna
-        val manager = CustomGridLayoutManager(this.context, 4)
-        manager.setScrollEnabled(false)
-        manager.spanSizeLookup = object : SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (listOf(1, 4, 7, 10).contains(position)) 2 else 1
-            }
-        }
-
-        this.binding.orderRecyclerView.layoutManager = manager
-        this.binding.orderRecyclerView.adapter = HNGridTextAdapter(list)
+        disableTextInputLayouts()
+        setTexts()
+        setRecyclerView()
 
     }
 
@@ -155,5 +62,71 @@ class OrderDetailFragment : BaseFragment() {
 
     override fun updateUI(state: BaseState) {
         // It is not necessary, this is a static fragment
+    }
+
+    private fun disableTextInputLayouts() {
+
+        this.binding.companyTextInputLayout.isEnabled = false
+        this.binding.directionTextInputLayout.isEnabled = false
+        this.binding.cifTextInputLayout.isEnabled = false
+        this.binding.phoneTextInputLayoutPhone1.isEnabled = false
+        this.binding.phoneTextInputLayoutPhone2.isEnabled = false
+        this.binding.totalPriceTextInputLayout.isEnabled = false
+        this.binding.orderDateTextInputLayout.isEnabled = false
+        this.binding.deliveryDateTextInputLayout.isEnabled = false
+        this.binding.deliveryPersonTextInputLayout.isEnabled = false
+        this.binding.deliveryNoteTextInputLayout.isEnabled = false
+        this.binding.deliveryDniTextInputLayout.isEnabled = false
+    }
+
+    private fun setTexts() {
+
+        val phone1 = clientData.phone[0].entries.iterator().next()
+        val phone2 = clientData.phone[1].entries.iterator().next()
+
+        val priceStr: String
+        if (orderData.totalPrice == (-1).toLong()) {
+            priceStr = "Pendiente de confirmación"
+            this.binding.euroText.visibility = View.GONE
+        } else {
+            priceStr = orderData.totalPrice.toString()
+        }
+
+        with(this.binding) {
+            orderIdTextView.text = "ID pedido: " + orderData.orderId.toString()
+            companyTextInputLayout.setInputText(clientData.company)
+            directionTextInputLayout.setInputText(clientData.direction)
+            cifTextInputLayout.setInputText(clientData.cif)
+            phoneTextInputLayoutPhone1.setInputText(phone1.value.toString())
+            phoneTextInputLayoutPhone2.setInputText(phone2.value.toString())
+            totalPriceTextInputLayout.setInputText(priceStr)
+            orderDateTextInputLayout.setInputText(
+                Utils.parseTimestampToString(orderData.orderDatetime) ?: "")
+            deliveryDateTextInputLayout.setInputText(
+                Utils.parseTimestampToString(orderData.deliveryDatetime) ?: "")
+            deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
+            deliveryNoteTextInputLayout.setInputText(orderData.deliveryNote?.toString() ?: "")
+            deliveryDniTextInputLayout.setInputText(orderData.deliveryDni ?: "")
+        }
+
+    }
+
+    private fun setRecyclerView() {
+
+        val list = OrderUtils.getOrderDataGridModel(orderData)
+
+        val manager = CustomGridLayoutManager(this.context, 4)
+        manager.setScrollEnabled(false)
+        manager.spanSizeLookup = object : SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (listOf(0, 7, 14, 21).contains(position)) 4
+                else if(listOf(2, 5, 9, 12, 16, 19, 23, 26).contains(position)) 2
+                else 1
+            }
+        }
+
+        this.binding.orderRecyclerView.layoutManager = manager
+        this.binding.orderRecyclerView.adapter = HNGridTextAdapter(list)
+
     }
 }
