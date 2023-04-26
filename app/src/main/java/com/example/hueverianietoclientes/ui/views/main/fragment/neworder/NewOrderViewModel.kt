@@ -1,5 +1,7 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.neworder
 
+import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +25,24 @@ class NewOrderViewModel @Inject constructor(
     val alertDialog : LiveData<NewOrderViewState> get() = _alertDialog
 
     fun addNewOrder() {
+    }
+
+    fun checkOrder() {
         // TODO
+    }
+
+    fun changePage() {
+        if (_viewState.value.step == 1) {
+            // Estamos en la pantalla de creación de pedido -> Pasamos a la segunda -> Resumen
+        } else {
+            // Estamos en el resumen -> Queremos volver a la pantalla de creación para modificar
+        }
+    }
+
+    fun onClickConfirmButton() {
+        // TODO: Comprobar campos
+        // TODO: Levantar alertdialog para asegurar
+
     }
 
 }

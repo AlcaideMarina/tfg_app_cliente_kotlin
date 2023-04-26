@@ -54,7 +54,6 @@ class NewOrderFragment : BaseFragment() {
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
         this.binding.confirmButton.setText("CONFIRMAR")
-        this.binding.confirmButton.setOnClickListener {  }
     }
 
     override fun setObservers() {
@@ -72,10 +71,10 @@ class NewOrderFragment : BaseFragment() {
                 setPopUp(
                     "Aviso",
                     "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
-                    "Continuar",
                     "Revisar",
+                    "Continuar",
                     { alertDialog.cancel() },
-                    { alertDialog.cancel() }
+                    null
                 )
             }
 
@@ -83,7 +82,9 @@ class NewOrderFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        this.binding.confirmButton.setOnClickListener {
+            this.newOrderViewModel.checkOrder()
+        }
     }
 
     override fun updateUI(state: BaseState) {
@@ -99,7 +100,6 @@ class NewOrderFragment : BaseFragment() {
     }
 
     private fun onClickScheduledDate() {
-        // TODO: Bloquear fechas
         val selectedCalendar = Calendar.getInstance()
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
@@ -119,7 +119,7 @@ class NewOrderFragment : BaseFragment() {
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return if (listOf(0, 5, 10, 15).contains(position)) 3
-                else if(listOf(2, 4, 7, 9, 12, 14, 17, 19).contains(position)) 2
+                else if (listOf(2, 4, 7, 9, 12, 14, 17, 19).contains(position)) 2
                 else 1
             }
         }
