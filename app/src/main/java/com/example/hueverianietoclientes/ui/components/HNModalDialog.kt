@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseComponent
 import com.example.hueverianietoclientes.databinding.ComponentModalDialogBinding
@@ -86,11 +87,12 @@ open class HNModalDialog : ConstraintLayout, BaseComponent {
     }
 
     fun setModalDialogRightButtonText(text: String) {
-        // TODO: Set right button text
+        this.binding.modalDialogRightButton.text = text
     }
 
     fun setModalDialogButtons(isRightButton: Boolean) {
-        // TODO: Set right button and buttons divider visibility
+        this.binding.modalDialogRightButton.isVisible = isRightButton
+        this.binding.verticalDivider.isVisible = isRightButton
     }
 
     fun setModalDialogLeftButtonListener(listener: OnClickListener) {

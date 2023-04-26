@@ -52,16 +52,44 @@
             android:background="@color/red_primary_color" />
 
         <!-- TODO: Esto hay que hacer para que tenga opción a 2 botones -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/modal_dialog_left_button"
-            style="?android:attr/borderlessButtonStyle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:textColor="@color/black_color"
-            android:textSize="12sp"
-            app:backgroundTint="@color/red_gray_secondary_color"
-            tools:text="leftButton" />
+            android:orientation="horizontal" >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/modal_dialog_left_button"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textColor="@color/black_color"
+                android:textSize="12sp"
+                app:backgroundTint="@color/red_gray_secondary_color"
+                tools:text="leftButton" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/horizontal_divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/red_primary_color"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/modal_dialog_right_button"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textColor="@color/black_color"
+                android:textSize="12sp"
+                app:backgroundTint="@color/red_gray_secondary_color"
+                tools:text="rightButton" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
