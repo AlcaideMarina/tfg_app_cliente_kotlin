@@ -3,6 +3,7 @@ package com.example.hueverianietoclientes.ui.views.main.fragment.neworder
 import android.app.DatePickerDialog
 import android.icu.text.CaseMap.Title
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
+import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentNewOrderBinding
 import com.example.hueverianietoclientes.domain.model.ModalDialogModel
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
@@ -21,6 +23,7 @@ import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdap
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
+import com.google.firebase.Timestamp
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
@@ -54,6 +57,7 @@ class NewOrderFragment : BaseFragment() {
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
         this.binding.confirmButton.setText("CONFIRMAR")
+        this.alertDialog = HNModalDialog(requireContext())
     }
 
     override fun setObservers() {
@@ -67,14 +71,14 @@ class NewOrderFragment : BaseFragment() {
                     { alertDialog.cancel() },
                     null
                 )
-            } else {
+            } else if (newOrderViewState.onClickConfirm) {
                 setPopUp(
                     "Aviso",
                     "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
                     "Revisar",
                     "Continuar",
                     { alertDialog.cancel() },
-                    null
+                    { prepareOrderDataFromForm() }
                 )
             }
 
@@ -143,6 +147,27 @@ class NewOrderFragment : BaseFragment() {
                 true
             )
         )
+    }
+
+    fun prepareOrderDataFromForm() {
+        val approxDeliveryDatetime: Timestamp
+        val createdBy: String
+        val deliveryDatetime: Timestamp?
+        val deliveryDni: String?
+        val deliveryNote: Long?
+        val deliveryPerson: String?
+        val notes: String?
+        val order: Map<String, Map<String, Number>>
+        val orderDatetime: Timestamp
+        val orderId: Long
+        val paid: Boolean
+        val paymentMethod: Long
+        val status: Long
+        val totalPrice: Long
+        with(this.binding) {
+            val a = deliveryDatePicker.getDatePicker()
+
+        }
     }
 
 }

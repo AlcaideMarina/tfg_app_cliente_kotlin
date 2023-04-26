@@ -29,6 +29,7 @@ class NewOrderViewModel @Inject constructor(
 
     fun checkOrder() {
         // TODO
+        // TODO: Poner el onclickconfirm a true y al acabar a false
     }
 
     fun changePage() {
