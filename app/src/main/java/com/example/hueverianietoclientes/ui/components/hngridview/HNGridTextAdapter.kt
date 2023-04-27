@@ -22,7 +22,7 @@ class HNGridTextAdapter(
     }
 
     override fun onBindViewHolder(holder: HNGridTextViewHolder, position: Int) {
-        holder.render(gridItemModelList[position], gridItemModelList)
+        holder.render(gridItemModelList[position])
     }
 
     fun getItemWithPosition(position: Int) : GridTextItemModel {
