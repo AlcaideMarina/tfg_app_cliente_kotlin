@@ -53,88 +53,88 @@ object OrderUtils {
         val dbOrderModel = orderDataToBDOrderModel(orderData)
 
         return listOf(
-            GridTextItemModel(
+            GridTextItemModel(0,
                 true, "XL"
             ),
-            GridTextItemModel(
+            GridTextItemModel(1,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(2,
                 false, dbOrderModel.xlDozenQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(3,
                 true, (dbOrderModel.xlDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(4,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(5,
                 false, dbOrderModel.xlBoxQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(6,
                 true, (dbOrderModel.xlBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(7,
                 true, "L"
             ),
-            GridTextItemModel(
+            GridTextItemModel(8,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(9,
                 false, dbOrderModel.lDozenQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(10,
                 true, (dbOrderModel.lDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(11,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(12,
                 false, dbOrderModel.lBoxQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(13,
                 true, (dbOrderModel.lBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(14,
                 true, "M"
             ),
-            GridTextItemModel(
+            GridTextItemModel(15,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(16,
                 false, dbOrderModel.mDozenQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(17,
                 true, (dbOrderModel.mDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(18,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(19,
                 false, dbOrderModel.mBoxQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(20,
                 true, (dbOrderModel.mBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(21,
                 true, "S"
             ),
-            GridTextItemModel(
+            GridTextItemModel(22,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(23,
                 false, dbOrderModel.sDozenQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(24,
                 true, (dbOrderModel.sDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
-            GridTextItemModel(
+            GridTextItemModel(25,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(26,
                 false, dbOrderModel.sBoxQuantity.toString() + "   uds.", false
             ),
-            GridTextItemModel(
+            GridTextItemModel(27,
                 true, (dbOrderModel.sBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
             ),
         )
@@ -142,64 +142,64 @@ object OrderUtils {
 
     fun getNewOrderGridModel() : List<GridTextItemModel> {
         return listOf(
-            GridTextItemModel(
+            GridTextItemModel(0,
                 true, "XL"
             ),
-            GridTextItemModel(
+            GridTextItemModel(1,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(2,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(3,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(4,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(5,
                 true, "L"
             ),
-            GridTextItemModel(
+            GridTextItemModel(6,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(7,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(8,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(9,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(10,
                 true, "M"
             ),
-            GridTextItemModel(
+            GridTextItemModel(11,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(12,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(13,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(14,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(15,
                 true, "S"
             ),
-            GridTextItemModel(
+            GridTextItemModel(16,
                 true, "Docena:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(17,
                 false, "", true
             ),
-            GridTextItemModel(
+            GridTextItemModel(18,
                 true, "Caja:"
             ),
-            GridTextItemModel(
+            GridTextItemModel(19,
                 false, "", true
             ),
         )
@@ -277,6 +277,60 @@ object OrderUtils {
         }
 
         return summary
+    }
+
+    fun parseDBOrderFieldDataToMap(dbOrderFieldData: DBOrderFieldData) :
+            Map<String, Map<String, Number?>> {
+        val map = mutableMapOf<String, Map<String, Number?>>()
+        if(dbOrderFieldData.xlBoxQuantity != null) {
+            map["xl_box"] = mapOf(
+                "price" to dbOrderFieldData.xlBoxPrice,
+                "quantity" to dbOrderFieldData.xlBoxQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.xlDozenQuantity != null) {
+            map["xl_dozen"] = mapOf(
+                "price" to dbOrderFieldData.xlDozenPrice,
+                "quantity" to dbOrderFieldData.xlDozenQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.lBoxQuantity != null) {
+            map["l_box"] = mapOf(
+                "price" to dbOrderFieldData.lBoxPrice,
+                "quantity" to dbOrderFieldData.lBoxQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.lDozenQuantity != null) {
+            map["l_dozen"] = mapOf(
+                "price" to dbOrderFieldData.lDozenPrice,
+                "quantity" to dbOrderFieldData.lDozenQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.mBoxQuantity != null) {
+            map["m_box"] = mapOf(
+                "price" to dbOrderFieldData.mBoxPrice,
+                "quantity" to dbOrderFieldData.mBoxQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.mDozenQuantity != null) {
+            map["m_dozen"] = mapOf(
+                "price" to dbOrderFieldData.mDozenPrice,
+                "quantity" to dbOrderFieldData.mDozenQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.sBoxQuantity != null) {
+            map["s_box"] = mapOf(
+                "price" to dbOrderFieldData.sBoxPrice,
+                "quantity" to dbOrderFieldData.sBoxQuantity as Int
+            )
+        }
+        if(dbOrderFieldData.sDozenQuantity != null) {
+            map["s_dozen"] = mapOf(
+                "price" to dbOrderFieldData.sDozenPrice,
+                "quantity" to dbOrderFieldData.sDozenQuantity as Int
+            )
+        }
+        return map
     }
 
 }

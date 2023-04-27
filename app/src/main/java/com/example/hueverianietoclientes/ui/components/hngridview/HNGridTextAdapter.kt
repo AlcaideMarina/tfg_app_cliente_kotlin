@@ -1,16 +1,17 @@
 package com.example.hueverianietoclientes.ui.components.hngridview
 
+import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
-import com.example.hueverianietoclientes.domain.model.GridItemModel
 import com.example.hueverianietoclientes.domain.model.GridTextItemModel
-import com.example.hueverianietoclientes.ui.components.hngridview.HNGridViewHolder
 
 class HNGridTextAdapter(
     private val gridItemModelList: List<GridTextItemModel>
 ) : RecyclerView.Adapter<HNGridTextViewHolder>() {
+
+    val list = gridItemModelList
 
     override fun getItemCount(): Int = gridItemModelList.size
 
@@ -21,6 +22,10 @@ class HNGridTextAdapter(
     }
 
     override fun onBindViewHolder(holder: HNGridTextViewHolder, position: Int) {
-        holder.render(gridItemModelList[position])
+        holder.render(gridItemModelList[position], gridItemModelList)
+    }
+
+    fun getItemWithPosition(position: Int) : GridTextItemModel {
+        return this.gridItemModelList[position]
     }
 }

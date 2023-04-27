@@ -49,7 +49,7 @@ open class HNModalDialog : ConstraintLayout, BaseComponent {
         this.setModalDialogText(model.text)
         this.setModalDialogLeftButtonText(model.leftButtonText)
         this.setModalDialogLeftButtonListener(model.leftButtonListener)
-        if (model.rightButtonText != null && model.rightButtonListener != null) {
+        if (model.rightButtonText != null) {
             // TODO: Cuidado con !! - Intentar cambiarlo
             this.setModalDialogButtons(true)
             this.setModalDialogRightButtonText(model.rightButtonText!!)
