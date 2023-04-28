@@ -29,7 +29,7 @@ class HNGridTextViewHolder (view: View) :
             this.binding.leftTextViewGrid.visibility = View.GONE
             this.binding.rightTextViewGrid.visibility = View.GONE
             this.binding.textInputLayoutGrid.visibility = View.VISIBLE
-            // TODO: this.binding.textInputLayoutGrid.setInputType(InputType.TYPE_NUMBER_VARIATION_NORMAL)
+            this.binding.textInputLayoutGrid.setInputType(InputType.TYPE_CLASS_NUMBER)
             this.binding.textInputLayoutGrid.getTextInputEditTextComponent().isEnabled = gridTextItemModel.isEnabled
             this.binding.textInputLayoutGrid.isEnabled = gridTextItemModel.isEnabled
             gridTextItemModel.response =
