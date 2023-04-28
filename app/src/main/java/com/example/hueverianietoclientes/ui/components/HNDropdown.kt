@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseComponent
@@ -49,5 +50,9 @@ open class HNDropdown : CoordinatorLayout, BaseComponent {
     fun getSelectedItem() : String {
         return this.binding.autoCompleteTextView.text.toString()
     }
+
+    fun getAutoCompleteTextView() : AutoCompleteTextView = this.binding.autoCompleteTextView
+
+    fun getTextInputLayout() : TextInputLayout = this.binding.textInputLayout
 
 }

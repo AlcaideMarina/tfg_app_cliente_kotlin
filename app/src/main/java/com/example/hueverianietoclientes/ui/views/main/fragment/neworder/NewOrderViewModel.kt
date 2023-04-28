@@ -33,12 +33,15 @@ class NewOrderViewModel @Inject constructor(
     private var _alertDialog = MutableLiveData(NewOrderViewState())
     val alertDialog : LiveData<NewOrderViewState> get() = _alertDialog
 
+    private var _orderList = MutableLiveData<List<Int?>>()
+    val orderList : LiveData<List<Int?>> get() = _orderList
+
     fun addNewOrder() {
 
     }
 
     fun checkOrder(recyclerView: RecyclerView, clientDataId: String,
-                   approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int) {
+                   approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int?) {
         // TODO
         // TODO: Poner el onclickconfirm a true y al acabar a false
         _viewState.value = NewOrderViewState(
@@ -51,7 +54,23 @@ class NewOrderViewModel @Inject constructor(
 
         try {
             val dbOrderFieldData = getOrderStructure(recyclerView)
-            if (dbOrderFieldData == null) {
+            if (paymentMethodSelected == null) {
+                _viewState.value = NewOrderViewState(
+                    error = true,
+                    isLoading = false,
+                    step = 1,
+                    onClickConfirm = false,
+                    popUpCode = 0
+                )
+                _alertDialog.value = NewOrderViewState(
+                    error = true,
+                    isLoading = false,
+                    step = 1,
+                    onClickConfirm = false,
+                    popUpCode = 0
+                )
+            }
+            else if (dbOrderFieldData == null) {
                 _viewState.value = NewOrderViewState(
                     error = true,
                     isLoading = false,
@@ -119,11 +138,23 @@ class NewOrderViewModel @Inject constructor(
         }
     }
 
-    fun changePage() {
-        if (_viewState.value.step == 1) {
-            // Estamos en la pantalla de creación de pedido -> Pasamos a la segunda -> Resumen
+    fun changePage(goToPage: Int) {
+        if (goToPage == 1) {
+            _viewState.value = NewOrderViewState(
+                error = false,
+                isLoading = false,
+                step = 1,
+                onClickConfirm = false,
+                popUpCode = null
+            )
         } else {
-            // Estamos en el resumen -> Queremos volver a la pantalla de creación para modificar
+            _viewState.value = NewOrderViewState(
+                error = false,
+                isLoading = false,
+                step = 2,
+                onClickConfirm = false,
+                popUpCode = null
+            )
         }
     }
 
@@ -151,6 +182,10 @@ class NewOrderViewModel @Inject constructor(
             mBoxValue = this.getItemWithPosition(14).response.toString().toIntOrNull()
             sDozenValue = this.getItemWithPosition(17).response.toString().toIntOrNull()
             sBoxValue = this.getItemWithPosition(19).response.toString().toIntOrNull()
+            _orderList.value = mutableListOf(
+                xlDozenValue, xlBoxValue, lDozenValue, lBoxValue,
+                mDozenValue, mBoxValue, sDozenValue, sBoxValue
+            )
         }
         if ((xlDozenValue != null) || xlBoxValue != null || lDozenValue != null
             || lBoxValue != null || mDozenValue != null || mBoxValue != null ||

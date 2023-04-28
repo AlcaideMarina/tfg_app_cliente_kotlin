@@ -32,8 +32,13 @@ class HNGridTextViewHolder (view: View) :
             this.binding.textInputLayoutGrid.setInputType(InputType.TYPE_CLASS_NUMBER)
             this.binding.textInputLayoutGrid.getTextInputEditTextComponent().isEnabled = gridTextItemModel.isEnabled
             this.binding.textInputLayoutGrid.isEnabled = gridTextItemModel.isEnabled
-            gridTextItemModel.response =
-                this.binding.textInputLayoutGrid.getTextInputEditTextComponent().text
+            if(gridTextItemModel.isEnabled) {
+                gridTextItemModel.response =
+                    this.binding.textInputLayoutGrid.getTextInputEditTextComponent().text
+            } else {
+                this.binding.textInputLayoutGrid.getTextInputEditTextComponent().setText(
+                    gridTextItemModel.response.toString())
+            }
         }
     }
 }

@@ -44,6 +44,7 @@ class NewOrderFragment : BaseFragment() {
     private lateinit var binding: FragmentNewOrderBinding
     private lateinit var clientData: ClientData
     private lateinit var alertDialog: HNModalDialog
+    private var orderList: List<Int?> = mutableListOf()
     private var dropdownPaymentMethodItems: MutableList<String> = mutableListOf()
     private val newOrderViewModel: NewOrderViewModel by viewModels()
     private lateinit var approxDeliveryDatetimeSelected : Timestamp
@@ -74,7 +75,7 @@ class NewOrderFragment : BaseFragment() {
             Utils.parseDateToString(approxDeliveryDatetimeSelected.toDate())
         )
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
-        this.binding.confirmButton.setText("CONFIRMAR")
+        this.binding.confirmButton.setText("GUARDAR")
         this.alertDialog = HNModalDialog(requireContext())
 
         lifecycleScope.launchWhenStarted {
@@ -106,29 +107,34 @@ class NewOrderFragment : BaseFragment() {
                 2 -> setPopUp(
                         "Aviso",
                         "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
-                        "De acuerdo",
-                        null,
+                        "Revisar",
+                        "Continuar",
                         { alertDialog.cancel() },
-                        { prepareOrderDataFromForm() }
+                        {
+                            alertDialog.cancel()
+                            this.newOrderViewModel.changePage(2)
+                            // TODO: Esto no funciona
+                            this.binding.scrollView.scrollTo(0, 0)
+                        }
                     )
                 3 -> setPopUp(
                         "Se ha producido un error",
                         "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
-                        "Revisar",
-                        "Continuar",
+                        "De acuerdo",
+                        null,
                         { alertDialog.cancel() },
                         null
                     )
             }
 
         }
-
+        this.newOrderViewModel.orderList.observe(this) {
+            orderList = it
+        }
     }
 
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
-            val a = this.binding.paymentMethodDropdown
-            Log.v("ld", "df")
             val paymentMethod =
                 if (this.binding.paymentMethodDropdown.getSelectedItem()
                     == requireContext().getString(R.string.in_cash)) {
@@ -136,8 +142,11 @@ class NewOrderFragment : BaseFragment() {
                 } else if (this.binding.paymentMethodDropdown.getSelectedItem()
                     == requireContext().getString(R.string.per_receipt)) {
                     R.string.per_receipt
-                } else {
+                } else if (this.binding.paymentMethodDropdown.getSelectedItem()
+                    == requireContext().getString(R.string.transfer)){
                     R.string.transfer
+                } else {
+                    null
                 }
             // TODO: Transformar método de pago
             this.newOrderViewModel.checkOrder(
@@ -198,8 +207,11 @@ class NewOrderFragment : BaseFragment() {
 
     private fun setClientDataFields() {
         this.binding.directionTextInputLayout.setInputText(clientData.direction)
+        this.binding.directionTextInputLayout.isEnabled = false
         this.binding.phoneTextInputLayoutPhone1.setInputText(clientData.phone[0].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone1.isEnabled = false
         this.binding.phoneTextInputLayoutPhone2.setInputText(clientData.phone[1].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone2.isEnabled = false
     }
 
     private fun setPopUp(title: String, message: String, leftButton: String, rightButton: String?,
@@ -218,22 +230,71 @@ class NewOrderFragment : BaseFragment() {
         )
     }
 
-    fun prepareOrderDataFromForm() {
-
-    }
-
     override fun updateUI(state: BaseState) {
         try {
             with(state as NewOrderViewState) {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
                 }
+                if (this.step == 1) {
+                    setRecyclerViewEnable(true)
+                    binding.paymentMethodDropdown.isEnabled = true
+                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = true
+                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = true
+                    binding.deliveryDatePicker.isEnabled = true
+                    binding.deliveryDatePicker.getDatePicker().isEnabled = true
+                    binding.modifyButton.visibility = View.GONE
+                    binding.confirmButton.setText("GUARDAR")
+                    binding.modifyButton.setText("Modificar datos")
+                    binding.modifyButton.setOnClickListener(null)
+                } else {
+                    setRecyclerViewEnable(false)
+                    binding.paymentMethodDropdown.isEnabled = false
+                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
+                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = false
+                    binding.deliveryDatePicker.isEnabled = false
+                    binding.deliveryDatePicker.getDatePicker().isEnabled = false
+                    binding.modifyButton.visibility = View.VISIBLE
+                    binding.confirmButton.setText("CONFIRMAR")
+                    binding.modifyButton.setText("Modificar datos")
+                    binding.modifyButton.setOnClickListener(null)
+                }
             }
         } catch (e: Exception) {
             Log.e(TAG, e.message.toString())
         }
 
+    }
 
+    private fun setRecyclerViewEnable(isEnable: Boolean) {
+        with(this.binding.orderRecyclerView.adapter as HNGridTextAdapter) {
+            this.getItemWithPosition(2).isEnabled = isEnable
+            this.getItemWithPosition(4).isEnabled = isEnable
+            this.getItemWithPosition(7).isEnabled = isEnable
+            this.getItemWithPosition(9).isEnabled = isEnable
+            this.getItemWithPosition(12).isEnabled = isEnable
+            this.getItemWithPosition(14).isEnabled = isEnable
+            this.getItemWithPosition(17).isEnabled = isEnable
+            this.getItemWithPosition(19).isEnabled = isEnable
+            if (orderList.size == 8) {
+                this.getItemWithPosition(2).response = (orderList[0] ?: "").toString()
+                this.getItemWithPosition(4).response = (orderList[1] ?: "").toString()
+                this.getItemWithPosition(7).response = (orderList[2] ?: "").toString()
+                this.getItemWithPosition(9).response = (orderList[3] ?: "").toString()
+                this.getItemWithPosition(12).response = (orderList[4] ?: "").toString()
+                this.getItemWithPosition(14).response = (orderList[5] ?: "").toString()
+                this.getItemWithPosition(17).response = (orderList[6] ?: "").toString()
+                this.getItemWithPosition(19).response = (orderList[7] ?: "").toString()
+            }
+            notifyItemChanged(2)
+            notifyItemChanged(4)
+            notifyItemChanged(7)
+            notifyItemChanged(9)
+            notifyItemChanged(12)
+            notifyItemChanged(14)
+            notifyItemChanged(17)
+            notifyItemChanged(19)
+        }
     }
 
     companion object {
