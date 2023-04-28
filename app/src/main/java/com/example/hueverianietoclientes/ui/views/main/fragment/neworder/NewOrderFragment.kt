@@ -117,7 +117,7 @@ class NewOrderFragment : BaseFragment() {
                         "Revisar",
                         "Continuar",
                         { alertDialog.cancel() },
-                        {  }
+                        null
                     )
             }
 
