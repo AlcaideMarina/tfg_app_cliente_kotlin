@@ -12,7 +12,9 @@ import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
+import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
+import com.example.hueverianietoclientes.utils.Utils
 import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,7 +38,7 @@ class NewOrderViewModel @Inject constructor(
     }
 
     fun checkOrder(recyclerView: RecyclerView, clientDataId: String,
-                   approxDeliveryDatetimeSelected: Timestamp) {
+                   approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int) {
         // TODO
         // TODO: Poner el onclickconfirm a true y al acabar a false
         _viewState.value = NewOrderViewState(
@@ -76,9 +78,9 @@ class NewOrderViewModel @Inject constructor(
                     notes = null,
                     order = orderFieldMap,
                     orderDatetime = Timestamp(Date()),
-                    orderId = 0,    // TODO
+                    orderId = 0,    // TODO: Se cambia al final
                     paid = false,
-                    paymentMethod = 0,  // TODO
+                    paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
                     status = 0, // TODO
                     totalPrice = null
                 )

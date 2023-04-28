@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
@@ -21,6 +22,7 @@ import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentNewOrderBinding
 import com.example.hueverianietoclientes.domain.model.ModalDialogModel
+import com.example.hueverianietoclientes.ui.components.HNDropdown
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
 import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
@@ -64,7 +66,6 @@ class NewOrderFragment : BaseFragment() {
     override fun configureUI() {
         getPaymentMethodDropdownValues()
         setRecyclerView()
-        //getOrderStructure()
         setClientDataFields()
 
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
@@ -116,7 +117,7 @@ class NewOrderFragment : BaseFragment() {
                         "Revisar",
                         "Continuar",
                         { alertDialog.cancel() },
-                        null
+                        {  }
                     )
             }
 
@@ -126,10 +127,24 @@ class NewOrderFragment : BaseFragment() {
 
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
+            val a = this.binding.paymentMethodDropdown
+            Log.v("ld", "df")
+            val paymentMethod =
+                if (this.binding.paymentMethodDropdown.getSelectedItem()
+                    == requireContext().getString(R.string.in_cash)) {
+                    R.string.in_cash
+                } else if (this.binding.paymentMethodDropdown.getSelectedItem()
+                    == requireContext().getString(R.string.per_receipt)) {
+                    R.string.per_receipt
+                } else {
+                    R.string.transfer
+                }
+            // TODO: Transformar método de pago
             this.newOrderViewModel.checkOrder(
                 recyclerView = this.binding.orderRecyclerView,
                 clientDataId = clientData.id,
-                approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected
+                approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected,
+                paymentMethodSelected = paymentMethod
             )
 
         }

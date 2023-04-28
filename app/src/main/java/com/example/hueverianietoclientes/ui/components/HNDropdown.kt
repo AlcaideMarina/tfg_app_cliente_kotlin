@@ -46,4 +46,8 @@ open class HNDropdown : CoordinatorLayout, BaseComponent {
         this.binding.autoCompleteTextView.onItemClickListener = listener
     }
 
+    fun getSelectedItem() : String {
+        return this.binding.autoCompleteTextView.text.toString()
+    }
+
 }
