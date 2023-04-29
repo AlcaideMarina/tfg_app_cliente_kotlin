@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
@@ -27,9 +28,12 @@ class MyProfileFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Mi perfil", true)
-        clientData = (activity as MainActivity).clientData
+        (activity as MainActivity).configNav(true)
         this.binding = FragmentMyProfileBinding.inflate(inflater, container, false)
+
+        val args: MyProfileFragmentArgs by navArgs()
+        this.clientData = args.clientData
+
         return this.binding.root
     }
 

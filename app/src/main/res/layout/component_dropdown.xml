@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:layout_height="match_parent" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Select"
         android:textColorHint="@color/light_gray_color"
         app:boxCornerRadiusBottomEnd="@dimen/size16"
         app:boxCornerRadiusBottomStart="@dimen/size16"
         app:boxCornerRadiusTopEnd="@dimen/size16"
         app:boxCornerRadiusTopStart="@dimen/size16"
         app:boxStrokeColor="@color/light_gray_color"
-        app:endIconMode="clear_text">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu" >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/text_input_edit_text"
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:inputType="text"
-            android:maxLines="1"
-            android:gravity="top|start"
-            android:textColor="@color/black_color"
-            android:textSize="@dimen/textSize16"
-            tools:text="@string/type_something" />
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

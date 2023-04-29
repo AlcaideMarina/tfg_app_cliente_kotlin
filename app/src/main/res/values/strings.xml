@@ -43,4 +43,19 @@
     <string name="content_description_error_icon">Error icon</string>
     <string name="login_button">Entrar</string>
 
+    <!-- Constants -->
+    <string name="dozen_singular_units">Docena</string>
+    <string name="dozen_plural_units">Docenas</string>
+    <string name="box_singular_units">Caja</string>
+    <string name="box_plural_units">Cajas</string>
+    <string name="in_cash">Al contado</string>
+    <string name="per_receipt">Por recibo</string>
+    <string name="transfer">Transferencia</string>
+    <string name="price_pending">Pendiente de precio</string>
+    <string name="backordered">Pedido pendiente</string>
+    <string name="in_delivery">En reparto</string>
+    <string name="delivered">Entregado</string>
+    <string name="delivery_attempt">Intento de entrega</string>
+    <string name="unknown_status">Estado desconocido</string>
+
 </resources>

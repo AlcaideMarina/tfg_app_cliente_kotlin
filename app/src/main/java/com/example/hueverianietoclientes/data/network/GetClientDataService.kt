@@ -11,7 +11,7 @@ class GetClientDataService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun getClientData(uid: String) : ClientData? = kotlin.runCatching {
+    suspend fun getClientData(uid: String) : ClientData? = runCatching {
         firebaseClient.db
             .collection("client_info")
             .whereEqualTo("uid", uid)

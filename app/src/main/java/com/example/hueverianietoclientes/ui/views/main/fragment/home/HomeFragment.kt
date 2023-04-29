@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
+import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.FragmentHomeBinding
 import com.example.hueverianietoclientes.domain.model.GridItemModel
 import com.example.hueverianietoclientes.domain.usecase.HomeUseCase
@@ -28,13 +29,15 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var clientData: ClientData
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav("Home", false)
+        (activity as MainActivity).configNav(false)
+        clientData = (activity as MainActivity).clientData
         this.binding = FragmentHomeBinding
             .inflate(inflater, container, false)
         return this.binding.root
@@ -72,10 +75,37 @@ class HomeFragment : BaseFragment() {
                 "Mi perfil",
                 AppCompatResources.getDrawable(
                     requireContext(), R.drawable.ic_launcher_foreground)!!
-            ) { this.homeViewModel.navigateToMyProfile(this.view, bundleOf("clientData" to (activity as MainActivity).clientData)) },
+            ) {
+                this.homeViewModel.navigateToMyProfile(
+                    this.view,
+                    bundleOf("clientData" to clientData))
+              },
             GridItemModel("Facturación", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Facturación'") },
-            GridItemModel("Mis pedidos", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Mis pedidos'") },
-            GridItemModel("Nuevo pedido", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Nuevo pedido'") },
+            GridItemModel(
+                "Mis pedidos",
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_launcher_foreground)!!
+            ) {
+                this.homeViewModel.navigateToMyOrders(
+                    this.view,
+                    bundleOf(
+                        "clientData" to clientData,
+                        "fromNewOrder" to false
+                    )
+                )
+              },
+            GridItemModel(
+                "Nuevo pedido",
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_launcher_foreground)!!
+            ) {
+                this.homeViewModel.navigateToNewOrder(
+                    this.view,
+                    bundleOf("clientData" to clientData)
+                )
+              },
             GridItemModel("Ajustes", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Ajustes'") }
         )
         val manager = CustomGridLayoutManager(this.context, 2)

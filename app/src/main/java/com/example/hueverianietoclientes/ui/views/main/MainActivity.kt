@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
             setOf(R.id.homeFragment)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        configNav("", false)
+        configNav(false)
     }
 
     override fun configureUI() {
@@ -63,9 +63,16 @@ class MainActivity : BaseActivity() {
         // Not necessary
     }
 
-    fun configNav(title: String, setHome: Boolean) {
-        this.binding.topBar.title = title
+    fun configNav(setHome: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(setHome)
     }
+    fun changeTopBarName(newName: String) {
+        supportActionBar?.title = newName
+    }
+
+    fun goBackFragments() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
 
 }

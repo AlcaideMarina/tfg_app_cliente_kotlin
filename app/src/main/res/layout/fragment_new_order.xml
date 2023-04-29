@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scroll_view"
+    tools:context=".ui.views.main.MainActivity" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="@dimen/size8">
+
+        <TextView
+            android:id="@+id/no_changes_allowed_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'CONFIRMAR' para formalizar el pedido."
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/no_changes_allowed_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recuerde que una vez haya concluido el pedido no se podrá modificar ni cancelar, salvo con causa justificada llamándonos directamente."
+            android:layout_marginTop="8dp"
+            android:paddingBottom="@dimen/size16"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/direction_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/direction_text_view"
+                android:layout_marginTop="@dimen/size8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Dirección:" />
+
+            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                android:id="@+id/direction_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/size16"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/phone_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/size16"
+            app:layout_constraintTop_toBottomOf="@id/direction_text_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/phone_text_view"
+                android:layout_marginTop="@dimen/size8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Teléfono:" />
+
+            <LinearLayout
+                android:id="@+id/phone_text_input_layout_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false" >
+
+                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                    android:id="@+id/phone_text_input_layout_phone_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="16dp" />
+
+                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                    android:id="@+id/phone_text_input_layout_phone_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/size16"
+                app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/order_text_view"
+                    android:layout_marginTop="@dimen/size8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Pedido:" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/order_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/payment_method_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/size16"
+                app:layout_constraintTop_toBottomOf="@id/order_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/payment_method_text_view"
+                    android:layout_marginTop="@dimen/size8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Método de pago:" />
+
+                <com.example.hueverianietoclientes.ui.components.HNDropdown
+                    android:id="@+id/payment_method_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/size16"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delivery_datetime_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/size16"
+                app:layout_constraintTop_toBottomOf="@id/payment_method_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/delivery_datetime_text_view"
+                    android:layout_marginTop="@dimen/size8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fecha de entrega:" />
+
+                <com.example.hueverianietoclientes.ui.components.HNDatePicker
+                    android:id="@+id/delivery_date_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/size16" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/price_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="En un plazo de 24h nos pondremos en contacto con usted para confirmar el precio de cada producto, así como para confirmar la compra."
+                android:layout_marginTop="32dp"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.example.hueverianietoclientes.ui.components.HNButton
+                android:id="@+id/confirm_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/price_warning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.example.hueverianietoclientes.ui.components.HNButton
+                android:id="@+id/modify_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size16"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/confirm_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/extra_components_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/light_gray_color2"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/loading_component"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:layout_marginBottom="64dp"
+                android:elevation="2dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
