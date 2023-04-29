@@ -23,15 +23,15 @@ object Utils {
         return if(timestamp == null) {
             null
         } else {
-            SimpleDateFormat("MM/dd/yyyy").format(timestamp.toDate())
+            SimpleDateFormat(Constants.dateFormat).format(timestamp.toDate())
         }
     }
 
-    fun parseStringToTimestamp(dateStr : String, pattern : String? = "dd-MM-yyyy") :
+    fun parseStringToTimestamp(dateStr : String, pattern : String? = Constants.dateFormat) :
             Timestamp = Timestamp(SimpleDateFormat(pattern).parse(dateStr))
 
     fun parseDateToString(date: Date) :
-            String = SimpleDateFormat("dd/MM/yyyy").format(date)
+            String = SimpleDateFormat(Constants.dateFormat).format(date)
 
 
     fun addDaysToDate(date: Date, daysToAdd: Int) : Date {

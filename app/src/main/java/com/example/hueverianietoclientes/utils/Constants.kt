@@ -31,4 +31,6 @@ object Constants {
         R.string.delivery_attempt to 4
     )
 
+    const val dateFormat = "dd/MM/yyyy"
+
 }

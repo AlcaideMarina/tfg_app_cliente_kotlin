@@ -235,7 +235,7 @@ class NewOrderFragment : BaseFragment() {
             if (monthStr.length < 2) monthStr = "0$monthStr"
             if (yearStr.length < 4) yearStr = "0$yearStr"
             this.binding.deliveryDatePicker.setInputText("$dayStr/$monthStr/$yearStr")
-            approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr-$monthStr-$yearStr")
+            approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr/$monthStr/$yearStr")
         }
         val datePickerDialog = DatePickerDialog(requireContext(), listener, year, month, day)
         datePickerDialog.datePicker.minDate = Utils.addDaysToDate(Date(), 3).time
