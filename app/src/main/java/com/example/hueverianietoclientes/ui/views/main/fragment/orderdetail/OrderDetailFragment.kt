@@ -26,6 +26,9 @@ class OrderDetailFragment : BaseFragment() {
     private lateinit var binding: FragmentOrderDetailBinding
     private lateinit var orderData: OrderData
     private lateinit var clientData: ClientData
+    private val recyclerViewTitles = listOf(0, 7, 14, 21)
+    private val recyclerViewSubtitles = listOf(1, 3, 4, 6, 8, 10, 11, 13, 15, 17, 18, 20, 22, 24, 25, 27)
+    private val recyclerViewTextInputLayouts = listOf(2, 5, 9, 12, 16, 19, 23, 26)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,8 +88,8 @@ class OrderDetailFragment : BaseFragment() {
         val phone2 = clientData.phone[1].entries.iterator().next()
 
         val priceStr: String
-        if (orderData.totalPrice == (-1).toLong()) {
-            priceStr = "Pendiente de confirmación"
+        if (orderData.totalPrice == null) {
+            priceStr = "Pendiente de precios"
             this.binding.euroText.visibility = View.GONE
         } else {
             priceStr = orderData.totalPrice.toString()
@@ -119,8 +122,8 @@ class OrderDetailFragment : BaseFragment() {
         manager.setScrollEnabled(false)
         manager.spanSizeLookup = object : SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (listOf(0, 7, 14, 21).contains(position)) 4
-                else if(listOf(2, 5, 9, 12, 16, 19, 23, 26).contains(position)) 2
+                return if (recyclerViewTitles.contains(position)) 4
+                else if(recyclerViewTextInputLayouts.contains(position)) 2
                 else 1
             }
         }

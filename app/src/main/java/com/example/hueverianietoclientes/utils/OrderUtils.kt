@@ -60,7 +60,7 @@ object OrderUtils {
                 true, "Docena:"
             ),
             GridTextItemModel(2,
-                false, dbOrderModel.xlDozenQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.xlDozenQuantity.toString() + "   uds."
             ),
             GridTextItemModel(3,
                 true, (dbOrderModel.xlDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -69,7 +69,7 @@ object OrderUtils {
                 true, "Caja:"
             ),
             GridTextItemModel(5,
-                false, dbOrderModel.xlBoxQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.xlBoxQuantity.toString() + "   uds."
             ),
             GridTextItemModel(6,
                 true, (dbOrderModel.xlBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -81,7 +81,7 @@ object OrderUtils {
                 true, "Docena:"
             ),
             GridTextItemModel(9,
-                false, dbOrderModel.lDozenQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.lDozenQuantity.toString() + "   uds."
             ),
             GridTextItemModel(10,
                 true, (dbOrderModel.lDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -90,7 +90,7 @@ object OrderUtils {
                 true, "Caja:"
             ),
             GridTextItemModel(12,
-                false, dbOrderModel.lBoxQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.lBoxQuantity.toString() + "   uds."
             ),
             GridTextItemModel(13,
                 true, (dbOrderModel.lBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -102,7 +102,7 @@ object OrderUtils {
                 true, "Docena:"
             ),
             GridTextItemModel(16,
-                false, dbOrderModel.mDozenQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.mDozenQuantity.toString() + "   uds."
             ),
             GridTextItemModel(17,
                 true, (dbOrderModel.mDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -111,7 +111,7 @@ object OrderUtils {
                 true, "Caja:"
             ),
             GridTextItemModel(19,
-                false, dbOrderModel.mBoxQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.mBoxQuantity.toString() + "   uds."
             ),
             GridTextItemModel(20,
                 true, (dbOrderModel.mBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -123,7 +123,7 @@ object OrderUtils {
                 true, "Docena:"
             ),
             GridTextItemModel(23,
-                false, dbOrderModel.sDozenQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.sDozenQuantity.toString() + "   uds."
             ),
             GridTextItemModel(24,
                 true, (dbOrderModel.sDozenPrice ?: "-").toString() + " €/ud", isTextLeft = false
@@ -132,7 +132,7 @@ object OrderUtils {
                 true, "Caja:"
             ),
             GridTextItemModel(26,
-                false, dbOrderModel.sBoxQuantity.toString() + "   uds.", false
+                false, null, false, response = dbOrderModel.sBoxQuantity.toString() + "   uds."
             ),
             GridTextItemModel(27,
                 true, (dbOrderModel.sBoxPrice ?: "-").toString() + " €/ud", isTextLeft = false
