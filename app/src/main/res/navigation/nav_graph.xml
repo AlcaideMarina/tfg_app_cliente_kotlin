@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_newOrderFragment"
             app:destination="@id/newOrderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -55,6 +58,14 @@
         <argument
             android:name="orderData"
             app:argType="com.example.hueverianietoclientes.data.network.OrderData" />
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.settings.SettingsFragment"
+        android:label="Ajustes" >
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
