@@ -150,6 +150,7 @@ class NewOrderFragment : BaseFragment() {
 
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
+            it.hideSoftInput()
             if (this.newOrderViewModel.viewState.value.step == 1) {
                 val paymentMethod =
                     if (this.binding.paymentMethodDropdown.getSelectedItem()
@@ -164,7 +165,6 @@ class NewOrderFragment : BaseFragment() {
                     } else {
                         null
                     }
-                // TODO: Transformar método de pago
                 this.newOrderViewModel.checkOrder(
                     recyclerView = this.binding.orderRecyclerView,
                     clientDataId = clientData.id,
@@ -189,9 +189,16 @@ class NewOrderFragment : BaseFragment() {
         }
 
         this.binding.modifyButton.setOnClickListener {
+            it.hideSoftInput()
             this.newOrderViewModel.changePage(1)
             this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP) // TODO: Estás probando esto y viendo cómo hacer la navegación para ir a allorders
             (activity as MainActivity).changeTopBarName("Nuevo pedido")
+        }
+
+        this.binding.paymentMethodDropdown.getAutoCompleteTextView().setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                v.hideSoftInput()
+            }
         }
     }
 
