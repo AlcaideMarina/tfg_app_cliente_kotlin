@@ -3,6 +3,7 @@ package com.example.hueverianietoclientes.ui.views.main.fragment.neworder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,12 +11,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
+import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
+import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeViewModel
 import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
@@ -234,8 +237,9 @@ class NewOrderViewModel @Inject constructor(
         }
     }
 
-    fun navigateToMyOrders(view: View?, bundle: Bundle) {
-        view?.findNavController()?.navigate(R.id.action_newOrderFragment_to_myOrdersFragment, bundle)
+    fun navigateToMyOrders(view: View?, bundle: Bundle, activity: FragmentActivity) {
+        (activity as MainActivity).goBackFragments()
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myOrdersFragment, bundle)
             ?: Log.e(
                 HomeViewModel::class.java.simpleName,
                 "Error en la navegación a 'Mis pedidos'"

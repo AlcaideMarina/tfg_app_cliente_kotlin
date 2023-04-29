@@ -297,7 +297,8 @@ class NewOrderFragment : BaseFragment() {
                         bundleOf(
                             "clientData" to clientData,
                             "fromNewOrder" to true
-                        )
+                        ),
+                        this@NewOrderFragment.requireActivity()
                     )
                 }
             }
@@ -337,7 +338,6 @@ class NewOrderFragment : BaseFragment() {
             notifyItemChanged(19)
         }
     }
-
     companion object {
         private val TAG = LoginActivity::class.java.simpleName
     }

@@ -70,4 +70,9 @@ class MainActivity : BaseActivity() {
         supportActionBar?.title = newName
     }
 
+    fun goBackFragments() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
+
 }
