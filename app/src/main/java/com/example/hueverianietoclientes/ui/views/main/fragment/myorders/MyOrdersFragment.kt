@@ -64,7 +64,7 @@ class MyOrdersFragment : BaseFragment() {
                     if (orderData != null) {
                         val orderContainerModel = OrderContainerModel(
                             orderData.orderDatetime,
-                            orderData.orderId,
+                            orderData.orderId!!,
                             OrderUtils.getOrderSummary(OrderUtils.orderDataToBDOrderModel(orderData)),
                             orderData.totalPrice ?: -1,
                             orderData.status,

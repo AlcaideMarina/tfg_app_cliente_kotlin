@@ -15,9 +15,15 @@ data class OrderData (
     val notes: String?,
     var order: Map<String, Map<String, Number?>>,
     val orderDatetime: Timestamp,
-    val orderId: Long,
+    var orderId: Long?,
     val paid: Boolean,
     val paymentMethod: Long,
     val status: Long,
     val totalPrice: Long?
-) : Parcelable
+) : Parcelable {
+
+    fun setOrderId(newOrderId: Long) {
+        this.orderId = newOrderId
+    }
+
+}

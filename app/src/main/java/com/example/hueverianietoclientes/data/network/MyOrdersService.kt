@@ -1,6 +1,7 @@
 package com.example.hueverianietoclientes.data.network
 
 import com.example.hueverianietoclientes.utils.OrderUtils
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firestore.v1.StructuredQuery.Order
 import kotlinx.coroutines.tasks.await
@@ -15,6 +16,7 @@ class MyOrdersService @Inject constructor(
             .collection("client_info")
             .document(documentId)
             .collection("orders")
+            .orderBy("order_id", Query.Direction.DESCENDING)
             .get()
             .await()
     }.toOrderDataList()

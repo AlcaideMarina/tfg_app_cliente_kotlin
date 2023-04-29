@@ -15,6 +15,7 @@ import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
+import com.example.hueverianietoclientes.domain.usecase.GetOrderIdUseCase
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
@@ -33,7 +34,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
-    val newOrderUseCase: NewOrderUseCase
+    val newOrderUseCase: NewOrderUseCase,
+    val getOrderIdUseCase: GetOrderIdUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(NewOrderViewState())
@@ -56,8 +58,8 @@ class NewOrderViewModel @Inject constructor(
                 step = 2,
                 null
             )
-            when(newOrderUseCase(clientData, orderData)) {
-                false -> {
+            when(val orderId = getOrderIdUseCase(clientData.documentId)) {
+                null -> {
                     _viewState.value = NewOrderViewState(
                         error = true,
                         isLoading = false,
@@ -65,14 +67,26 @@ class NewOrderViewModel @Inject constructor(
                         4
                     )
                 }
-                true -> {
-                    // TODO: Navegación + Popup
-                    _viewState.value = NewOrderViewState(
-                        error = false,
-                        isLoading = false,
-                        step = 3,
-                        null
-                    )
+                else -> {
+                    orderData.setOrderId(orderId)
+                    when(newOrderUseCase(clientData, orderData)) {
+                        false -> {
+                            _viewState.value = NewOrderViewState(
+                                error = true,
+                                isLoading = false,
+                                step = 2,
+                                4
+                            )
+                        }
+                        true -> {
+                            _viewState.value = NewOrderViewState(
+                                error = false,
+                                isLoading = false,
+                                step = 3,
+                                null
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -128,7 +142,7 @@ class NewOrderViewModel @Inject constructor(
                         notes = null,
                         order = orderFieldMap,
                         orderDatetime = Timestamp(Date()),
-                        orderId = 0,    // TODO: Se cambia al final
+                        orderId = null,
                         paid = false,
                         paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
                         status = 0, // TODO
