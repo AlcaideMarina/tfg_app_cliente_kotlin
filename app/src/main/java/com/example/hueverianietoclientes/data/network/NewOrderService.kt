@@ -9,7 +9,7 @@ class NewOrderService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun addNewOrder(clientData: ClientData, orderData: OrderData) = runCatching {
+    suspend fun addNewOrder(clientData: ClientData, orderData: OrderData) : Boolean = runCatching {
         firebaseClient.db
             .collection("client_info")
             .document(clientData.documentId)
@@ -20,8 +20,8 @@ class NewOrderService @Inject constructor(
     }.toOrderResult(orderData)
 
     private fun Result<DocumentReference>.toOrderResult(orderData: OrderData) = when (val result = getOrNull()) {
-        null -> null
-        else -> orderData
+        null -> false
+        else -> true
     }
 
 }

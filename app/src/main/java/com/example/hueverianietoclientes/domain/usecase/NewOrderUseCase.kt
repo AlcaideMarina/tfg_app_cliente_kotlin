@@ -9,7 +9,7 @@ class NewOrderUseCase @Inject constructor(
     private val newOrderService: NewOrderService
 ) {
 
-    suspend operator fun invoke(clientData: ClientData, orderData: OrderData) : OrderData? =
+    suspend operator fun invoke(clientData: ClientData, orderData: OrderData) : Boolean =
         newOrderService.addNewOrder(clientData, orderData)
 
 }

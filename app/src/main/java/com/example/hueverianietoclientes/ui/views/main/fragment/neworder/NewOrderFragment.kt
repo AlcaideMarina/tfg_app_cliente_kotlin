@@ -76,6 +76,7 @@ class NewOrderFragment : BaseFragment() {
         )
         this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
         this.binding.confirmButton.setText("GUARDAR")
+        this.binding.modifyButton.setText("Modificar datos")
         this.alertDialog = HNModalDialog(requireContext())
 
         lifecycleScope.launchWhenStarted {
@@ -112,8 +113,8 @@ class NewOrderFragment : BaseFragment() {
                         { alertDialog.cancel() },
                         {
                             alertDialog.cancel()
+                            (activity as MainActivity).changeTopBarName("Resumen del pedido")
                             this.newOrderViewModel.changePage(2)
-                            // TODO: Esto no funciona
                             this.binding.scrollView.scrollTo(0, 0)
                         }
                     )
@@ -125,6 +126,14 @@ class NewOrderFragment : BaseFragment() {
                         { alertDialog.cancel() },
                         null
                     )
+                4 -> setPopUp(
+                    "Error de servicio",
+                    "Sentimos comunicarle que se ha producido un error al intentar guardar el pediod en base de datos. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
+                    "De acuerdo",
+                    null,
+                    { alertDialog.cancel() },
+                    null
+                )
             }
 
         }
@@ -135,27 +144,36 @@ class NewOrderFragment : BaseFragment() {
 
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
-            val paymentMethod =
-                if (this.binding.paymentMethodDropdown.getSelectedItem()
-                    == requireContext().getString(R.string.in_cash)) {
-                    R.string.in_cash
-                } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                    == requireContext().getString(R.string.per_receipt)) {
-                    R.string.per_receipt
-                } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                    == requireContext().getString(R.string.transfer)){
-                    R.string.transfer
-                } else {
-                    null
-                }
-            // TODO: Transformar método de pago
-            this.newOrderViewModel.checkOrder(
-                recyclerView = this.binding.orderRecyclerView,
-                clientDataId = clientData.id,
-                approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected,
-                paymentMethodSelected = paymentMethod
-            )
+            if (this.newOrderViewModel.viewState.value.step == 1) {
+                val paymentMethod =
+                    if (this.binding.paymentMethodDropdown.getSelectedItem()
+                        == requireContext().getString(R.string.in_cash)) {
+                        R.string.in_cash
+                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
+                        == requireContext().getString(R.string.per_receipt)) {
+                        R.string.per_receipt
+                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
+                        == requireContext().getString(R.string.transfer)){
+                        R.string.transfer
+                    } else {
+                        null
+                    }
+                // TODO: Transformar método de pago
+                this.newOrderViewModel.checkOrder(
+                    recyclerView = this.binding.orderRecyclerView,
+                    clientDataId = clientData.id,
+                    approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected,
+                    paymentMethodSelected = paymentMethod
+                )
+            } else {
+                this.newOrderViewModel.addNewOrder(clientData, or)
+            }
+        }
 
+        this.binding.modifyButton.setOnClickListener {
+            this.newOrderViewModel.changePage(1)
+            this.binding.scrollView.scrollTo(0, 0)
+            (activity as MainActivity).changeTopBarName("Nuevo pedido")
         }
     }
 
@@ -168,7 +186,6 @@ class NewOrderFragment : BaseFragment() {
     }
 
     private fun onClickScheduledDate() {
-        // TODO: Bloquear hasta 3 días después del pedido
         val selectedCalendar = Calendar.getInstance()
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
@@ -180,10 +197,12 @@ class NewOrderFragment : BaseFragment() {
             if (dayStr.length < 2) dayStr = "0$dayStr"
             if (monthStr.length < 2) monthStr = "0$monthStr"
             if (yearStr.length < 4) yearStr = "0$yearStr"
-            this.binding.deliveryDatePicker.setInputText("$dayStr-$monthStr-$yearStr")
+            this.binding.deliveryDatePicker.setInputText("$dayStr/$monthStr/$yearStr")
             approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr-$monthStr-$yearStr")
         }
-        DatePickerDialog(requireContext(), listener, year, month, day).show()
+        val datePickerDialog = DatePickerDialog(requireContext(), listener, year, month, day)
+        datePickerDialog.datePicker.minDate = Utils.addDaysToDate(Date(), 3).time
+        datePickerDialog.show()
     }
 
     private fun setRecyclerView() {
@@ -245,8 +264,6 @@ class NewOrderFragment : BaseFragment() {
                     binding.deliveryDatePicker.getDatePicker().isEnabled = true
                     binding.modifyButton.visibility = View.GONE
                     binding.confirmButton.setText("GUARDAR")
-                    binding.modifyButton.setText("Modificar datos")
-                    binding.modifyButton.setOnClickListener(null)
                 } else {
                     setRecyclerViewEnable(false)
                     binding.paymentMethodDropdown.isEnabled = false
@@ -256,8 +273,6 @@ class NewOrderFragment : BaseFragment() {
                     binding.deliveryDatePicker.getDatePicker().isEnabled = false
                     binding.modifyButton.visibility = View.VISIBLE
                     binding.confirmButton.setText("CONFIRMAR")
-                    binding.modifyButton.setText("Modificar datos")
-                    binding.modifyButton.setOnClickListener(null)
                 }
             }
         } catch (e: Exception) {

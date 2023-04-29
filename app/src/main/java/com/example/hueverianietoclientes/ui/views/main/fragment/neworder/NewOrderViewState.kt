@@ -6,7 +6,6 @@ class NewOrderViewState (
     val error: Boolean = false,
     val isLoading: Boolean = false,
     val step: Int = 1,
-    val onClickConfirm: Boolean = false,
     val popUpCode: Int? = null
 ) : BaseState
 
@@ -18,4 +17,5 @@ class NewOrderViewState (
 *   1       - Incorrect order form
 *   2       - Warning step 1 to step 2
 *   3       - Undefined error
+*   4       - Error while saving in db
 * */

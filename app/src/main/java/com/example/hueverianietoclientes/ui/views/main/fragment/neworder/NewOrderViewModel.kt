@@ -6,7 +6,9 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
@@ -19,6 +21,7 @@ import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -36,105 +39,116 @@ class NewOrderViewModel @Inject constructor(
     private var _orderList = MutableLiveData<List<Int?>>()
     val orderList : LiveData<List<Int?>> get() = _orderList
 
-    fun addNewOrder() {
-
+    fun addNewOrder(clientData: ClientData, orderData: OrderData) {
+        viewModelScope.launch {
+            _viewState.value = NewOrderViewState(
+                error = false,
+                isLoading = true,
+                step = 1,
+                null
+            )
+            when(val result = newOrderUseCase(clientData, orderData)) {
+                false -> {
+                    _viewState.value = NewOrderViewState(
+                        error = true,
+                        isLoading = false,
+                        step = 1,
+                        4
+                    )
+                }
+                true -> {
+                    // Navegación
+                    // Popup
+                }
+            }
+        }
     }
 
     fun checkOrder(recyclerView: RecyclerView, clientDataId: String,
                    approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int?) {
-        // TODO
-        // TODO: Poner el onclickconfirm a true y al acabar a false
-        _viewState.value = NewOrderViewState(
-            error = false,
-            isLoading = true,
-            step = 1,
-            onClickConfirm = true,
-            null
-        )
-
-        try {
-            val dbOrderFieldData = getOrderStructure(recyclerView)
-            if (paymentMethodSelected == null) {
-                _viewState.value = NewOrderViewState(
-                    error = true,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 0
-                )
-                _alertDialog.value = NewOrderViewState(
-                    error = true,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 0
-                )
-            }
-            else if (dbOrderFieldData == null) {
-                _viewState.value = NewOrderViewState(
-                    error = true,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 1
-                )
-                _alertDialog.value = NewOrderViewState(
-                    error = true,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 1
-                )
-            } else {
-                val orderFieldMap = OrderUtils.parseDBOrderFieldDataToMap(dbOrderFieldData)
-                OrderData(
-                    approxDeliveryDatetime = approxDeliveryDatetimeSelected,
-                    createdBy = clientDataId,
-                    deliveryDatetime = null,
-                    deliveryDni = null,
-                    deliveryNote = null,
-                    deliveryPerson = null,
-                    notes = null,
-                    order = orderFieldMap,
-                    orderDatetime = Timestamp(Date()),
-                    orderId = 0,    // TODO: Se cambia al final
-                    paid = false,
-                    paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
-                    status = 0, // TODO
-                    totalPrice = null
-                )
-                _viewState.value = NewOrderViewState(
-                    error = false,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 2
-                )
-                _alertDialog.value = NewOrderViewState(
-                    error = false,
-                    isLoading = false,
-                    step = 1,
-                    onClickConfirm = false,
-                    popUpCode = 2
-                )
-            }
-
-        } catch (e: Exception) {
-            Log.e(NewOrderFragment::class.java.simpleName, e.message, e)
+        viewModelScope.launch {
             _viewState.value = NewOrderViewState(
-                error = true,
-                isLoading = false,
+                error = false,
+                isLoading = true,
                 step = 1,
-                onClickConfirm = false,
-                popUpCode = 3
+                null
             )
-            _alertDialog.value = NewOrderViewState(
-                error = true,
-                isLoading = false,
-                step = 1,
-                onClickConfirm = false,
-                popUpCode = 3
-            )
+
+            try {
+                val dbOrderFieldData = getOrderStructure(recyclerView)
+                if (paymentMethodSelected == null) {
+                    _viewState.value = NewOrderViewState(
+                        error = true,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 0
+                    )
+                    _alertDialog.value = NewOrderViewState(
+                        error = true,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 0
+                    )
+                } else if (dbOrderFieldData == null) {
+                    _viewState.value = NewOrderViewState(
+                        error = true,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 1
+                    )
+                    _alertDialog.value = NewOrderViewState(
+                        error = true,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 1
+                    )
+                } else {
+                    val orderFieldMap = OrderUtils.parseDBOrderFieldDataToMap(dbOrderFieldData)
+                    OrderData(
+                        approxDeliveryDatetime = approxDeliveryDatetimeSelected,
+                        createdBy = clientDataId,
+                        deliveryDatetime = null,
+                        deliveryDni = null,
+                        deliveryNote = null,
+                        deliveryPerson = null,
+                        notes = null,
+                        order = orderFieldMap,
+                        orderDatetime = Timestamp(Date()),
+                        orderId = 0,    // TODO: Se cambia al final
+                        paid = false,
+                        paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
+                        status = 0, // TODO
+                        totalPrice = null
+                    )
+                    _viewState.value = NewOrderViewState(
+                        error = false,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 2
+                    )
+                    _alertDialog.value = NewOrderViewState(
+                        error = false,
+                        isLoading = false,
+                        step = 1,
+                        popUpCode = 2
+                    )
+                }
+
+            } catch (e: Exception) {
+                Log.e(NewOrderFragment::class.java.simpleName, e.message, e)
+                _viewState.value = NewOrderViewState(
+                    error = true,
+                    isLoading = false,
+                    step = 1,
+                    popUpCode = 3
+                )
+                _alertDialog.value = NewOrderViewState(
+                    error = true,
+                    isLoading = false,
+                    step = 1,
+                    popUpCode = 3
+                )
+            }
         }
     }
 
@@ -144,7 +158,6 @@ class NewOrderViewModel @Inject constructor(
                 error = false,
                 isLoading = false,
                 step = 1,
-                onClickConfirm = false,
                 popUpCode = null
             )
         } else {
@@ -152,7 +165,6 @@ class NewOrderViewModel @Inject constructor(
                 error = false,
                 isLoading = false,
                 step = 2,
-                onClickConfirm = false,
                 popUpCode = null
             )
         }
