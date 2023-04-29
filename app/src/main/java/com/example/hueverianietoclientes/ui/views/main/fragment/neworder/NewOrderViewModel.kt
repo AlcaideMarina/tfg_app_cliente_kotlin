@@ -7,13 +7,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
+import com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeViewModel
 import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
 import com.example.hueverianietoclientes.utils.Utils
@@ -55,13 +58,18 @@ class NewOrderViewModel @Inject constructor(
                     _viewState.value = NewOrderViewState(
                         error = true,
                         isLoading = false,
-                        step = 1,
+                        step = 2,
                         4
                     )
                 }
                 true -> {
-                    // Navegación
-                    // Popup
+                    // TODO: Navegación + Popup
+                    _viewState.value = NewOrderViewState(
+                        error = false,
+                        isLoading = false,
+                        step = 3,
+                        null
+                    )
                 }
             }
         }
@@ -173,12 +181,6 @@ class NewOrderViewModel @Inject constructor(
         }
     }
 
-    fun onClickConfirmButton() {
-        // TODO: Comprobar campos
-        // TODO: Levantar alertdialog para asegurar
-
-    }
-
     private fun getOrderStructure(recyclerView: RecyclerView) : DBOrderFieldData? {
         val xlDozenValue : Any?
         val xlBoxValue : Any?
@@ -232,5 +234,11 @@ class NewOrderViewModel @Inject constructor(
         }
     }
 
-
+    fun navigateToMyOrders(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myOrdersFragment, bundle)
+            ?: Log.e(
+                HomeViewModel::class.java.simpleName,
+                "Error en la navegación a 'Mis pedidos'"
+            )
+    }
 }

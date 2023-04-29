@@ -89,7 +89,11 @@ class HomeFragment : BaseFragment() {
             ) {
                 this.homeViewModel.navigateToMyOrders(
                     this.view,
-                    bundleOf("clientData" to clientData))
+                    bundleOf(
+                        "clientData" to clientData,
+                        "fromNewOrder" to false
+                    )
+                )
               },
             GridItemModel(
                 "Nuevo pedido",

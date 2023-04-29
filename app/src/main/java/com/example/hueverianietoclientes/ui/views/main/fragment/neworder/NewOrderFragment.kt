@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
@@ -280,7 +281,7 @@ class NewOrderFragment : BaseFragment() {
                     binding.deliveryDatePicker.getDatePicker().isEnabled = true
                     binding.modifyButton.visibility = View.GONE
                     binding.confirmButton.setText("GUARDAR")
-                } else {
+                } else if (this.step == 2) {
                     setRecyclerViewEnable(false)
                     binding.paymentMethodDropdown.isEnabled = false
                     binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
@@ -289,6 +290,14 @@ class NewOrderFragment : BaseFragment() {
                     binding.deliveryDatePicker.getDatePicker().isEnabled = false
                     binding.modifyButton.visibility = View.VISIBLE
                     binding.confirmButton.setText("CONFIRMAR")
+                } else {
+                    this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
+                        this@NewOrderFragment.view,
+                        bundleOf(
+                            "clientData" to clientData,
+                            "fromNewOrder" to true
+                        )
+                    )
                 }
             }
         } catch (e: Exception) {

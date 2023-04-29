@@ -11,6 +11,13 @@ class NewOrderViewState (
 
 
 /*
+* Steps:
+*   1       - Add new order
+*   2       - Order summary
+*   3       - All orders fragment
+* */
+
+/*
 * PopUp Codes:
 *   null    - there is no pop up to show
 *   0       - Incorrect form
