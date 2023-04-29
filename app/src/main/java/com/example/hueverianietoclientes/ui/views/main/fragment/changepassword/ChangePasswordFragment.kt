@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
+import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.FragmentChangePasswordBinding
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 
 class ChangePasswordFragment : BaseFragment() {
 
     private lateinit var binding : FragmentChangePasswordBinding
+    private lateinit var clientData: ClientData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +26,8 @@ class ChangePasswordFragment : BaseFragment() {
         this.binding = FragmentChangePasswordBinding.inflate(
             inflater, container, false
         )
+        val args : ChangePasswordFragmentArgs by navArgs()
+        this.clientData = args.clientData
         return this.binding.root
     }
 
