@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
@@ -16,14 +17,17 @@ import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentMyOrdersBinding
 import com.example.hueverianietoclientes.domain.model.OrderContainerModel
+import com.example.hueverianietoclientes.ui.components.HNModalDialog
 import com.example.hueverianietoclientes.ui.components.hnordercontainer.HNOrderContainerAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginActivity
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
+import com.example.hueverianietoclientes.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class MyOrdersFragment : BaseFragment() {
@@ -31,6 +35,9 @@ class MyOrdersFragment : BaseFragment() {
     private lateinit var binding: FragmentMyOrdersBinding
     private lateinit var clientData: ClientData
     private val myOrdersViewModel : MyOrdersViewModel by viewModels()
+    private var fromNewOrderFragment by Delegates.notNull<Boolean>()
+    private lateinit var alertDialog: HNModalDialog
+    private var isFirst = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,19 +45,44 @@ class MyOrdersFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         (activity as MainActivity).configNav(true)
-        clientData = (activity as MainActivity).clientData
         this.binding = FragmentMyOrdersBinding.inflate(
             inflater, container, false
         )
+
+        val args : MyOrdersFragmentArgs by navArgs()
+        this.clientData = args.clientData
+        if (isFirst) {
+            this.fromNewOrderFragment = args.fromNewOrder
+            isFirst = false
+        } else {
+            this.fromNewOrderFragment = false
+        }
+
         return this.binding.root
     }
 
     override fun configureUI() {
+        this.alertDialog = HNModalDialog(requireContext())
         this.myOrdersViewModel.getOrdersData(clientData.documentId)
         lifecycleScope.launchWhenStarted {
             myOrdersViewModel.viewState.collect { viewState ->
                 updateUI(viewState)
             }
+        }
+        if (this.fromNewOrderFragment) {
+            Utils.setPopUp(
+                alertDialog,
+                requireContext(),
+                "Pedido realizado",
+                "Su pedido se ha realizado correctamente. En un plazo máximo de 24 horas, nos pondremos en contactu con usted para confirmar los datos. ¡Gracias por la confianza!",
+                "De acuerdo",
+                null,
+                {
+                    alertDialog.cancel()
+                    this.fromNewOrderFragment = false
+                },
+                null
+            )
         }
     }
 

@@ -47,9 +47,6 @@
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
-        <action
-            android:id="@+id/action_newOrderFragment_to_myOrdersFragment"
-            app:destination="@id/myOrdersFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"

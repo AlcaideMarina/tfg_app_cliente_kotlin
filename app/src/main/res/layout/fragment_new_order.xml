@@ -17,7 +17,7 @@
             android:id="@+id/no_changes_allowed_text_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'GUARDAR' para formalizar el pedido."
+            android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'CONFIRMAR' para formalizar el pedido."
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
