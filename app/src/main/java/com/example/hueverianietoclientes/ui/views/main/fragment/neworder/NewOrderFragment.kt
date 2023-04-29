@@ -92,7 +92,9 @@ class NewOrderFragment : BaseFragment() {
     override fun setObservers() {
         this.newOrderViewModel.alertDialog.observe(this) { newOrderViewState ->
             when(newOrderViewState.popUpCode) {
-                0 -> setPopUp(
+                0 -> Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
                         "Formulario incorrecto",
                         "Por favor, compruebe los datos. Hay errores o faltan campos por rellenar.",
                         "De acuerdo",
@@ -100,7 +102,9 @@ class NewOrderFragment : BaseFragment() {
                         { alertDialog.cancel() },
                         null
                     )
-                1 -> setPopUp(
+                1 -> Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
                         "Formulario incorrecto",
                         "Por favor, compruebe los datos de los productos. Se han introducido caracteres no válidos (sólo son válidos numeros enteros) o no se ha pedido ningún producto.",
                         "De acuerdo",
@@ -108,7 +112,9 @@ class NewOrderFragment : BaseFragment() {
                         { alertDialog.cancel() },
                         null
                     )
-                2 -> setPopUp(
+                2 -> Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
                         "Aviso",
                         "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
                         "Revisar",
@@ -121,7 +127,9 @@ class NewOrderFragment : BaseFragment() {
                             this.binding.scrollView.scrollTo(0, 0)
                         }
                     )
-                3 -> setPopUp(
+                3 -> Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
                         "Se ha producido un error",
                         "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
                         "De acuerdo",
@@ -129,7 +137,9 @@ class NewOrderFragment : BaseFragment() {
                         { alertDialog.cancel() },
                         null
                     )
-                4 -> setPopUp(
+                4 -> Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
                     "Error de servicio",
                     "Sentimos comunicarle que se ha producido un error al intentar guardar el pediod en base de datos. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
                     "De acuerdo",
@@ -176,7 +186,9 @@ class NewOrderFragment : BaseFragment() {
                     this.newOrderViewModel.addNewOrder(
                         clientData, this.newOrderViewModel.orderData.value!!)
                 } else {
-                    setPopUp(
+                    Utils.setPopUp(
+                        alertDialog,
+                        requireContext(),
                         "Se ha producido un error",
                         "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
                         "De acuerdo",
@@ -256,22 +268,6 @@ class NewOrderFragment : BaseFragment() {
         this.binding.phoneTextInputLayoutPhone1.isEnabled = false
         this.binding.phoneTextInputLayoutPhone2.setInputText(clientData.phone[1].entries.iterator().next().value.toString())
         this.binding.phoneTextInputLayoutPhone2.isEnabled = false
-    }
-
-    private fun setPopUp(title: String, message: String, leftButton: String, rightButton: String?,
-        leftButtonListener: View.OnClickListener, rightButtonListener: View.OnClickListener?) {
-        alertDialog.show(
-            requireContext(),
-            ModalDialogModel(
-                title,
-                message,
-                leftButton,
-                rightButton,
-                leftButtonListener,
-                rightButtonListener,
-                true
-            )
-        )
     }
 
     override fun updateUI(state: BaseState) {
