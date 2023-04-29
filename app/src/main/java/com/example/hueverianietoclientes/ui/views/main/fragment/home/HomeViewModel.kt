@@ -46,12 +46,16 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
         view?.findNavController()?.navigate(R.id.action_homeFragment_to_newOrderFragment, bundle)
             ?: Log.e(
                 HomeViewModel::class.java.simpleName,
-                "Error en la navegacióna 'Nuevo pedido'"
+                "Error en la navegación a 'Nuevo pedido'"
             )
     }
 
-    fun navigateToSettings(context: Context, clientData: Parcelable?) {
-        // TODO
+    fun navigateToSettings(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_settingsFragment, bundle)
+            ?: Log.e(
+                HomeViewModel::class.java.simpleName,
+                "Error en la navegación a 'Ajustes'"
+            )
     }
 
     fun navigateToLogin(context: Context, clientData: Parcelable?) {
