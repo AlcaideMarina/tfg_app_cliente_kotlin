@@ -18,7 +18,7 @@ class ChangePasswordFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).configNav(true)      // TODO: Probar esto - vuelve al fragment de home o de ajustes?
+        (activity as MainActivity).configNav(true)
         this.binding = FragmentChangePasswordBinding.inflate(
             inflater, container, false
         )
@@ -26,7 +26,7 @@ class ChangePasswordFragment : BaseFragment() {
     }
 
     override fun configureUI() {
-        //TODO("Not yet implemented")
+        this.binding.saveButton.setText("Cambiar contraseña")
     }
 
     override fun setObservers() {
