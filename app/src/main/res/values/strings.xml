@@ -52,7 +52,7 @@
     <string name="per_receipt">Por recibo</string>
     <string name="transfer">Transferencia</string>
     <string name="price_pending">Pendiente de precio</string>
-    <string name="backordered">En reparto</string>
+    <string name="backordered">Pedido pendiente</string>
     <string name="in_delivery">En reparto</string>
     <string name="delivered">Entregado</string>
     <string name="delivery_attempt">Intento de entrega</string>

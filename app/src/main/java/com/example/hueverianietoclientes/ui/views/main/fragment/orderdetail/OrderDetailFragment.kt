@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
@@ -89,10 +90,26 @@ class OrderDetailFragment : BaseFragment() {
 
         val priceStr: String
         if (orderData.totalPrice == null) {
-            priceStr = "Pendiente de precios"
+            priceStr = requireContext().getString(R.string.price_pending)
             this.binding.euroText.visibility = View.GONE
         } else {
             priceStr = orderData.totalPrice.toString()
+        }
+
+        val statusApproxDeliveryDatetimeList = listOf<Long>(0, 1, 2)
+        val deliveryDatetimeField : String = if (statusApproxDeliveryDatetimeList.contains(orderData.status)) {
+            requireContext().getString(Utils.getKey(
+                Constants.orderStatus, orderData.status.toInt())!!) + " - " +
+                    Utils.parseTimestampToString(orderData.approxDeliveryDatetime)
+        } else if (orderData.status == (4).toLong()) {
+            Utils.parseTimestampToString(orderData.deliveryDatetime) ?: ""
+        } else if (orderData.status == (5).toLong()) {
+            requireContext().getString(Utils.getKey(
+                Constants.orderStatus, orderData)!!) + " - " +
+                    Utils.parseTimestampToString(orderData.deliveryDatetime)
+        } else {
+            Utils.parseTimestampToString(orderData.deliveryDatetime)
+                ?: Utils.parseTimestampToString(orderData.approxDeliveryDatetime)!!
         }
 
         with(this.binding) {
@@ -105,8 +122,7 @@ class OrderDetailFragment : BaseFragment() {
             totalPriceTextInputLayout.setInputText(priceStr)
             orderDateTextInputLayout.setInputText(
                 Utils.parseTimestampToString(orderData.orderDatetime) ?: "")
-            deliveryDateTextInputLayout.setInputText(
-                Utils.parseTimestampToString(orderData.deliveryDatetime) ?: "")
+            deliveryDateTextInputLayout.setInputText(deliveryDatetimeField)
             deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
             deliveryNoteTextInputLayout.setInputText(orderData.deliveryNote?.toString() ?: "")
             deliveryDniTextInputLayout.setInputText(orderData.deliveryDni ?: "")
