@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.core.view.isVisible
@@ -189,7 +190,7 @@ class NewOrderFragment : BaseFragment() {
 
         this.binding.modifyButton.setOnClickListener {
             this.newOrderViewModel.changePage(1)
-            this.binding.scrollView.scrollTo(0, 0)
+            this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP) // TODO: Estás probando esto y viendo cómo hacer la navegación para ir a allorders
             (activity as MainActivity).changeTopBarName("Nuevo pedido")
         }
     }

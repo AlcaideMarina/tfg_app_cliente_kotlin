@@ -50,10 +50,10 @@ class NewOrderViewModel @Inject constructor(
             _viewState.value = NewOrderViewState(
                 error = false,
                 isLoading = true,
-                step = 1,
+                step = 2,
                 null
             )
-            when(val result = newOrderUseCase(clientData, orderData)) {
+            when(newOrderUseCase(clientData, orderData)) {
                 false -> {
                     _viewState.value = NewOrderViewState(
                         error = true,
@@ -235,7 +235,7 @@ class NewOrderViewModel @Inject constructor(
     }
 
     fun navigateToMyOrders(view: View?, bundle: Bundle) {
-        view?.findNavController()?.navigate(R.id.action_homeFragment_to_myOrdersFragment, bundle)
+        view?.findNavController()?.navigate(R.id.action_newOrderFragment_to_myOrdersFragment, bundle)
             ?: Log.e(
                 HomeViewModel::class.java.simpleName,
                 "Error en la navegación a 'Mis pedidos'"
