@@ -48,6 +48,7 @@ class NewOrderFragment : BaseFragment() {
     private var dropdownPaymentMethodItems: MutableList<String> = mutableListOf()
     private val newOrderViewModel: NewOrderViewModel by viewModels()
     private lateinit var approxDeliveryDatetimeSelected : Timestamp
+    private var orderData : OrderData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -140,6 +141,9 @@ class NewOrderFragment : BaseFragment() {
         this.newOrderViewModel.orderList.observe(this) {
             orderList = it
         }
+        this.newOrderViewModel.orderData.observe(this) {
+            orderData = it
+        }
     }
 
     override fun setListeners() {
@@ -166,7 +170,19 @@ class NewOrderFragment : BaseFragment() {
                     paymentMethodSelected = paymentMethod
                 )
             } else {
-                this.newOrderViewModel.addNewOrder(clientData, or)
+                if (orderData != null) {
+                    this.newOrderViewModel.addNewOrder(
+                        clientData, this.newOrderViewModel.orderData.value!!)
+                } else {
+                    setPopUp(
+                        "Se ha producido un error",
+                        "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
+                        "De acuerdo",
+                        null,
+                        { alertDialog.cancel() },
+                        null
+                    )
+                }
             }
         }
 

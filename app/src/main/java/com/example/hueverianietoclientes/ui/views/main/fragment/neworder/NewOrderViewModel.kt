@@ -39,6 +39,9 @@ class NewOrderViewModel @Inject constructor(
     private var _orderList = MutableLiveData<List<Int?>>()
     val orderList : LiveData<List<Int?>> get() = _orderList
 
+    private var _orderData = MutableLiveData<OrderData>()
+    val orderData: LiveData<OrderData> get() = _orderData
+
     fun addNewOrder(clientData: ClientData, orderData: OrderData) {
         viewModelScope.launch {
             _viewState.value = NewOrderViewState(
@@ -104,7 +107,7 @@ class NewOrderViewModel @Inject constructor(
                     )
                 } else {
                     val orderFieldMap = OrderUtils.parseDBOrderFieldDataToMap(dbOrderFieldData)
-                    OrderData(
+                    _orderData.value = OrderData(
                         approxDeliveryDatetime = approxDeliveryDatetimeSelected,
                         createdBy = clientDataId,
                         deliveryDatetime = null,
