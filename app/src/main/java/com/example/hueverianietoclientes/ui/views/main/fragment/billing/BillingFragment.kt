@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -63,7 +64,12 @@ class BillingFragment : BaseFragment() {
                         var billingContainerItemModel = BillingContainerItemModel(
                             item
                         ) {
-                            // TODO: Navegación
+                            this.billingViewModel.navigateToBillingDetail(
+                                this.view,
+                                bundleOf(
+                                    "billingModel" to item.billingModel!!
+                                )
+                            )
                         }
                         billingList.add(billingContainerItemModel)
                     }

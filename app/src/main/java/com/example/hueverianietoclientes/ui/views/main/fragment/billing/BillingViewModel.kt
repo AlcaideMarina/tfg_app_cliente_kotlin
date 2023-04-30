@@ -1,14 +1,20 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.billing
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
+import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.model.BillingContainerModel
 import com.example.hueverianietoclientes.domain.model.BillingModel
 import com.example.hueverianietoclientes.domain.model.OrderBillingModel
 import com.example.hueverianietoclientes.domain.usecase.BillingUseCase
+import com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeViewModel
 import com.example.hueverianietoclientes.ui.views.main.fragment.myorders.MyOrdersViewState
 import com.example.hueverianietoclientes.utils.Utils
 import com.google.firebase.Timestamp
@@ -119,7 +125,7 @@ class BillingViewModel @Inject constructor(
                     paid = paid,
                     toBePaid = toBePaid,
                     totalPrice = totalPrice,
-                    orderBillingModelList = orderBillingModelMonthlyList
+                    //orderBillingModelList = orderBillingModelMonthlyList
                 )
                 val billingContainerModel = BillingContainerModel(
                     initDate = initDateTimestamp,
@@ -162,7 +168,7 @@ class BillingViewModel @Inject constructor(
                     paid = paid,
                     toBePaid = toBePaid,
                     totalPrice = totalPrice,
-                    orderBillingModelList = orderBillingModelMonthlyList
+                    //orderBillingModelList = orderBillingModelMonthlyList
                 )
                 val billingContainerModel = BillingContainerModel(
                     initDate = initDateTimestamp,
@@ -173,6 +179,14 @@ class BillingViewModel @Inject constructor(
             }
         }
         return list
+    }
+
+    fun navigateToBillingDetail(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_billingFragment_to_billingDetailFragment, bundle)
+            ?: Log.e(
+                BillingViewModel::class.java.simpleName,
+                "Error en la navegación a Detalle de factura"
+            )
     }
 
 }

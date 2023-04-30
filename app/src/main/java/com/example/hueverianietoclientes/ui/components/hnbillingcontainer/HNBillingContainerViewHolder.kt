@@ -15,9 +15,9 @@ class HNBillingContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         this.binding.billingDateText.text = Utils.parseDateToString(
             billingContainerItemModel.billingContainerModel.initDate.toDate(), "MMMM, yyyy")
             .replaceFirstChar(Char::titlecase)
-        this.binding.baseComponentBillingContainer.setOnClickListener {
+        this.binding.baseComponentBillingContainer.setOnClickListener (
             billingContainerItemModel.onClickListener
-        }
+        )
     }
 
 }
