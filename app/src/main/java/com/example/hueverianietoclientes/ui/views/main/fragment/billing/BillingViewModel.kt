@@ -87,12 +87,12 @@ class BillingViewModel @Inject constructor(
 
         val list = mutableListOf<BillingContainerModel>()
 
-        var paymentByCash: Long = 0
-        var paymentByReceipt: Long = 0
-        var paymentByTransfer: Long = 0
-        var paid: Long = 0
-        var toBePaid: Long = 0
-        var totalPrice: Long = 0
+        var paymentByCash: Double = 0.0
+        var paymentByReceipt: Double = 0.0
+        var paymentByTransfer: Double = 0.0
+        var paid: Double = 0.0
+        var toBePaid: Double = 0.0
+        var totalPrice: Double = 0.0
         var orderBillingModelMonthlyList = mutableListOf<OrderBillingModel>()
 
         // Ordenamos la lista por fecha de pedido en desc.
@@ -137,25 +137,25 @@ class BillingViewModel @Inject constructor(
                 endDateTimestamp = initDateTimestamp
                 initDateTimestamp = Timestamp(
                     Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = -1))
-                paymentByCash = 0
-                paymentByReceipt = 0
-                paymentByTransfer = 0
-                paid = 0
-                toBePaid = 0
-                totalPrice = 0
+                paymentByCash = 0.0
+                paymentByReceipt = 0.0
+                paymentByTransfer = 0.0
+                paid = 0.0
+                toBePaid = 0.0
+                totalPrice = 0.0
                 orderBillingModelMonthlyList = mutableListOf()
             }
 
             // Actualizamos métodos de pago
             when(item.paymentMethod.toInt()) {
-                 0 -> paymentByCash += item.totalPrice ?: 0
-                 1 -> paymentByReceipt += item.totalPrice ?: 0
-                 2 -> paymentByTransfer += item.totalPrice ?: 0
+                 0 -> paymentByCash += (item.totalPrice ?: 0).toDouble()
+                 1 -> paymentByReceipt += (item.totalPrice ?: 0).toDouble()
+                 2 -> paymentByTransfer += (item.totalPrice ?: 0).toDouble()
             }
             // Actualizamos si es un pedido pagado o por pagar
             when(item.paid) {
-                true -> paid += item.totalPrice ?: 0
-                false -> toBePaid += item.totalPrice ?: 0
+                true -> paid += (item.totalPrice ?: 0).toDouble()
+                false -> toBePaid += (item.totalPrice ?: 0).toDouble()
             }
             totalPrice += totalPrice
             orderBillingModelMonthlyList.add(item)

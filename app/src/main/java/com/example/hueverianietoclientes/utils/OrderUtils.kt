@@ -42,7 +42,7 @@ object OrderUtils {
             data["paid"] as Boolean,
             data["payment_method"] as Long,
             data["status"] as Long,
-            data["total_price"] as Long?
+            data["total_price"] as Number?
         )
     }
 
