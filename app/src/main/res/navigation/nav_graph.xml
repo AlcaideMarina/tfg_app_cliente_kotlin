@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_billingFragment"
+            app:destination="@id/billingFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -77,6 +80,14 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.hueverianietoclientes.ui.views.main.fragment.changepassword.ChangePasswordFragment"
         android:label="Cambiar contraseña" >
+        <argument
+            android:name="clientData"
+            app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+    </fragment>
+    <fragment
+        android:id="@+id/billingFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.billing.BillingFragment"
+        android:label="Facturación" >
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
