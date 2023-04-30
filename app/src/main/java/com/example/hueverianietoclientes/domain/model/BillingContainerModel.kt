@@ -5,6 +5,7 @@ import com.google.firebase.Timestamp
 
 class BillingContainerModel (
     var initDate: Timestamp,
-    var finishDate: Timestamp,
-    var onClickListener: OnClickListener
+    var endDate: Timestamp,
+    //var onClickListener: OnClickListener?, // TODO: Esto va a ir en otro modelo nuevo -> item
+    var billingModel: BillingModel?
 )
