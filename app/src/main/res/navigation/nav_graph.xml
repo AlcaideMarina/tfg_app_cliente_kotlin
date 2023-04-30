@@ -91,5 +91,16 @@
         <argument
             android:name="clientData"
             app:argType="com.example.hueverianietoclientes.data.network.ClientData" />
+        <action
+            android:id="@+id/action_billingFragment_to_billingDetailFragment"
+            app:destination="@id/billingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/billingDetailFragment"
+        android:name="com.example.hueverianietoclientes.ui.views.main.fragment.billingdetail.BillingDetailFragment"
+        android:label="Facturación" >
+        <argument
+            android:name="billingModel"
+            app:argType="com.example.hueverianietoclientes.domain.model.BillingModel" />
     </fragment>
 </navigation>
