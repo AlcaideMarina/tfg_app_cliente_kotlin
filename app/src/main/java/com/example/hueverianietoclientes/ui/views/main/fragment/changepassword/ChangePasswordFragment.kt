@@ -11,11 +11,14 @@ import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.FragmentChangePasswordBinding
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChangePasswordFragment : BaseFragment() {
 
     private lateinit var binding : FragmentChangePasswordBinding
     private lateinit var clientData: ClientData
+    private val changePasswordViewModel : ChangePasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +43,9 @@ class ChangePasswordFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        this.binding.saveButton.setOnClickListener {
+            this.changePasswordViewModel.checkOldPassword(this.binding.oldPasswordTextInputLayout.getText())
+        }
     }
 
     override fun updateUI(state: BaseState) {
