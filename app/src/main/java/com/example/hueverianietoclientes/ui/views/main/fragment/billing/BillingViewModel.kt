@@ -108,26 +108,9 @@ class BillingViewModel @Inject constructor(
             "01/$m/$y"
         )
         var endDateTimestamp = Timestamp(Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = 1))
-
-        var cont = 0
-
+        
         for (item in orderBillingModelList) {
-            if (initDateTimestamp > orderBillingModelList[cont].orderDatetime) {
-                //&& orderBillingModelList[cont].orderDatetime < endDateTimestamp) {
-                // Actualizamos métodos de pago
-               /* when(item.paymentMethod.toInt()) {
-                    0 -> paymentByCash += item.totalPrice ?: 0
-                    1 -> paymentByReceipt += item.totalPrice ?: 0
-                    2 -> paymentByTransfer += item.totalPrice ?: 0
-                }
-                // Actualizamos si es un pedido pagado o por pagar
-                when(item.paid) {
-                    true -> paid += item.totalPrice ?: 0
-                    false -> toBePaid += item.totalPrice ?: 0
-                }
-                totalPrice += totalPrice
-                orderBillingModelMonthlyList.add(item)
-            } else {*/
+            if (initDateTimestamp > item.orderDatetime) {
                 // Añadimos el elemento a la lista de retorno
                 val billingModel = BillingModel(
                     paymentByCash = paymentByCash,
@@ -153,7 +136,7 @@ class BillingViewModel @Inject constructor(
                 paid = 0
                 toBePaid = 0
                 totalPrice = 0
-                orderBillingModelMonthlyList = mutableListOf<OrderBillingModel>()
+                orderBillingModelMonthlyList = mutableListOf()
             }
 
             // Actualizamos métodos de pago
