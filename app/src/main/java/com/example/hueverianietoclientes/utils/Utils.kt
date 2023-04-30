@@ -30,8 +30,8 @@ object Utils {
     fun parseStringToTimestamp(dateStr : String, pattern : String? = Constants.dateFormat) :
             Timestamp = Timestamp(SimpleDateFormat(pattern).parse(dateStr))
 
-    fun parseDateToString(date: Date) :
-            String = SimpleDateFormat(Constants.dateFormat).format(date)
+    fun parseDateToString(date: Date, format: String? = null) :
+            String = SimpleDateFormat(format ?: Constants.dateFormat).format(date)
 
 
     fun addDaysToDate(date: Date, daysToAdd: Int) : Date {
