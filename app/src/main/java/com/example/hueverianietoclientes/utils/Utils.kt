@@ -34,10 +34,11 @@ object Utils {
             String = SimpleDateFormat(format ?: Constants.dateFormat).format(date)
 
 
-    fun addDaysToDate(date: Date, daysToAdd: Int) : Date {
+    fun addToDate(date: Date, daysToAdd: Int = 0, monthsToAdd: Int = 0) : Date {
         val c = Calendar.getInstance()
         c.time = date
         c.add(Calendar.DATE, daysToAdd)
+        c.add(Calendar.MONTH, monthsToAdd)
         return c.time
     }
 
