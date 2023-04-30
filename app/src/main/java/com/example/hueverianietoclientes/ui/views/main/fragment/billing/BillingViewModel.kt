@@ -86,6 +86,7 @@ class BillingViewModel @Inject constructor(
     private fun getBillingContainerFromOrderData(orderBillingModelList: List<OrderBillingModel>) : List<BillingContainerModel> {
 
         val list = mutableListOf<BillingContainerModel>()
+        var orderBillingModelListAux = orderBillingModelList
 
         var paymentByCash: Double = 0.0
         var paymentByReceipt: Double = 0.0
@@ -96,15 +97,15 @@ class BillingViewModel @Inject constructor(
         var orderBillingModelMonthlyList = mutableListOf<OrderBillingModel>()
 
         // Ordenamos la lista por fecha de pedido en desc.
-        orderBillingModelList.sortedBy { it.orderDatetime } .reversed()
+        orderBillingModelListAux = orderBillingModelListAux.sortedBy { it.orderDatetime } .reversed()
 
         // Cogemos la primera posición -> Es la más reciente -> Último mes
-        val firstOrder = orderBillingModelList[0]
+        val firstOrder = orderBillingModelListAux[0]
         val firstDate = firstOrder.orderDatetime.toDate()
 
         val calendar = Calendar.getInstance()
         calendar.time = firstDate
-        var m = calendar.get(Calendar.MONTH).toString()
+        var m = (calendar.get(Calendar.MONTH) + 1).toString()
         if (m.length < 2) m = "0" + m
         var y = calendar.get(Calendar.YEAR).toString()
         if (y.length < 4) y = "0" + y
@@ -115,7 +116,7 @@ class BillingViewModel @Inject constructor(
         )
         var endDateTimestamp = Timestamp(Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = 1))
 
-        for (item in orderBillingModelList) {
+        for (item in orderBillingModelListAux) {
             if (initDateTimestamp > item.orderDatetime) {
                 // Añadimos el elemento a la lista de retorno
                 val billingModel = BillingModel(
@@ -160,7 +161,7 @@ class BillingViewModel @Inject constructor(
             totalPrice += totalPrice
             orderBillingModelMonthlyList.add(item)
 
-            if (orderBillingModelList.last() == item) {
+            if (orderBillingModelListAux.last() == item) {
                 val billingModel = BillingModel(
                     paymentByCash = paymentByCash,
                     paymentByReceipt = paymentByReceipt,
