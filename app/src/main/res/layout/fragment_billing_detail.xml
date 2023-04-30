@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/size16"
+    android:paddingHorizontal="32dp">
+
+    <TextView
+        android:id="@+id/current_month_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size16"
+        android:text="Esta factura es del mes vigente, por lo que no es una versión definitiva."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pagos al contado: " />
+
+        <TextView
+            android:id="@+id/cash_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pagos por recibo: " />
+
+        <TextView
+            android:id="@+id/receipt_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/size16">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pagos por recibo: " />
+
+        <TextView
+            android:id="@+id/transfer_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pagado hasta ahora: " />
+
+        <TextView
+            android:id="@+id/paid_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/size32">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pendiente de pago: " />
+
+        <TextView
+            android:id="@+id/to_be_paid_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pago total: " />
+
+        <TextView
+            android:id="@+id/total_price_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" €" />
+
+    </LinearLayout>
+
+</LinearLayout>
