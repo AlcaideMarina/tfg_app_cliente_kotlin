@@ -108,7 +108,7 @@ class BillingViewModel @Inject constructor(
             "01/$m/$y"
         )
         var endDateTimestamp = Timestamp(Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = 1))
-        
+
         for (item in orderBillingModelList) {
             if (initDateTimestamp > item.orderDatetime) {
                 // Añadimos el elemento a la lista de retorno
@@ -129,7 +129,8 @@ class BillingViewModel @Inject constructor(
                 list.add(billingContainerModel)
                 // Reseteamos todas las variables y guardamos
                 endDateTimestamp = initDateTimestamp
-                initDateTimestamp = Timestamp(Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = -1))
+                initDateTimestamp = Timestamp(
+                    Utils.addToDate(initDateTimestamp.toDate(), monthsToAdd = -1))
                 paymentByCash = 0
                 paymentByReceipt = 0
                 paymentByTransfer = 0

@@ -13,7 +13,8 @@ class HNBillingContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(billingContainerItemModel: BillingContainerItemModel) {
         this.binding.billingDateText.text = Utils.parseDateToString(
-            billingContainerItemModel.billingContainerModel.initDate.toDate(), "MM/yyyy")
+            billingContainerItemModel.billingContainerModel.initDate.toDate(), "MMMM, yyyy")
+            .replaceFirstChar(Char::titlecase)
         this.binding.baseComponentBillingContainer.setOnClickListener {
             billingContainerItemModel.onClickListener
         }
