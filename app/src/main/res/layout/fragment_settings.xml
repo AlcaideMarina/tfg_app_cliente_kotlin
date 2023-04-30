@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ListView
+        android:id="@+id/setting_options_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:dividerHeight="1sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/component_item_settings" />
+
+    <LinearLayout
+        android:id="@+id/contact_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/size16"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintTop_toTopOf="@+id/setting_options_list_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vertical_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/size16"
+            android:background="@color/red_primary_color" />
+
+        <TextView
+            android:id="@+id/contact_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:text="CONTACTO:"
+            android:layout_marginHorizontal="@dimen/size16"
+            android:layout_marginBottom="16dp"/>
+        <TextView
+            android:id="@+id/direction_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size24"
+            android:layout_marginEnd="16dp"
+            android:text="Dirección:  Calle Matadero 80, Bajo - 15002, A Coruña"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/phone_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size24"
+            android:layout_marginEnd="16dp"
+            android:text="Teléfono:  981204709  -  981209405"
+            android:layout_marginBottom="8dp" />
+        <TextView
+            android:id="@+id/email_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size24"
+            android:layout_marginEnd="16dp"
+            android:text="Correo:  hueverianieto@gmail.com"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

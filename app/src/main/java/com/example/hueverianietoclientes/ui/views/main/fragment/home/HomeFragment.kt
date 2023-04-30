@@ -106,7 +106,16 @@ class HomeFragment : BaseFragment() {
                     bundleOf("clientData" to clientData)
                 )
               },
-            GridItemModel("Ajustes", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Ajustes'") }
+            GridItemModel(
+                "Ajustes",
+                AppCompatResources.getDrawable(requireContext(),
+                    R.drawable.ic_launcher_foreground)!!
+            ) {
+                this.homeViewModel.navigateToSettings(
+                    this.view,
+                    bundleOf("clientData" to clientData)
+                )
+            }
         )
         val manager = CustomGridLayoutManager(this.context, 2)
         manager.setScrollEnabled(false)
