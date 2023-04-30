@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.core.os.bundleOf
-import androidx.core.view.get
 import androidx.core.view.isVisible
-import androidx.core.view.iterator
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -20,24 +18,18 @@ import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
-import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentNewOrderBinding
-import com.example.hueverianietoclientes.domain.model.ModalDialogModel
-import com.example.hueverianietoclientes.ui.components.HNDropdown
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
 import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginActivity
-import com.example.hueverianietoclientes.ui.views.login.LoginViewState
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
 import com.example.hueverianietoclientes.utils.Utils
 import com.google.firebase.Timestamp
-import com.google.firestore.v1.StructuredQuery.Order
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.observeOn
 import java.util.*
 
 @AndroidEntryPoint
@@ -73,7 +65,7 @@ class NewOrderFragment : BaseFragment() {
         setClientDataFields()
 
         this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
-        approxDeliveryDatetimeSelected = Timestamp(Utils.addDaysToDate(Date(), 3))
+        approxDeliveryDatetimeSelected = Timestamp(Utils.addToDate(Date(), 3))
         this.binding.deliveryDatePicker.setInputText(
             Utils.parseDateToString(approxDeliveryDatetimeSelected.toDate())
         )
@@ -238,7 +230,7 @@ class NewOrderFragment : BaseFragment() {
             approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr/$monthStr/$yearStr")
         }
         val datePickerDialog = DatePickerDialog(requireContext(), listener, year, month, day)
-        datePickerDialog.datePicker.minDate = Utils.addDaysToDate(Date(), 3).time
+        datePickerDialog.datePicker.minDate = Utils.addToDate(Date(), 3).time
         datePickerDialog.show()
     }
 
