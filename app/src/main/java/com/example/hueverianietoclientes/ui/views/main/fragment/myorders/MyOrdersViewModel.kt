@@ -35,7 +35,7 @@ class MyOrdersViewModel @Inject constructor(
             _viewState.value = MyOrdersViewState(isLoading = true)
             when (val result = myOrdersUseCase(documentId)) {
                 null -> {
-                    _viewState.value = MyOrdersViewState(isLoading = false, error = false)
+                    _viewState.value = MyOrdersViewState(isLoading = false, error = true)
                     _orderList.value = listOf()
                 }
                 listOf<OrderData>() -> {

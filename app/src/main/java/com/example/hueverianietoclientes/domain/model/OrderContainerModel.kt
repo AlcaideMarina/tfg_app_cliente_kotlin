@@ -7,7 +7,7 @@ class OrderContainerModel(
     var orderDate: Timestamp,
     var orderId: Long,
     var orderSummary: String = "...",
-    var price: Long,
+    var price: Number,
     var status: Long,
     var deliveryDni: String?,
     var onClickListener: OnClickListener

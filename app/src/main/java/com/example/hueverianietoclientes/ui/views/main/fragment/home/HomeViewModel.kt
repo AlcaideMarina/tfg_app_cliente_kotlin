@@ -30,8 +30,12 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
             )
     }
 
-    fun navigateToFacturation(context: Context, clientData: Parcelable?) {
-        // TODO
+    fun navigateToBilling(view: View?, bundle: Bundle) {
+        view?.findNavController()?.navigate(R.id.action_homeFragment_to_billingFragment, bundle)
+            ?: Log.e(
+                HomeViewModel::class.java.simpleName,
+                "Error en la navegación a Facturación"
+            )
     }
 
     fun navigateToMyOrders(view: View?, bundle: Bundle) {

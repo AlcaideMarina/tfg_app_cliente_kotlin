@@ -80,7 +80,19 @@ class HomeFragment : BaseFragment() {
                     this.view,
                     bundleOf("clientData" to clientData))
               },
-            GridItemModel("Facturación", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_launcher_foreground)!!) { showToasst("Pulsado 'Facturación'") },
+            GridItemModel(
+                "Facturación",
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_launcher_foreground)!!
+            ) {
+                this.homeViewModel.navigateToBilling(
+                    this.view,
+                    bundleOf(
+                        "clientData" to clientData
+                    )
+                )
+              },
             GridItemModel(
                 "Mis pedidos",
                 AppCompatResources.getDrawable(

@@ -19,7 +19,7 @@ data class OrderData (
     val paid: Boolean,
     val paymentMethod: Long,
     val status: Long,
-    val totalPrice: Long?
+    val totalPrice: Number?
 ) : Parcelable {
 
     fun setOrderId(newOrderId: Long) {
