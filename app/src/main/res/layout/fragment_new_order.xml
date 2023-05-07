@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'CONFIRMAR' para formalizar el pedido."
             android:textAlignment="center"
-            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -32,7 +31,6 @@
             android:layout_marginTop="8dp"
             android:paddingBottom="@dimen/size16"
             android:textAlignment="center"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -53,11 +51,18 @@
                 android:layout_height="match_parent"
                 android:text="Dirección:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/direction_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size8"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -83,23 +88,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:baselineAligned="false" >
+                android:baselineAligned="false"
+                android:paddingHorizontal="@dimen/size16">
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_phone_1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginStart="16dp" />
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingHorizontal="12dp"
+                    android:background="@drawable/custom_input"
+                    android:autofillHints="phone"
+                    android:layout_marginEnd="4dp" />
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_phone_2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp" />
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingHorizontal="12dp"
+                    android:background="@drawable/custom_input"
+                    android:autofillHints="phone"
+                    android:layout_marginStart="4dp" />
 
             </LinearLayout>
 
@@ -144,11 +160,36 @@
                     android:layout_height="match_parent"
                     android:text="Método de pago:" />
 
-                <com.example.hueverianietoclientes.ui.components.HNDropdown
-                    android:id="@+id/payment_method_dropdown"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/payment_method_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/size16"/>
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/size8"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:background="@drawable/custom_input"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp" >
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/payment_method_auto_complete_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="15sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:maxLines="1"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="@dimen/size8"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -169,11 +210,22 @@
                     android:layout_height="match_parent"
                     android:text="Fecha de entrega:" />
 
-                <com.example.hueverianietoclientes.ui.components.HNDatePicker
-                    android:id="@+id/delivery_date_picker"
+                <EditText
+                    android:id="@+id/delivery_date_text_input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/size16" />
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="none"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="@dimen/size8"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:autofillHints="name"/>
 
             </LinearLayout>
 

@@ -43,13 +43,9 @@ class LoginActivity : BaseActivity() {
 
     override fun configureUI() {
 
-        this.binding.userTextInputLayout.setHintText(
-            resources.getString(R.string.user_text_input_layout)
-        )
+        this.binding.userTextInputLayout.hint = resources.getString(R.string.user_text_input_layout)
         this.binding.userTextInputLayout.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-        this.binding.passwordTextInputLayout.setHintText(
-            resources.getString(R.string.password_text_input_layout)
-        )
+        this.binding.passwordTextInputLayout.hint = resources.getString(R.string.password_text_input_layout)
         this.binding.passwordTextInputLayout.setTransformationMethod(PasswordTransformationMethod.getInstance())
 
         this.binding.loginButton.setText(resources.getString(R.string.login_button).uppercase())
@@ -68,10 +64,8 @@ class LoginActivity : BaseActivity() {
 
     override fun setListeners() {
 
-        this.binding.userTextInputLayout.getTextInputEditTextComponent()
-            .addTextChangedListener(watcher)
-        this.binding.passwordTextInputLayout.getTextInputEditTextComponent()
-            .addTextChangedListener(watcher)
+        this.binding.userTextInputLayout.addTextChangedListener(watcher)
+        this.binding.passwordTextInputLayout.addTextChangedListener(watcher)
 
         this.binding.loginButton.setOnClickListener { login(it) }
 
@@ -105,8 +99,8 @@ class LoginActivity : BaseActivity() {
 
     private fun login(view: View) {
         view.hideSoftInput()
-        val email: String = this.binding.userTextInputLayout.getText()
-        val password: String = this.binding.passwordTextInputLayout.getText()
+        val email: String = this.binding.userTextInputLayout.text.toString()
+        val password: String = this.binding.passwordTextInputLayout.text.toString()
         if (email != "" && password != "") {
             loginViewModel.login(email, password)
         }

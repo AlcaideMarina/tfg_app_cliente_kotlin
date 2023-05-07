@@ -31,22 +31,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/user_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp"
+                android:background="@drawable/custom_input"
+                android:paddingStart="16dp"
                 android:layout_marginTop="@dimen/size24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo_icon" />
+                app:layout_constraintTop_toBottomOf="@id/logo_icon"/>
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/password_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:background="@drawable/custom_input"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/user_text_input_layout" />
+                app:layout_constraintTop_toBottomOf="@id/user_text_input_layout"/>
 
             <com.example.hueverianietoclientes.ui.components.HNButton
                 android:id="@+id/login_button"

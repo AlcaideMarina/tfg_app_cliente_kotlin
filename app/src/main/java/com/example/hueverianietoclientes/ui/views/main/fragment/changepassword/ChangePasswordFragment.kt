@@ -44,7 +44,7 @@ class ChangePasswordFragment : BaseFragment() {
 
     override fun setListeners() {
         this.binding.saveButton.setOnClickListener {
-            this.changePasswordViewModel.checkOldPassword(this.binding.oldPasswordTextInputLayout.getText())
+            this.changePasswordViewModel.checkOldPassword(this.binding.oldPasswordTextInputLayout.text.toString())
         }
     }
 

@@ -31,17 +31,16 @@ class HNGridTextViewHolder (view: View) :
             this.binding.leftTextViewGrid.visibility = View.GONE
             this.binding.rightTextViewGrid.visibility = View.GONE
             this.binding.textInputLayoutGrid.visibility = View.VISIBLE
-            this.binding.textInputLayoutGrid.setInputType(InputType.TYPE_CLASS_NUMBER)
-            this.binding.textInputLayoutGrid.getTextInputEditTextComponent().isEnabled = gridTextItemModel.isEnabled
+            this.binding.textInputLayoutGrid.inputType = InputType.TYPE_CLASS_NUMBER
             this.binding.textInputLayoutGrid.isEnabled = gridTextItemModel.isEnabled
             if(gridTextItemModel.response == null || gridTextItemModel.response == "") {
                 gridTextItemModel.response =
-                    this.binding.textInputLayoutGrid.getTextInputEditTextComponent().text
+                    this.binding.textInputLayoutGrid.text.toString()
             } else {
-                this.binding.textInputLayoutGrid.getTextInputEditTextComponent().setText(
+                this.binding.textInputLayoutGrid.setText(
                     gridTextItemModel.response.toString())
             }
-            this.binding.textInputLayoutGrid.getTextInputEditTextComponent().addTextChangedListener(object : TextWatcher {
+            this.binding.textInputLayoutGrid.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {}
                 override fun beforeTextChanged(s: CharSequence, start: Int,
                                                count: Int, after: Int) {}

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -71,12 +72,12 @@ class NewOrderFragment : BaseFragment() {
         setRecyclerView(EggPricesData())
         setClientDataFields()
 
-        this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
+        this.binding.deliveryDateTextInputLayout.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         approxDeliveryDatetimeSelected = Timestamp(Utils.addToDate(Date(), 3))
-        this.binding.deliveryDatePicker.setInputText(
+        this.binding.deliveryDateTextInputLayout.setText(
             Utils.parseDateToString(approxDeliveryDatetimeSelected.toDate())
         )
-        this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
+        this.binding.deliveryDateTextInputLayout.setOnClickListener { onClickScheduledDate() }
         this.binding.confirmButton.setText("CONFIRMAR")
         this.binding.modifyButton.setText("Modificar datos")
         this.alertDialog = HNModalDialog(requireContext())
@@ -176,19 +177,12 @@ class NewOrderFragment : BaseFragment() {
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
             it.hideSoftInput()
-                val paymentMethodSelected =
-                    if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.in_cash)) {
-                        R.string.in_cash
-                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.per_receipt)) {
-                        R.string.per_receipt
-                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.transfer)){
-                        R.string.transfer
-                    } else {
-                        null
-                    }
+                val paymentMethodSelected = when (this.binding.paymentMethodAutoCompleteTextView.text.toString()) {
+                    requireContext().getString(R.string.in_cash) -> R.string.in_cash
+                    requireContext().getString(R.string.per_receipt) -> R.string.per_receipt
+                    requireContext().getString(R.string.transfer) -> R.string.transfer
+                    else -> null
+                }
 
                 val dbOrderFieldData = OrderUtils.getOrderStructure(this.binding.orderRecyclerView)
 
@@ -246,7 +240,7 @@ class NewOrderFragment : BaseFragment() {
             (activity as MainActivity).changeTopBarName("Nuevo pedido")
         }
 
-        this.binding.paymentMethodDropdown.getAutoCompleteTextView().setOnFocusChangeListener { v, hasFocus ->
+        this.binding.paymentMethodAutoCompleteTextView.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 v.hideSoftInput()
             }
@@ -258,7 +252,10 @@ class NewOrderFragment : BaseFragment() {
         for (v in values) {
             dropdownPaymentMethodItems.add(requireContext().getString(v.key))
         }
-        this.binding.paymentMethodDropdown.setAdapter(dropdownPaymentMethodItems)
+        this.binding.paymentMethodAutoCompleteTextView.setAdapter(
+            ArrayAdapter(
+                requireContext(), R.layout.component_dropdown_list_item, dropdownPaymentMethodItems)
+        )
     }
 
     private fun onClickScheduledDate() {
@@ -273,7 +270,7 @@ class NewOrderFragment : BaseFragment() {
             if (dayStr.length < 2) dayStr = "0$dayStr"
             if (monthStr.length < 2) monthStr = "0$monthStr"
             if (yearStr.length < 4) yearStr = "0$yearStr"
-            this.binding.deliveryDatePicker.setInputText("$dayStr/$monthStr/$yearStr")
+            this.binding.deliveryDateTextInputLayout.setText("$dayStr/$monthStr/$yearStr")
             approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr/$monthStr/$yearStr")
         }
         val datePickerDialog = DatePickerDialog(requireContext(), listener, year, month, day)
@@ -301,11 +298,11 @@ class NewOrderFragment : BaseFragment() {
     }
 
     private fun setClientDataFields() {
-        this.binding.directionTextInputLayout.setInputText(clientData.direction)
+        this.binding.directionTextInputLayout.setText(clientData.direction)
         this.binding.directionTextInputLayout.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone1.setInputText(clientData.phone[0].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone1.setText(clientData.phone[0].entries.iterator().next().value.toString())
         this.binding.phoneTextInputLayoutPhone1.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone2.setInputText(clientData.phone[1].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone2.setText(clientData.phone[1].entries.iterator().next().value.toString())
         this.binding.phoneTextInputLayoutPhone2.isEnabled = false
     }
 
@@ -316,28 +313,6 @@ class NewOrderFragment : BaseFragment() {
                     this.loadingComponent.isVisible = state.isLoading
                 }
                 when(this.step) {
-                    1 -> {
-                        setRecyclerViewEnable(true)
-                        binding.paymentMethodDropdown.isEnabled = true
-                        binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = true
-                        binding.paymentMethodDropdown.getTextInputLayout().isEnabled = true
-                        binding.deliveryDatePicker.isEnabled = true
-                        binding.deliveryDatePicker.getDatePicker().isEnabled = true
-                        binding.modifyButton.visibility = View.GONE
-                        binding.confirmButton.setText("GUARDAR")
-                        hideTexts(false)
-                    }
-                    2 -> {
-                        setRecyclerViewEnable(false)
-                        binding.paymentMethodDropdown.isEnabled = false
-                        binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
-                        binding.paymentMethodDropdown.getTextInputLayout().isEnabled = false
-                        binding.deliveryDatePicker.isEnabled = false
-                        binding.deliveryDatePicker.getDatePicker().isEnabled = false
-                        binding.modifyButton.visibility = View.VISIBLE
-                        binding.confirmButton.setText("CONFIRMAR")
-                        hideTexts(true)
-                    }
                     3 -> {
                         this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
                             this@NewOrderFragment.view,
@@ -393,11 +368,6 @@ class NewOrderFragment : BaseFragment() {
             notifyItemChanged(23)
             notifyItemChanged(26)*/
         }
-    }
-
-    private fun hideTexts(isVisible: Boolean) {
-        this.binding.noChangesAllowedText1.isVisible = isVisible
-        this.binding.noChangesAllowedText2.isVisible = isVisible
     }
 
     private fun continueOrder(
