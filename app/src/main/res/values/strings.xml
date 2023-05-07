@@ -57,5 +57,6 @@
     <string name="delivered">Entregado</string>
     <string name="delivery_attempt">Intento de entrega</string>
     <string name="unknown_status">Estado desconocido</string>
+    <string name="cancelled">Cancelado</string>
 
 </resources>

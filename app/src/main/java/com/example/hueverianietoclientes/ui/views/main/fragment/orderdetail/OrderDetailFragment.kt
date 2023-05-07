@@ -105,7 +105,7 @@ class OrderDetailFragment : BaseFragment() {
             Utils.parseTimestampToString(orderData.deliveryDatetime) ?: ""
         } else if (orderData.status == (5).toLong()) {
             requireContext().getString(Utils.getKey(
-                Constants.orderStatus, orderData)!!) + " - " +
+                Constants.orderStatus, orderData.status.toInt())!!) + " - " +
                     Utils.parseTimestampToString(orderData.deliveryDatetime)
         } else {
             Utils.parseTimestampToString(orderData.deliveryDatetime)
