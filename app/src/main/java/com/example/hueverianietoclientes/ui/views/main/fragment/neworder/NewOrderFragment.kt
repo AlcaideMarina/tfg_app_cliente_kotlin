@@ -269,33 +269,39 @@ class NewOrderFragment : BaseFragment() {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
                 }
-                if (this.step == 1) {
-                    setRecyclerViewEnable(true)
-                    binding.paymentMethodDropdown.isEnabled = true
-                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = true
-                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = true
-                    binding.deliveryDatePicker.isEnabled = true
-                    binding.deliveryDatePicker.getDatePicker().isEnabled = true
-                    binding.modifyButton.visibility = View.GONE
-                    binding.confirmButton.setText("GUARDAR")
-                } else if (this.step == 2) {
-                    setRecyclerViewEnable(false)
-                    binding.paymentMethodDropdown.isEnabled = false
-                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
-                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = false
-                    binding.deliveryDatePicker.isEnabled = false
-                    binding.deliveryDatePicker.getDatePicker().isEnabled = false
-                    binding.modifyButton.visibility = View.VISIBLE
-                    binding.confirmButton.setText("CONFIRMAR")
-                } else {
-                    this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
-                        this@NewOrderFragment.view,
-                        bundleOf(
-                            "clientData" to clientData,
-                            "fromNewOrder" to true
-                        ),
-                        this@NewOrderFragment.requireActivity()
-                    )
+                when(this.step) {
+                    1 -> {
+                        setRecyclerViewEnable(true)
+                        binding.paymentMethodDropdown.isEnabled = true
+                        binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = true
+                        binding.paymentMethodDropdown.getTextInputLayout().isEnabled = true
+                        binding.deliveryDatePicker.isEnabled = true
+                        binding.deliveryDatePicker.getDatePicker().isEnabled = true
+                        binding.modifyButton.visibility = View.GONE
+                        binding.confirmButton.setText("GUARDAR")
+                        hideTexts(false)
+                    }
+                    2 -> {
+                        setRecyclerViewEnable(false)
+                        binding.paymentMethodDropdown.isEnabled = false
+                        binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
+                        binding.paymentMethodDropdown.getTextInputLayout().isEnabled = false
+                        binding.deliveryDatePicker.isEnabled = false
+                        binding.deliveryDatePicker.getDatePicker().isEnabled = false
+                        binding.modifyButton.visibility = View.VISIBLE
+                        binding.confirmButton.setText("CONFIRMAR")
+                        hideTexts(true)
+                    }
+                    3 -> {
+                        this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
+                            this@NewOrderFragment.view,
+                            bundleOf(
+                                "clientData" to clientData,
+                                "fromNewOrder" to true
+                            ),
+                            this@NewOrderFragment.requireActivity()
+                        )
+                    }
                 }
             }
         } catch (e: Exception) {
@@ -334,6 +340,12 @@ class NewOrderFragment : BaseFragment() {
             notifyItemChanged(19)
         }
     }
+
+    private fun hideTexts(isVisible: Boolean) {
+        this.binding.noChangesAllowedText1.isVisible = isVisible
+        this.binding.noChangesAllowedText2.isVisible = isVisible
+    }
+
     companion object {
         private val TAG = LoginActivity::class.java.simpleName
     }
