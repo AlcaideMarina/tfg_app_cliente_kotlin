@@ -65,10 +65,6 @@ class HomeFragment : BaseFragment() {
         // It is not necessary, this is a static view
     }
 
-    private fun showToasst(msg : String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-    }
-
     private fun setMenuRecyclerView() {
         val menuOptions: List<GridItemModel> = listOf(
             GridItemModel(

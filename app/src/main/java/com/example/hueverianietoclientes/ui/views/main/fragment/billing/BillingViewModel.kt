@@ -106,9 +106,9 @@ class BillingViewModel @Inject constructor(
         val calendar = Calendar.getInstance()
         calendar.time = firstDate
         var m = (calendar.get(Calendar.MONTH) + 1).toString()
-        if (m.length < 2) m = "0" + m
+        while (m.length < 2) m = "0" + m
         var y = calendar.get(Calendar.YEAR).toString()
-        if (y.length < 4) y = "0" + y
+        while (y.length < 4) y = "0" + y
 
         // Creamos fecha inicial y final
         var initDateTimestamp = Utils.parseStringToTimestamp(
@@ -158,7 +158,7 @@ class BillingViewModel @Inject constructor(
                 true -> paid += (item.totalPrice ?: 0).toDouble()
                 false -> toBePaid += (item.totalPrice ?: 0).toDouble()
             }
-            totalPrice += totalPrice
+            totalPrice += (item.totalPrice ?: 0).toDouble()
             orderBillingModelMonthlyList.add(item)
 
             if (orderBillingModelListAux.last() == item) {
