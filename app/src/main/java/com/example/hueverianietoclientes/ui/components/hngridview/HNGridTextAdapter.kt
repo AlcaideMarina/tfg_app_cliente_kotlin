@@ -28,4 +28,11 @@ class HNGridTextAdapter(
     fun getItemWithPosition(position: Int) : GridTextItemModel {
         return this.gridItemModelList[position]
     }
+
+    fun setEnabledDisabled(position: Int, isEnabled: Boolean) {
+        var p = position
+        var e = isEnabled
+        this.gridItemModelList[p].isEnabled = e
+        notifyItemChanged(p)
+    }
 }

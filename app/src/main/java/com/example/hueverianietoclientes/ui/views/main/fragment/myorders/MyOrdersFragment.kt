@@ -74,7 +74,7 @@ class MyOrdersFragment : BaseFragment() {
                 alertDialog,
                 requireContext(),
                 "Pedido realizado",
-                "Su pedido se ha realizado correctamente. En un plazo máximo de 24 horas, nos pondremos en contacto con usted para confirmar los datos. ¡Gracias por la confianza!",
+                "Su pedido se ha realizado correctamente.",
                 "De acuerdo",
                 null,
                 {

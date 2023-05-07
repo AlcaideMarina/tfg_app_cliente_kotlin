@@ -9,10 +9,10 @@ class NewOrderService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun addNewOrder(clientData: ClientData, orderData: OrderData) : Boolean = runCatching {
+    suspend fun addNewOrder(clientDocumentId: String, orderData: OrderData) : Boolean = runCatching {
         firebaseClient.db
             .collection("client_info")
-            .document(clientData.documentId)
+            .document(clientDocumentId)
             .collection("orders")
             .add(
                 OrderUtils.parcelableToMap(orderData)

@@ -1,10 +1,16 @@
 package com.example.hueverianietoclientes.utils
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
+import com.example.hueverianietoclientes.data.network.EggPricesData
 import com.example.hueverianietoclientes.domain.model.GridTextItemModel
+import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.google.firebase.Timestamp
+import java.math.BigDecimal
+import java.math.RoundingMode
+import kotlin.math.roundToInt
 
 object OrderUtils {
 
@@ -147,7 +153,7 @@ object OrderUtils {
         )
     }
 
-    fun getNewOrderGridModel() : List<GridTextItemModel> {
+    fun getNewOrderGridModel(eggPricesData: EggPricesData) : List<GridTextItemModel> {
         return listOf(
             GridTextItemModel(0,
                 true, "XL"
@@ -156,58 +162,82 @@ object OrderUtils {
                 true, "Docena:"
             ),
             GridTextItemModel(2,
-                false, "", true
+                false, null, response = ""
             ),
             GridTextItemModel(3,
-                true, "Caja:"
+                true, (eggPricesData.xlDozen ?: "-").toString() + " €/ud", isTextLeft = false
             ),
             GridTextItemModel(4,
-                false, "", true
+                true, "Caja:"
             ),
             GridTextItemModel(5,
-                true, "L"
+                false, null, response = ""
             ),
             GridTextItemModel(6,
-                true, "Docena:"
+                true,  (eggPricesData.xlBox ?: "-").toString() + " €/ud", isTextLeft = false
             ),
             GridTextItemModel(7,
-                false, "", true
+                true, "L"
             ),
             GridTextItemModel(8,
-                true, "Caja:"
+                true, "Docena:"
             ),
             GridTextItemModel(9,
-                false, "", true
+                false, null, response = ""
             ),
             GridTextItemModel(10,
-                true, "M"
+                true, (eggPricesData.lDozen ?: "-").toString() + " €/ud", isTextLeft = false
             ),
             GridTextItemModel(11,
-                true, "Docena:"
-            ),
-            GridTextItemModel(12,
-                false, "", true
-            ),
-            GridTextItemModel(13,
                 true, "Caja:"
             ),
+            GridTextItemModel(12,
+                false, null, response = ""
+            ),
+            GridTextItemModel(13,
+                true, (eggPricesData.lBox ?: "-").toString() + " €/ud", isTextLeft = false
+            ),
             GridTextItemModel(14,
-                false, "", true
+                true, "M"
             ),
             GridTextItemModel(15,
-                true, "S"
-            ),
-            GridTextItemModel(16,
                 true, "Docena:"
             ),
+            GridTextItemModel(16,
+                false, null, response = ""
+            ),
             GridTextItemModel(17,
-                false, "", true
+                true, (eggPricesData.mDozen ?: "-").toString() + " €/ud", isTextLeft = false
             ),
             GridTextItemModel(18,
                 true, "Caja:"
             ),
             GridTextItemModel(19,
-                false, "", true
+                false, null, response = ""
+            ),
+            GridTextItemModel(20,
+                true, (eggPricesData.mBox ?: "-").toString() + " €/ud", isTextLeft = false
+            ),
+            GridTextItemModel(21,
+                true, "S"
+            ),
+            GridTextItemModel(22,
+                true, "Docena:"
+            ),
+            GridTextItemModel(23,
+                false, null, response = ""
+            ),
+            GridTextItemModel(24,
+                true, (eggPricesData.sDozen ?: "-").toString() + " €/ud", isTextLeft = false
+            ),
+            GridTextItemModel(25,
+                true, "Caja:"
+            ),
+            GridTextItemModel(26,
+                false, null, response = ""
+            ),
+            GridTextItemModel(27,
+                true, (eggPricesData.sBox ?: "-").toString() + " €/ud", isTextLeft = false
             ),
         )
     }
@@ -338,6 +368,141 @@ object OrderUtils {
             )
         }
         return map
+    }
+
+    fun getOrderStructure(recyclerView: RecyclerView) : DBOrderFieldData? {
+        val xlDozenValue : Int?
+        val xlDozenPrice : Double?
+        val xlBoxValue : Int?
+        val xlBoxPrice : Double?
+        val lDozenValue : Int?
+        val lDozenPrice : Double?
+        val lBoxValue : Int?
+        val lBoxPrice : Double?
+        val mDozenValue : Int?
+        val mDozenPrice : Double?
+        val mBoxValue : Int?
+        val mBoxPrice : Double?
+        val sDozenValue : Int?
+        val sDozenPrice : Double?
+        val sBoxValue : Int?
+        val sBoxPrice : Double?
+        with(recyclerView.adapter as HNGridTextAdapter) {
+            xlDozenValue =
+                if(this.getItemWithPosition(2).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(2).response.toString().toIntOrNull()
+            xlDozenPrice =
+                if(this.getItemWithPosition(3).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(3).text!!.split(" ")[0].toDoubleOrNull()
+            xlBoxValue =
+                if(this.getItemWithPosition(5).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(5).response.toString().toIntOrNull()
+            xlBoxPrice =
+                if(this.getItemWithPosition(6).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(6).text!!.split(" ")[0].toDoubleOrNull()
+            lDozenValue =
+                if(this.getItemWithPosition(9).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(9).response.toString().toIntOrNull()
+            lDozenPrice =
+                if(this.getItemWithPosition(10).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(10).text!!.split(" ")[0].toDoubleOrNull()
+            lBoxValue =
+                if(this.getItemWithPosition(12).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(12).response.toString().toIntOrNull()
+            lBoxPrice =
+                if(this.getItemWithPosition(13).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(13).text!!.split(" ")[0].toDoubleOrNull()
+            mDozenValue =
+                if(this.getItemWithPosition(16).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(16).response.toString().toIntOrNull()
+            mDozenPrice =
+                if(this.getItemWithPosition(17).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(17).text!!.split(" ")[0].toDoubleOrNull()
+            mBoxValue =
+                if(this.getItemWithPosition(19).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(19).response.toString().toIntOrNull()
+            mBoxPrice =
+                if(this.getItemWithPosition(20).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(20).text!!.split(" ")[0].toDoubleOrNull()
+            sDozenValue =
+                if(this.getItemWithPosition(23).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(23).response.toString().toIntOrNull()
+            sDozenPrice =
+                if(this.getItemWithPosition(24).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(24).text!!.split(" ")[0].toDoubleOrNull()
+            sBoxValue =
+                if(this.getItemWithPosition(26).response.toString().toIntOrNull() == 0) null
+                else this.getItemWithPosition(26).response.toString().toIntOrNull()
+            sBoxPrice =
+                if(this.getItemWithPosition(27).text!!.split(" ")[0].toDoubleOrNull() == 0.0) null
+                else this.getItemWithPosition(27).text!!.split(" ")[0].toDoubleOrNull()
+        }
+
+        if (xlDozenValue != null || xlBoxValue != null || lDozenValue != null
+            || lBoxValue != null || mDozenValue != null || mBoxValue != null ||
+            sDozenValue != null || sBoxValue != null) {
+            try {
+                return DBOrderFieldData(
+                    xlBoxPrice = xlBoxPrice as Double?,
+                    xlBoxQuantity = xlBoxValue as Int?,
+                    xlDozenPrice = xlDozenPrice as Double?,
+                    xlDozenQuantity = xlDozenValue as Int?,
+                    lBoxPrice = lBoxPrice as Double?,
+                    lBoxQuantity = lBoxValue as Int?,
+                    lDozenPrice = lDozenPrice as Double?,
+                    lDozenQuantity = lDozenValue as Int?,
+                    mBoxPrice = mBoxPrice as Double?,
+                    mBoxQuantity = mBoxValue as Int?,
+                    mDozenPrice = mDozenPrice as Double?,
+                    mDozenQuantity = mDozenValue as Int?,
+                    sBoxPrice = sBoxPrice as Double?,
+                    sBoxQuantity = sBoxValue as Int?,
+                    sDozenPrice = sDozenPrice as Double?,
+                    sDozenQuantity = sDozenValue as Int?,
+                )
+            } catch (e: Exception) {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+
+    fun getTotalPrice(dbOrderFieldData: DBOrderFieldData) : Double {
+
+        var totalPrice: Double = 0.0
+        with(dbOrderFieldData) {
+            if (xlBoxQuantity != null && xlBoxPrice != null) {
+                totalPrice += (xlBoxQuantity!! as Int) * (xlBoxPrice!! as Double)
+            }
+            if (xlDozenQuantity != null && xlDozenPrice != null) {
+                totalPrice += (xlDozenQuantity!! as Int) * (xlDozenPrice!! as Double)
+            }
+            if (lBoxQuantity != null && lBoxPrice != null) {
+                totalPrice += (lBoxQuantity!! as Int) * (lBoxPrice!! as Double)
+            }
+            if (lDozenQuantity != null && lDozenPrice != null) {
+                totalPrice += (lDozenQuantity!! as Int) * (lDozenPrice!! as Double)
+            }
+            if (mBoxQuantity != null && mBoxPrice != null) {
+                totalPrice += (mBoxQuantity!! as Int) * (mBoxPrice!! as Double)
+            }
+            if (mDozenQuantity != null && mDozenPrice != null) {
+                totalPrice += (mDozenQuantity!! as Int) * (mDozenPrice!! as Double)
+            }
+            if (sBoxQuantity != null && sBoxPrice != null) {
+                totalPrice += (sBoxQuantity!! as Int) * (sBoxPrice!! as Double)
+            }
+            if (sDozenQuantity != null && sDozenPrice != null) {
+                totalPrice += (sDozenQuantity!! as Int) * (sDozenPrice!! as Double)
+            }
+        }
+        val decimal = BigDecimal(3.14159265359).setScale(2, RoundingMode.HALF_EVEN)
+        println(decimal)
+
+        (totalPrice * 100).roundToInt() / 100
+
+        return ((totalPrice * 100).roundToInt()).toDouble() / 100
     }
 
 }
