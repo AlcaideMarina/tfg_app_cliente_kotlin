@@ -83,6 +83,7 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.deliveryNoteTextInputLayout.isEnabled = false
         this.binding.lotTextInputLayout.isEnabled = false
         this.binding.deliveryDniTextInputLayout.isEnabled = false
+        this.binding.paidCheckedTextView.isEnabled = false
     }
 
     private fun setTexts() {
