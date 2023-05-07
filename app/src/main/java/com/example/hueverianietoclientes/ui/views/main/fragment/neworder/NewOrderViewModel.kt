@@ -14,8 +14,10 @@ import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.DBOrderFieldData
+import com.example.hueverianietoclientes.data.network.EggPricesData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.GetOrderIdUseCase
+import com.example.hueverianietoclientes.domain.usecase.GetPricesUseCase
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginViewState
@@ -35,7 +37,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NewOrderViewModel @Inject constructor(
     val newOrderUseCase: NewOrderUseCase,
-    val getOrderIdUseCase: GetOrderIdUseCase
+    val getOrderIdUseCase: GetOrderIdUseCase,
+    val getPricesUseCase: GetPricesUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(NewOrderViewState())
@@ -49,6 +52,9 @@ class NewOrderViewModel @Inject constructor(
 
     private var _orderData = MutableLiveData<OrderData>()
     val orderData: LiveData<OrderData> get() = _orderData
+
+    private var _eggPrices = MutableLiveData(EggPricesData())
+    val eggPrices: LiveData<EggPricesData> get() = _eggPrices
 
     fun addNewOrder(clientData: ClientData, orderData: OrderData) {
         viewModelScope.launch {
@@ -253,6 +259,22 @@ class NewOrderViewModel @Inject constructor(
             }
         } else {
             return null
+        }
+    }
+
+    fun getPrices() {
+        viewModelScope.launch {
+            _viewState.value = NewOrderViewState(isLoading = true)
+            when(val result = getPricesUseCase()) {
+                null -> {
+                    _viewState.value = NewOrderViewState(isLoading = false, error = true)
+                    _eggPrices.value = EggPricesData()
+                }
+                else -> {
+                    _viewState.value = NewOrderViewState(isLoading = false)
+                    _eggPrices.value = result
+                }
+            }
         }
     }
 

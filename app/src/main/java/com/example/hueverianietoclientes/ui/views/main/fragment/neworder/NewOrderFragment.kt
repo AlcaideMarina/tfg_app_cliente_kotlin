@@ -60,6 +60,8 @@ class NewOrderFragment : BaseFragment() {
     }
 
     override fun configureUI() {
+        this.newOrderViewModel.getPrices()
+
         getPaymentMethodDropdownValues()
         setRecyclerView()
         setClientDataFields()
