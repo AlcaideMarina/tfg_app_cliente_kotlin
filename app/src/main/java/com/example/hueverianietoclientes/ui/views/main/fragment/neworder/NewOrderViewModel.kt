@@ -68,7 +68,7 @@ class NewOrderViewModel @Inject constructor(
                     )
                 }
                 else -> {
-                    orderData.setOrderId(orderId)
+                    orderData.orderId = orderId
                     when(newOrderUseCase(clientData, orderData)) {
                         false -> {
                             _viewState.value = NewOrderViewState(
@@ -92,8 +92,9 @@ class NewOrderViewModel @Inject constructor(
         }
     }
 
-    fun checkOrder(recyclerView: RecyclerView, clientDataId: String,
-                   approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int?) {
+    fun checkOrder(recyclerView: RecyclerView, clientDataId: Long,
+                   approxDeliveryDatetimeSelected: Timestamp, paymentMethodSelected: Int?,
+                   company: String) {
         viewModelScope.launch {
             _viewState.value = NewOrderViewState(
                 error = false,
@@ -134,11 +135,14 @@ class NewOrderViewModel @Inject constructor(
                     val orderFieldMap = OrderUtils.parseDBOrderFieldDataToMap(dbOrderFieldData)
                     _orderData.value = OrderData(
                         approxDeliveryDatetime = approxDeliveryDatetimeSelected,
-                        createdBy = clientDataId,
+                        clientId = clientDataId,
+                        company = company,
+                        createdBy = "client_$clientDataId",
                         deliveryDatetime = null,
                         deliveryDni = null,
                         deliveryNote = null,
                         deliveryPerson = null,
+                        lot = null,
                         notes = null,
                         order = orderFieldMap,
                         orderDatetime = Timestamp(Date()),
@@ -146,7 +150,8 @@ class NewOrderViewModel @Inject constructor(
                         paid = false,
                         paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
                         status = 0, // TODO
-                        totalPrice = null
+                        totalPrice = null,
+                        documentId = null
                     )
                     _viewState.value = NewOrderViewState(
                         error = false,

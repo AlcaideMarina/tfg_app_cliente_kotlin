@@ -108,7 +108,7 @@ class NewOrderFragment : BaseFragment() {
                     alertDialog,
                     requireContext(),
                         "Aviso",
-                        "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
+                        "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio. ¿Desea continuar o prefiere revisar los datos?",
                         "Revisar",
                         "Continuar",
                         { alertDialog.cancel() },
@@ -171,7 +171,8 @@ class NewOrderFragment : BaseFragment() {
                     recyclerView = this.binding.orderRecyclerView,
                     clientDataId = clientData.id,
                     approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected,
-                    paymentMethodSelected = paymentMethod
+                    paymentMethodSelected = paymentMethod,
+                    company = clientData.company
                 )
             } else {
                 if (orderData != null) {
@@ -195,7 +196,7 @@ class NewOrderFragment : BaseFragment() {
         this.binding.modifyButton.setOnClickListener {
             it.hideSoftInput()
             this.newOrderViewModel.changePage(1)
-            this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP) // TODO: Estás probando esto y viendo cómo hacer la navegación para ir a allorders
+            this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP)
             (activity as MainActivity).changeTopBarName("Nuevo pedido")
         }
 

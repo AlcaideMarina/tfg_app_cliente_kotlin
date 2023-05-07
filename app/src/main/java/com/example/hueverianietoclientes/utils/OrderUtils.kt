@@ -11,11 +11,14 @@ object OrderUtils {
     fun parcelableToMap(orderData: OrderData) : MutableMap<String, Any?> {
         val map = mutableMapOf<String, Any?>()
         map["approximate_delivery_datetime"] = orderData.approxDeliveryDatetime
+        map["client_id"] = orderData.clientId
+        map["company"] = orderData.company
         map["created_by"] = orderData.createdBy
         map["delivery_datetime"] = orderData.deliveryDatetime
         map["delivery_dni"] = orderData.deliveryDni
         map["delivery_note"] = orderData.deliveryNote
         map["delivery_person"] = orderData.deliveryPerson
+        map["lot"] = orderData.lot
         map["notes"] = orderData.notes
         map["order"] = orderData.order
         map["order_datetime"] = orderData.orderDatetime
@@ -27,14 +30,17 @@ object OrderUtils {
         return map
     }
 
-    fun mapToParcelable(data: MutableMap<String, Any?>) : OrderData {
+    fun mapToParcelable(data: MutableMap<String, Any?>, documentId: String) : OrderData {
         return OrderData(
             data["approximate_delivery_datetime"] as Timestamp,
+            data["client_id"] as Long,
+            data["company"] as String,
             data["created_by"] as String,
             data["delivery_datetime"] as Timestamp?,
             data["delivery_dni"] as String?,
             data["delivery_note"] as Long?,
             data["delivery_person"] as String?,
+            data["lot"] as String?,
             data["notes"] as String?,
             data["order"] as Map<String, Map<String, Number>>,
             data["order_datetime"] as Timestamp,
@@ -42,7 +48,8 @@ object OrderUtils {
             data["paid"] as Boolean,
             data["payment_method"] as Long,
             data["status"] as Long,
-            data["total_price"] as Number?
+            data["total_price"] as Number?,
+            documentId
         )
     }
 

@@ -33,7 +33,7 @@ object ClientUtils {
             data["direction"] as String,
             data["email"] as String,
             data["has_account"] as Boolean,
-            data["id"] as String,
+            data["id"] as Long,
             data["phone"] as List<Map<String, Long>>,
             data["postal_code"] as Long,
             data["province"] as String,
