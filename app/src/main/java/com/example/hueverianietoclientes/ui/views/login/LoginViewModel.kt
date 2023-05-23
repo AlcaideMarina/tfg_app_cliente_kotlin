@@ -60,8 +60,13 @@ class LoginViewModel @Inject constructor (
                                 _viewState.value = LoginViewState(false)
                             }
                             else -> {
-                                _clientData.value = client!!
-                                _navigateToMainActivity.value = Event(true)
+                                if (!client.deleted && client.hasAccount) {
+                                    _clientData.value = client!!
+                                    _navigateToMainActivity.value = Event(true)
+                                } else {
+                                    _alertDialog.value = ClientLoginData(email, password, true)
+                                    _viewState.value = LoginViewState(false)
+                                }
                             }
                         }
                     }
