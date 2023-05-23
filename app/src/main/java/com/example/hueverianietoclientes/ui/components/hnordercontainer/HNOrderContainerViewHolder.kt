@@ -15,7 +15,7 @@ class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(orderContainerModel: OrderContainerModel) {
 
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
         val dateStr = sdf.format(orderContainerModel.orderDate.toDate())
 
         //TODO: Esto no funciona
