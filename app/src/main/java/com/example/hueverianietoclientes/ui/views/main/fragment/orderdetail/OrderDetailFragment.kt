@@ -130,6 +130,11 @@ class OrderDetailFragment : BaseFragment() {
             //deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
             deliveryNoteTextInputLayout.setText(orderData.deliveryNote?.toString() ?: "")
             deliveryDniTextInputLayout.setText(orderData.deliveryDni ?: "")
+            lotTextInputLayout.setText(orderData.lot)
+            paidCheckedTextView.isChecked = orderData.paid
+            paymentMethodAutoCompleteTextView.setText(
+                Utils.getKey(Constants.paymentMethod, orderData.paymentMethod)!!
+            )
         }
 
     }

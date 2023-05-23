@@ -31,6 +31,7 @@ class BillingDetailFragment : BaseFragment() {
         return this.binding.root
     }
 
+    // TODO: Falta por ocultar el texto cuando no es el mes actual
     override fun configureUI() {
         with(this.binding) {
             cashTextView.text = billingModel.paymentByCash.toString() + " €"
