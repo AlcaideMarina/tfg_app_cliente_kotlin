@@ -84,7 +84,9 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.lotTextInputLayout.isEnabled = false
         this.binding.deliveryDniTextInputLayout.isEnabled = false
         this.binding.paidCheckedTextView.isEnabled = false
+        this.binding.paidCheckedTextView.isFocusableInTouchMode = false
         this.binding.paymentMethodTextInputLayout.isEnabled = false
+        this.binding.paymentMethodAutoCompleteTextView.isEnabled = false
     }
 
     private fun setTexts() {
@@ -133,7 +135,7 @@ class OrderDetailFragment : BaseFragment() {
             lotTextInputLayout.setText(orderData.lot)
             paidCheckedTextView.isChecked = orderData.paid
             paymentMethodAutoCompleteTextView.setText(
-                Utils.getKey(Constants.paymentMethod, orderData.paymentMethod)!!
+                Utils.getKey(Constants.paymentMethod, orderData.paymentMethod.toInt())!!
             )
         }
 
