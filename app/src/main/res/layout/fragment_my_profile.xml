@@ -21,18 +21,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/company_text_view"
-            android:layout_marginTop="@dimen/size8"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Empresa:" />
+            <TextView
+                android:id="@+id/company_text_view"
+                android:layout_marginTop="@dimen/size8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Empresa:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/company_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -53,11 +60,18 @@
                 android:layout_height="match_parent"
                 android:text="Dirección:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/direction_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -78,11 +92,18 @@
                 android:layout_height="match_parent"
                 android:text="Ciudad:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/city_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -103,11 +124,18 @@
                 android:layout_height="match_parent"
                 android:text="Provincia:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/province_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -128,11 +156,18 @@
                 android:layout_height="match_parent"
                 android:text="Código postal:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/postal_code_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -153,11 +188,18 @@
                 android:layout_height="match_parent"
                 android:text="CIF:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/cif_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="name"/>
 
         </LinearLayout>
 
@@ -185,21 +227,35 @@
                 android:orientation="horizontal"
                 android:baselineAligned="false" >
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_name_1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="@dimen/size24"
                     android:layout_marginEnd="4dp"
-                    android:layout_marginStart="16dp" />
+                    android:layout_marginStart="16dp"
+                    android:autofillHints="name"/>
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_phone_1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="@dimen/size24"
                     android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints="phone"/>
 
             </LinearLayout>
 
@@ -210,21 +266,35 @@
                 android:orientation="horizontal"
                 android:baselineAligned="false" >
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_name_2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="@dimen/size8"
                     android:layout_marginEnd="4dp"
-                    android:layout_marginStart="16dp" />
+                    android:layout_marginStart="16dp"
+                    android:autofillHints="name"/>
 
-                <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+                <EditText
                     android:id="@+id/phone_text_input_layout_phone_2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="@dimen/size8"
                     android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints="phone"/>
 
             </LinearLayout>
 
@@ -247,11 +317,18 @@
                 android:layout_height="match_parent"
                 android:text="Usuario:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/user_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16" />
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="username"/>
 
         </LinearLayout>
 
@@ -272,11 +349,18 @@
                 android:layout_height="match_parent"
                 android:text="Correo:" />
 
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+            <EditText
                 android:id="@+id/email_text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:paddingHorizontal="12dp"
+                android:layout_marginTop="@dimen/size24"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:autofillHints="email"/>
 
         </LinearLayout>
 

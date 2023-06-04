@@ -28,7 +28,8 @@ object Constants {
         R.string.backordered to 1,
         R.string.in_delivery to 2,
         R.string.delivered to 3,
-        R.string.delivery_attempt to 4
+        R.string.delivery_attempt to 4,
+        R.string.cancelled to 5
     )
 
     const val dateFormat = "dd/MM/yyyy"

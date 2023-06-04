@@ -15,13 +15,14 @@ class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(orderContainerModel: OrderContainerModel) {
 
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
         val dateStr = sdf.format(orderContainerModel.orderDate.toDate())
 
+        //TODO: Esto no funciona
         val priceStr = if (orderContainerModel.price == (-1).toLong()) {
             "-"
         } else {
-            orderContainerModel.price.toString() + ""
+            orderContainerModel.price.toString()
         }
         // TODO: Transformar status
         var statusStr = Utils.getKey(Constants.orderStatus, orderContainerModel.status.toInt())

@@ -28,11 +28,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1" />
 
-    <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
+    <EditText
         android:id="@+id/text_input_layout_grid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:background="@drawable/custom_input"
+        android:paddingHorizontal="12dp"
+        android:autofillHints="name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -79,8 +79,14 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.orderDateTextInputLayout.isEnabled = false
         this.binding.deliveryDateTextInputLayout.isEnabled = false
         this.binding.deliveryPersonTextInputLayout.isEnabled = false
+        this.binding.deliveryPersonTextInputLayout.isEnabled = false
         this.binding.deliveryNoteTextInputLayout.isEnabled = false
+        this.binding.lotTextInputLayout.isEnabled = false
         this.binding.deliveryDniTextInputLayout.isEnabled = false
+        this.binding.paidCheckedTextView.isEnabled = false
+        this.binding.paidCheckedTextView.isFocusableInTouchMode = false
+        this.binding.paymentMethodTextInputLayout.isEnabled = false
+        this.binding.paymentMethodAutoCompleteTextView.isEnabled = false
     }
 
     private fun setTexts() {
@@ -105,7 +111,7 @@ class OrderDetailFragment : BaseFragment() {
             Utils.parseTimestampToString(orderData.deliveryDatetime) ?: ""
         } else if (orderData.status == (5).toLong()) {
             requireContext().getString(Utils.getKey(
-                Constants.orderStatus, orderData)!!) + " - " +
+                Constants.orderStatus, orderData.status.toInt())!!) + " - " +
                     Utils.parseTimestampToString(orderData.deliveryDatetime)
         } else {
             Utils.parseTimestampToString(orderData.deliveryDatetime)
@@ -114,18 +120,23 @@ class OrderDetailFragment : BaseFragment() {
 
         with(this.binding) {
             orderIdTextView.text = "ID pedido: " + orderData.orderId.toString()
-            companyTextInputLayout.setInputText(clientData.company)
-            directionTextInputLayout.setInputText(clientData.direction)
-            cifTextInputLayout.setInputText(clientData.cif)
-            phoneTextInputLayoutPhone1.setInputText(phone1.value.toString())
-            phoneTextInputLayoutPhone2.setInputText(phone2.value.toString())
-            totalPriceTextInputLayout.setInputText(priceStr)
-            orderDateTextInputLayout.setInputText(
+            companyTextInputLayout.setText(clientData.company)
+            directionTextInputLayout.setText(clientData.direction)
+            cifTextInputLayout.setText(clientData.cif)
+            phoneTextInputLayoutPhone1.setText(phone1.value.toString())
+            phoneTextInputLayoutPhone2.setText(phone2.value.toString())
+            totalPriceTextInputLayout.setText(priceStr)
+            orderDateTextInputLayout.setText(
                 Utils.parseTimestampToString(orderData.orderDatetime) ?: "")
-            deliveryDateTextInputLayout.setInputText(deliveryDatetimeField)
-            deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
-            deliveryNoteTextInputLayout.setInputText(orderData.deliveryNote?.toString() ?: "")
-            deliveryDniTextInputLayout.setInputText(orderData.deliveryDni ?: "")
+            deliveryDateTextInputLayout.setText(deliveryDatetimeField)
+            //deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
+            deliveryNoteTextInputLayout.setText(orderData.deliveryNote?.toString() ?: "")
+            deliveryDniTextInputLayout.setText(orderData.deliveryDni ?: "")
+            lotTextInputLayout.setText(orderData.lot)
+            paidCheckedTextView.isChecked = orderData.paid
+            paymentMethodAutoCompleteTextView.setText(
+                Utils.getKey(Constants.paymentMethod, orderData.paymentMethod.toInt())!!
+            )
         }
 
     }

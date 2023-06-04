@@ -9,7 +9,7 @@
         android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Select"
+        android:hint="-"
         android:textColorHint="@color/light_gray_color"
         app:boxCornerRadiusBottomEnd="@dimen/size16"
         app:boxCornerRadiusBottomStart="@dimen/size16"

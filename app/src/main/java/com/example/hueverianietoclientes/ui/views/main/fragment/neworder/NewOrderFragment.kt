@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -18,6 +19,7 @@ import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
+import com.example.hueverianietoclientes.data.network.EggPricesData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentNewOrderBinding
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
@@ -44,6 +46,10 @@ class NewOrderFragment : BaseFragment() {
     private lateinit var approxDeliveryDatetimeSelected : Timestamp
     private var orderData : OrderData? = null
 
+    private val recyclerViewTitles = listOf(0, 7, 14, 21)
+    private val recyclerViewSubtitles = listOf(1, 3, 4, 6, 8, 10, 11, 13, 15, 17, 18, 20, 22, 24, 25, 27)
+    private val recyclerViewTextInputLayouts = listOf(2, 5, 9, 12, 16, 19, 23, 26)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,17 +66,19 @@ class NewOrderFragment : BaseFragment() {
     }
 
     override fun configureUI() {
+        this.newOrderViewModel.getPrices()
+
         getPaymentMethodDropdownValues()
-        setRecyclerView()
+        setRecyclerView(EggPricesData())
         setClientDataFields()
 
-        this.binding.deliveryDatePicker.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
+        this.binding.deliveryDateTextInputLayout.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL)
         approxDeliveryDatetimeSelected = Timestamp(Utils.addToDate(Date(), 3))
-        this.binding.deliveryDatePicker.setInputText(
+        this.binding.deliveryDateTextInputLayout.setText(
             Utils.parseDateToString(approxDeliveryDatetimeSelected.toDate())
         )
-        this.binding.deliveryDatePicker.getDatePicker().setOnClickListener { onClickScheduledDate() }
-        this.binding.confirmButton.setText("GUARDAR")
+        this.binding.deliveryDateTextInputLayout.setOnClickListener { onClickScheduledDate() }
+        this.binding.confirmButton.setText("CONFIRMAR")
         this.binding.modifyButton.setText("Modificar datos")
         this.alertDialog = HNModalDialog(requireContext())
 
@@ -107,16 +115,14 @@ class NewOrderFragment : BaseFragment() {
                 2 -> Utils.setPopUp(
                     alertDialog,
                     requireContext(),
-                        "Aviso",
-                        "Una vez realizado el pedido, no se podrán modificar los datos directamente. Tendrá que llamarnos y solicitar el cambio ¿Desea continuar o prefiere revisar los datos?",
-                        "Revisar",
-                        "Continuar",
+                    "Precio final",
+                    "El precio total del pedido será de TODO €. ¿Desea continuar?",     // TODO
+                    "Atrás",
+                    "Continuar",
                         { alertDialog.cancel() },
                         {
                             alertDialog.cancel()
-                            (activity as MainActivity).changeTopBarName("Resumen del pedido")
-                            this.newOrderViewModel.changePage(2)
-                            this.binding.scrollView.scrollTo(0, 0)
+                            this.newOrderViewModel.changePage(3)
                         }
                     )
                 3 -> Utils.setPopUp(
@@ -147,59 +153,94 @@ class NewOrderFragment : BaseFragment() {
         }
         this.newOrderViewModel.orderData.observe(this) {
             orderData = it
+            if (orderData != null) {
+                this.newOrderViewModel.addNewOrder(
+                    clientData.documentId, this.newOrderViewModel.orderData.value!!)
+            } else {
+                Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
+                    "Se ha producido un error",
+                    "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
+                    "De acuerdo",
+                    null,
+                    { alertDialog.cancel() },
+                    null
+                )
+            }
+        }
+        this.newOrderViewModel.eggPrices.observe(this) {
+            setRecyclerView(it)
         }
     }
 
     override fun setListeners() {
         this.binding.confirmButton.setOnClickListener {
             it.hideSoftInput()
-            if (this.newOrderViewModel.viewState.value.step == 1) {
-                val paymentMethod =
-                    if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.in_cash)) {
-                        R.string.in_cash
-                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.per_receipt)) {
-                        R.string.per_receipt
-                    } else if (this.binding.paymentMethodDropdown.getSelectedItem()
-                        == requireContext().getString(R.string.transfer)){
-                        R.string.transfer
-                    } else {
-                        null
-                    }
-                this.newOrderViewModel.checkOrder(
-                    recyclerView = this.binding.orderRecyclerView,
-                    clientDataId = clientData.id,
-                    approxDeliveryDatetimeSelected = approxDeliveryDatetimeSelected,
-                    paymentMethodSelected = paymentMethod
+                val paymentMethodSelected = when (this.binding.paymentMethodAutoCompleteTextView.text.toString()) {
+                    requireContext().getString(R.string.in_cash) -> R.string.in_cash
+                    requireContext().getString(R.string.per_receipt) -> R.string.per_receipt
+                    requireContext().getString(R.string.transfer) -> R.string.transfer
+                    else -> null
+                }
+
+                val dbOrderFieldData = OrderUtils.getOrderStructure(this.binding.orderRecyclerView)
+
+            if (paymentMethodSelected == null) {
+                Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
+                    "Faltan datos",
+                    "El método de pago seleccionado no es válido. Por favor, revise los datos e inténtelo de nuevo",
+                    "De acuerdo",
+                    null,
+                    { alertDialog.cancel() },
+                    null
+                )
+            } else if (dbOrderFieldData == null) {
+                Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
+                    "Faltan datos",
+                    "Se debe seleccionar, al menos, un producto para realizar el pedido. Por favor, revise los datos e inténtelo de nuevo",
+                    "De acuerdo",
+                    null,
+                    { alertDialog.cancel() },
+                    null
                 )
             } else {
-                if (orderData != null) {
-                    this.newOrderViewModel.addNewOrder(
-                        clientData, this.newOrderViewModel.orderData.value!!)
-                } else {
-                    Utils.setPopUp(
-                        alertDialog,
-                        requireContext(),
-                        "Se ha producido un error",
-                        "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
-                        "De acuerdo",
-                        null,
-                        { alertDialog.cancel() },
-                        null
-                    )
-                }
+                val orderFieldMap = OrderUtils.parseDBOrderFieldDataToMap(dbOrderFieldData)
+                val totalPrice = OrderUtils.getTotalPrice(dbOrderFieldData)
+
+                Utils.setPopUp(
+                    alertDialog,
+                    requireContext(),
+                    "Precio final",
+                    "El precio total del pedido será de $totalPrice €. ¿Desea continuar?",
+                    "Atrás",
+                    "Continuar",
+                    { alertDialog.cancel() },
+                    {
+                        alertDialog.cancel()
+                        continueOrder(
+                            orderFieldMap,
+                            paymentMethodSelected,
+                            totalPrice
+                        )
+                    }
+                )
             }
+
         }
 
         this.binding.modifyButton.setOnClickListener {
             it.hideSoftInput()
             this.newOrderViewModel.changePage(1)
-            this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP) // TODO: Estás probando esto y viendo cómo hacer la navegación para ir a allorders
+            this.binding.scrollView.fullScroll(ScrollView.FOCUS_UP)
             (activity as MainActivity).changeTopBarName("Nuevo pedido")
         }
 
-        this.binding.paymentMethodDropdown.getAutoCompleteTextView().setOnFocusChangeListener { v, hasFocus ->
+        this.binding.paymentMethodAutoCompleteTextView.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 v.hideSoftInput()
             }
@@ -211,7 +252,10 @@ class NewOrderFragment : BaseFragment() {
         for (v in values) {
             dropdownPaymentMethodItems.add(requireContext().getString(v.key))
         }
-        this.binding.paymentMethodDropdown.setAdapter(dropdownPaymentMethodItems)
+        this.binding.paymentMethodAutoCompleteTextView.setAdapter(
+            ArrayAdapter(
+                requireContext(), R.layout.component_dropdown_list_item, dropdownPaymentMethodItems)
+        )
     }
 
     private fun onClickScheduledDate() {
@@ -226,7 +270,7 @@ class NewOrderFragment : BaseFragment() {
             if (dayStr.length < 2) dayStr = "0$dayStr"
             if (monthStr.length < 2) monthStr = "0$monthStr"
             if (yearStr.length < 4) yearStr = "0$yearStr"
-            this.binding.deliveryDatePicker.setInputText("$dayStr/$monthStr/$yearStr")
+            this.binding.deliveryDateTextInputLayout.setText("$dayStr/$monthStr/$yearStr")
             approxDeliveryDatetimeSelected = Utils.parseStringToTimestamp("$dayStr/$monthStr/$yearStr")
         }
         val datePickerDialog = DatePickerDialog(requireContext(), listener, year, month, day)
@@ -234,16 +278,16 @@ class NewOrderFragment : BaseFragment() {
         datePickerDialog.show()
     }
 
-    private fun setRecyclerView() {
+    private fun setRecyclerView(eggPricesData: EggPricesData) {
 
-        val list = OrderUtils.getNewOrderGridModel()
+        val list = OrderUtils.getNewOrderGridModel(eggPricesData)
 
-        val manager = CustomGridLayoutManager(this.context, 3)
+        val manager = CustomGridLayoutManager(this.context, 4)
         manager.setScrollEnabled(false)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (listOf(0, 5, 10, 15).contains(position)) 3
-                else if (listOf(2, 4, 7, 9, 12, 14, 17, 19).contains(position)) 2
+                return if (recyclerViewTitles.contains(position)) 4
+                else if(recyclerViewTextInputLayouts.contains(position)) 2
                 else 1
             }
         }
@@ -254,11 +298,11 @@ class NewOrderFragment : BaseFragment() {
     }
 
     private fun setClientDataFields() {
-        this.binding.directionTextInputLayout.setInputText(clientData.direction)
+        this.binding.directionTextInputLayout.setText(clientData.direction)
         this.binding.directionTextInputLayout.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone1.setInputText(clientData.phone[0].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone1.setText(clientData.phone[0].entries.iterator().next().value.toString())
         this.binding.phoneTextInputLayoutPhone1.isEnabled = false
-        this.binding.phoneTextInputLayoutPhone2.setInputText(clientData.phone[1].entries.iterator().next().value.toString())
+        this.binding.phoneTextInputLayoutPhone2.setText(clientData.phone[1].entries.iterator().next().value.toString())
         this.binding.phoneTextInputLayoutPhone2.isEnabled = false
     }
 
@@ -268,33 +312,17 @@ class NewOrderFragment : BaseFragment() {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
                 }
-                if (this.step == 1) {
-                    setRecyclerViewEnable(true)
-                    binding.paymentMethodDropdown.isEnabled = true
-                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = true
-                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = true
-                    binding.deliveryDatePicker.isEnabled = true
-                    binding.deliveryDatePicker.getDatePicker().isEnabled = true
-                    binding.modifyButton.visibility = View.GONE
-                    binding.confirmButton.setText("GUARDAR")
-                } else if (this.step == 2) {
-                    setRecyclerViewEnable(false)
-                    binding.paymentMethodDropdown.isEnabled = false
-                    binding.paymentMethodDropdown.getAutoCompleteTextView().isEnabled = false
-                    binding.paymentMethodDropdown.getTextInputLayout().isEnabled = false
-                    binding.deliveryDatePicker.isEnabled = false
-                    binding.deliveryDatePicker.getDatePicker().isEnabled = false
-                    binding.modifyButton.visibility = View.VISIBLE
-                    binding.confirmButton.setText("CONFIRMAR")
-                } else {
-                    this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
-                        this@NewOrderFragment.view,
-                        bundleOf(
-                            "clientData" to clientData,
-                            "fromNewOrder" to true
-                        ),
-                        this@NewOrderFragment.requireActivity()
-                    )
+                when(this.step) {
+                    3 -> {
+                        this@NewOrderFragment.newOrderViewModel.navigateToMyOrders(
+                            this@NewOrderFragment.view,
+                            bundleOf(
+                                "clientData" to clientData,
+                                "fromNewOrder" to true
+                            ),
+                            this@NewOrderFragment.requireActivity()
+                        )
+                    }
                 }
             }
         } catch (e: Exception) {
@@ -305,34 +333,71 @@ class NewOrderFragment : BaseFragment() {
 
     private fun setRecyclerViewEnable(isEnable: Boolean) {
         with(this.binding.orderRecyclerView.adapter as HNGridTextAdapter) {
-            this.getItemWithPosition(2).isEnabled = isEnable
-            this.getItemWithPosition(4).isEnabled = isEnable
-            this.getItemWithPosition(7).isEnabled = isEnable
+            this.setEnabledDisabled(2, isEnable)
+            this.setEnabledDisabled(5, isEnable)
+            this.setEnabledDisabled(9, isEnable)
+            this.setEnabledDisabled(12, isEnable)
+            this.setEnabledDisabled(16, isEnable)
+            this.setEnabledDisabled(19, isEnable)
+            this.setEnabledDisabled(23, isEnable)
+            this.setEnabledDisabled(26, isEnable)
+            /*this.getItemWithPosition(2).isEnabled = isEnable
+            this.getItemWithPosition(5).isEnabled = isEnable
             this.getItemWithPosition(9).isEnabled = isEnable
             this.getItemWithPosition(12).isEnabled = isEnable
-            this.getItemWithPosition(14).isEnabled = isEnable
-            this.getItemWithPosition(17).isEnabled = isEnable
+            this.getItemWithPosition(16).isEnabled = isEnable
             this.getItemWithPosition(19).isEnabled = isEnable
-            if (orderList.size == 8) {
+            this.getItemWithPosition(23).isEnabled = isEnable
+            this.getItemWithPosition(26).isEnabled = isEnable*/
+            /*if (orderList.size == 8) {
                 this.getItemWithPosition(2).response = (orderList[0] ?: "").toString()
-                this.getItemWithPosition(4).response = (orderList[1] ?: "").toString()
-                this.getItemWithPosition(7).response = (orderList[2] ?: "").toString()
-                this.getItemWithPosition(9).response = (orderList[3] ?: "").toString()
-                this.getItemWithPosition(12).response = (orderList[4] ?: "").toString()
-                this.getItemWithPosition(14).response = (orderList[5] ?: "").toString()
-                this.getItemWithPosition(17).response = (orderList[6] ?: "").toString()
-                this.getItemWithPosition(19).response = (orderList[7] ?: "").toString()
+                this.getItemWithPosition(5).response = (orderList[1] ?: "").toString()
+                this.getItemWithPosition(9).response = (orderList[2] ?: "").toString()
+                this.getItemWithPosition(12).response = (orderList[3] ?: "").toString()
+                this.getItemWithPosition(16).response = (orderList[4] ?: "").toString()
+                this.getItemWithPosition(19).response = (orderList[5] ?: "").toString()
+                this.getItemWithPosition(23).response = (orderList[6] ?: "").toString()
+                this.getItemWithPosition(26).response = (orderList[7] ?: "").toString()
             }
             notifyItemChanged(2)
-            notifyItemChanged(4)
-            notifyItemChanged(7)
+            notifyItemChanged(5)
             notifyItemChanged(9)
             notifyItemChanged(12)
-            notifyItemChanged(14)
-            notifyItemChanged(17)
+            notifyItemChanged(16)
             notifyItemChanged(19)
+            notifyItemChanged(23)
+            notifyItemChanged(26)*/
         }
     }
+
+    private fun continueOrder(
+        orderFieldMap: Map<String, Map<String, Number?>>,
+        paymentMethodSelected: Int,
+        totalPrice: Double
+    ) {
+        val orderData = OrderData(
+            approxDeliveryDatetime = approxDeliveryDatetimeSelected,
+            clientId = clientData.id,
+            company = clientData.company,
+            createdBy = "client_${clientData.id}",
+            deliveryDatetime = null,
+            deliveryDni = null,
+            deliveryNote = null,
+            deliveryPerson = null,
+            lot = null,
+            notes = null,
+            order = orderFieldMap,
+            orderDatetime = Timestamp(Date()),
+            orderId = null,
+            paid = false,
+            paymentMethod = Constants.paymentMethod[paymentMethodSelected]!!.toLong(),
+            status = 1,
+            totalPrice = totalPrice,
+            documentId = null
+        )
+        this.newOrderViewModel.addNewOrder(clientData.documentId, orderData)
+    }
+
     companion object {
         private val TAG = LoginActivity::class.java.simpleName
     }

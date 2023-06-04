@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 @HiltViewModel
 class BillingViewModel @Inject constructor(
@@ -106,9 +107,9 @@ class BillingViewModel @Inject constructor(
         val calendar = Calendar.getInstance()
         calendar.time = firstDate
         var m = (calendar.get(Calendar.MONTH) + 1).toString()
-        if (m.length < 2) m = "0" + m
+        while (m.length < 2) m = "0" + m
         var y = calendar.get(Calendar.YEAR).toString()
-        if (y.length < 4) y = "0" + y
+        while (y.length < 4) y = "0" + y
 
         // Creamos fecha inicial y final
         var initDateTimestamp = Utils.parseStringToTimestamp(
@@ -158,17 +159,17 @@ class BillingViewModel @Inject constructor(
                 true -> paid += (item.totalPrice ?: 0).toDouble()
                 false -> toBePaid += (item.totalPrice ?: 0).toDouble()
             }
-            totalPrice += totalPrice
+            totalPrice += (item.totalPrice ?: 0).toDouble()
             orderBillingModelMonthlyList.add(item)
 
             if (orderBillingModelListAux.last() == item) {
                 val billingModel = BillingModel(
-                    paymentByCash = paymentByCash,
-                    paymentByReceipt = paymentByReceipt,
-                    paymentByTransfer = paymentByTransfer,
-                    paid = paid,
-                    toBePaid = toBePaid,
-                    totalPrice = totalPrice,
+                    paymentByCash = (paymentByCash * 100.0).roundToInt() / 100.0,
+                    paymentByReceipt = (paymentByReceipt * 100.0).roundToInt() / 100.0,
+                    paymentByTransfer = (paymentByTransfer * 100.0).roundToInt() / 100.0,
+                    paid = (paid * 100.0).roundToInt() / 100.0,
+                    toBePaid = (toBePaid * 100.0).roundToInt() / 100.0,
+                    totalPrice = (totalPrice * 100.0).roundToInt() / 100.0,
                     //orderBillingModelList = orderBillingModelMonthlyList
                 )
                 val billingContainerModel = BillingContainerModel(

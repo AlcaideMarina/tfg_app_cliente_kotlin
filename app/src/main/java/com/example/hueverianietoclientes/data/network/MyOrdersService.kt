@@ -30,7 +30,7 @@ class MyOrdersService @Inject constructor(
                     if (item.data != null) {
                         val data = item.data!!
                         data["order"]
-                        list.add(OrderUtils.mapToParcelable(data))
+                        list.add(OrderUtils.mapToParcelable(data, item.id))
                     }
                 }
             }
