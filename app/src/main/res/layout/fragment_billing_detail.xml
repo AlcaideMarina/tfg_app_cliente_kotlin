@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pagos por recibo: " />
+            android:text="Pagos por transferencia: " />
 
         <TextView
             android:id="@+id/transfer_text_view"

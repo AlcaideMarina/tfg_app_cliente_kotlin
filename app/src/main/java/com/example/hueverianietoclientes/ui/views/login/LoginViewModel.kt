@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hueverianietoclientes.base.BaseActivity
-import com.example.hueverianietoclientes.core.Event
+import com.example.hueverianietoclientes.base.core.Event
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.ClientLoginData
 import com.example.hueverianietoclientes.data.network.LoginResponse
