@@ -75,10 +75,14 @@ class BillingFragment : BaseFragment() {
                     }
                 }
                 if (billingList.isEmpty()) {
-                    // TODO: Vacío
+                    this.binding.containerWaringNoBilling.setTitle("No hay registros")
+                    this.binding.containerWaringNoBilling.setText("Aún no hay registros de facturación.")
+                    this.binding.billingRecyclerView.visibility = View.GONE
+                    this.binding.containerWaringNoBilling.visibility = View.VISIBLE
                 } else {
                     this.binding.billingRecyclerView.layoutManager = LinearLayoutManager(context)
                     this.binding.billingRecyclerView.adapter = HNBillingContainerAdapter(billingList)
+                    this.binding.containerWaringNoBilling.visibility = View.GONE
                     this.binding.billingRecyclerView.visibility = View.VISIBLE
                 }
             }
