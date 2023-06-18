@@ -112,11 +112,15 @@ class MyOrdersFragment : BaseFragment() {
                     }
                 }
                 if (orderList.isEmpty()) {
-                    // TODO: Vacío
+                    this.binding.containerWaringNoOrders.setText("No hay pedidos")
+                    this.binding.containerWaringNoOrders.setText("No hay registro de pedidos en la base de datos.")
+                    this.binding.containerWaringNoOrders.visibility = View.VISIBLE
+                    this.binding.orderRecyclerView.visibility = View.GONE
                 } else {
                     this.binding.orderRecyclerView.layoutManager = LinearLayoutManager(context)
                     this.binding.orderRecyclerView.adapter = HNOrderContainerAdapter(orderList)
                     this.binding.orderRecyclerView.visibility = View.VISIBLE
+                    this.binding.containerWaringNoOrders.visibility = View.GONE
                 }
             }
         }
