@@ -58,7 +58,7 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // It is not necessary, this is a static view
     }
 
     override fun updateUI(state: BaseState) {

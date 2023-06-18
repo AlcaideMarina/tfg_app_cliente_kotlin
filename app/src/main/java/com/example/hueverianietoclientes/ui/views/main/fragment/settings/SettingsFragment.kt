@@ -63,15 +63,15 @@ class SettingsFragment : BaseFragment() {
     }
 
     override fun setObservers() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun updateUI(state: BaseState) {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
 }

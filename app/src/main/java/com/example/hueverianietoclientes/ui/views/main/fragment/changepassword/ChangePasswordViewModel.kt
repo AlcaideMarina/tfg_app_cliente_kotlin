@@ -38,7 +38,7 @@ class ChangePasswordViewModel @Inject constructor(
                 true -> {
                     _alertDialog.value = AlertOkData(
                         "Contraseña actualizada",
-                        "La contraseña se ha actualizado correctamente. A partir de ahora, cuando inicie sesión, hágalo con esta contraseña.",
+                        "La información se ha actualizado correctamente. A partir de ahora, cuando inicie sesión, hágalo con la nueva contraseña.",
                         true,
                         customCode = 0
                     )

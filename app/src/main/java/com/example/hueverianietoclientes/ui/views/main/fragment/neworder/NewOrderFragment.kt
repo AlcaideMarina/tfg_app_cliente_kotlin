@@ -160,8 +160,8 @@ class NewOrderFragment : BaseFragment() {
                 Utils.setPopUp(
                     alertDialog,
                     requireContext(),
-                    "Se ha producido un error",
-                    "Sentimos comunicarle que se ha producido un error inesperado durante el pedido. Por favor, inténtelo más tarde o póngase en contacto con nosotros.",
+                    "Error",
+                    "Se ha producido un error. Por favor, revise los datos y vuelva a intentarlo",
                     "De acuerdo",
                     null,
                     { alertDialog.cancel() },

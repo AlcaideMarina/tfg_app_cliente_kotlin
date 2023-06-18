@@ -31,7 +31,6 @@ class BillingDetailFragment : BaseFragment() {
         return this.binding.root
     }
 
-    // TODO: Falta por ocultar el texto cuando no es el mes actual
     override fun configureUI() {
         with(this.binding) {
             cashTextView.text = billingModel.paymentByCash.toString() + " €"
@@ -44,14 +43,14 @@ class BillingDetailFragment : BaseFragment() {
     }
 
     override fun setObservers() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun updateUI(state: BaseState) {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 }
