@@ -139,6 +139,7 @@ class LoginActivity : BaseActivity() {
             with(state as LoginViewState) {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
+                    this.loginBaseContainer.isVisible = !state.isLoading
                     if (!state.isValidEmail) {
                         setPopUp(errorMap(Constants.loginBadFormattedEmailError))
                     }

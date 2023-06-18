@@ -59,7 +59,7 @@ class LoginViewModel @Inject constructor(
                             }
                             else -> {
                                 if (!client.deleted && client.hasAccount) {
-                                    _clientData.value = client
+                                    _clientData.value = client!!
                                     _navigateToMainActivity.value = Event(true)
                                 } else {
                                     _alertDialog.value = ClientLoginData(email, password, true)
@@ -75,7 +75,6 @@ class LoginViewModel @Inject constructor(
                 isValidEmail = checkValidEmail(email)
             )
         }
-        _viewState.value = LoginViewState(isLoading = false)
     }
 
     fun navigateToMainActivity(context: Context, clientData: Parcelable) {
