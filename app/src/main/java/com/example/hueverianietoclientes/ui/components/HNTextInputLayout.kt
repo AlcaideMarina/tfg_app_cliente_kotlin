@@ -1,13 +1,10 @@
 package com.example.hueverianietoclientes.ui.components
 
 import android.content.Context
-import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 import android.text.method.TransformationMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.base.BaseComponent
 import com.example.hueverianietoclientes.databinding.ComponentTextInputLayoutBinding
@@ -73,7 +70,7 @@ open class HNTextInputLayout : TextInputLayout, BaseComponent {
     }
 
     fun getTextInputEditTextComponent(): TextInputEditText {
-        return this.binding.textInputEditText;
+        return this.binding.textInputEditText
     }
 
     /// Context

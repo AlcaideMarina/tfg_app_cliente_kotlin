@@ -10,12 +10,11 @@ import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.databinding.FragmentBillingDetailBinding
 import com.example.hueverianietoclientes.domain.model.BillingModel
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import com.example.hueverianietoclientes.ui.views.main.fragment.billing.BillingFragmentArgs
 
 class BillingDetailFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentBillingDetailBinding
-    private lateinit var billingModel : BillingModel
+    private lateinit var binding: FragmentBillingDetailBinding
+    private lateinit var billingModel: BillingModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +25,7 @@ class BillingDetailFragment : BaseFragment() {
         this.binding = FragmentBillingDetailBinding.inflate(
             inflater, container, false
         )
-        val args : BillingDetailFragmentArgs by navArgs()
+        val args: BillingDetailFragmentArgs by navArgs()
         this.billingModel = args.billingModel
         return this.binding.root
     }
@@ -53,4 +52,5 @@ class BillingDetailFragment : BaseFragment() {
     override fun updateUI(state: BaseState) {
         // Not necessary
     }
+
 }

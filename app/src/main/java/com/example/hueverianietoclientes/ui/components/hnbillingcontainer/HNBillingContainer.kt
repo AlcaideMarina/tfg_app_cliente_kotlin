@@ -10,9 +10,10 @@ import com.example.hueverianietoclientes.databinding.ComponentBillingContainerBi
 
 class HNBillingContainer : ConstraintLayout, BaseComponent {
 
-    private var binding : ComponentBillingContainerBinding = ComponentBillingContainerBinding.inflate(
-        LayoutInflater.from(this.context)
-    )
+    private var binding: ComponentBillingContainerBinding =
+        ComponentBillingContainerBinding.inflate(
+            LayoutInflater.from(this.context)
+        )
 
     constructor(context: Context) : super(context)
 

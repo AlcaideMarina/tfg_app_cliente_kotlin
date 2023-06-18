@@ -10,7 +10,7 @@ import com.example.hueverianietoclientes.databinding.ComponentGridItemBinding
 
 class HNGridItem : ConstraintLayout, BaseComponent {
 
-    private var binding : ComponentGridItemBinding = ComponentGridItemBinding.inflate(
+    private var binding: ComponentGridItemBinding = ComponentGridItemBinding.inflate(
         LayoutInflater.from(this.context)
     )
 

@@ -20,21 +20,22 @@ class BillingService @Inject constructor(
             .await()
     }.toOrderDataList()
 
-    private fun Result<QuerySnapshot>.toOrderDataList() : List<OrderData?>? = when(val result = getOrNull()) {
-        null -> null
-        else -> {
-            val list = mutableListOf<OrderData>()
-            if (!result.isEmpty && result.documents.size > 0) {
-                for (item in result.documents) {
-                    if (item.data != null) {
-                        val data = item.data!!
-                        data["order"]
-                        list.add(OrderUtils.mapToParcelable(data, item.id))
+    private fun Result<QuerySnapshot>.toOrderDataList(): List<OrderData?>? =
+        when (val result = getOrNull()) {
+            null -> null
+            else -> {
+                val list = mutableListOf<OrderData>()
+                if (!result.isEmpty && result.documents.size > 0) {
+                    for (item in result.documents) {
+                        if (item.data != null) {
+                            val data = item.data!!
+                            data["order"]
+                            list.add(OrderUtils.mapToParcelable(data, item.id))
+                        }
                     }
                 }
+                list
             }
-            list
         }
-    }
 
 }

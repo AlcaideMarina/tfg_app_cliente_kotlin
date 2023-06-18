@@ -1,7 +1,6 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.changepassword
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,24 +8,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.hueverianietoclientes.base.BaseActivity
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.databinding.FragmentChangePasswordBinding
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import com.example.hueverianietoclientes.utils.Utils
 import com.example.hueverianietoclientes.utils.Utils.setPopUp
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ChangePasswordFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentChangePasswordBinding
+    private lateinit var binding: FragmentChangePasswordBinding
     private lateinit var clientData: ClientData
-    private val changePasswordViewModel : ChangePasswordViewModel by viewModels()
+    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
     private lateinit var alertDialog: HNModalDialog
 
     override fun onCreateView(
@@ -38,7 +34,7 @@ class ChangePasswordFragment : BaseFragment() {
         this.binding = FragmentChangePasswordBinding.inflate(
             inflater, container, false
         )
-        val args : ChangePasswordFragmentArgs by navArgs()
+        val args: ChangePasswordFragmentArgs by navArgs()
         this.clientData = args.clientData
 
         this.alertDialog = HNModalDialog(requireContext())
@@ -92,7 +88,8 @@ class ChangePasswordFragment : BaseFragment() {
         this.binding.saveButton.setOnClickListener {
             if (this.binding.oldPasswordTextInputLayout.text != null && this.binding.oldPasswordTextInputLayout.text.toString() != ""
                 && this.binding.newPassword1TextInputLayout.text != null && this.binding.newPassword1TextInputLayout.text.toString() != ""
-                && this.binding.newPassword2TextInputLayout.text != null && this.binding.newPassword2TextInputLayout.text.toString() != "") {
+                && this.binding.newPassword2TextInputLayout.text != null && this.binding.newPassword2TextInputLayout.text.toString() != ""
+            ) {
                 val oldPass = this.binding.oldPasswordTextInputLayout.text.toString()
                 val newPass1 = this.binding.newPassword1TextInputLayout.text.toString()
                 val newPass2 = this.binding.newPassword2TextInputLayout.text.toString()
@@ -102,7 +99,7 @@ class ChangePasswordFragment : BaseFragment() {
                             oldPass,
                             newPass1
                         )
-                } else  {
+                } else {
                     setPopUp(
                         alertDialog,
                         requireContext(),
@@ -134,4 +131,5 @@ class ChangePasswordFragment : BaseFragment() {
         state as ChangePasswordViewState
         this.binding.loadingComponent.isVisible = state.isLoading
     }
+
 }

@@ -21,7 +21,7 @@ class SettingsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSettingsBinding
     private var dataArrayList = ArrayList<SimpleListModel?>()
-    private val settingsViewModel : SettingsViewModel by viewModels()
+    private val settingsViewModel: SettingsViewModel by viewModels()
     private lateinit var clientData: ClientData
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class SettingsFragment : BaseFragment() {
         this.binding = FragmentSettingsBinding.inflate(
             inflater, container, false
         )
-        val args : SettingsFragmentArgs by navArgs()
+        val args: SettingsFragmentArgs by navArgs()
         this.clientData = args.clientData
         return this.binding.root
     }
@@ -56,8 +56,10 @@ class SettingsFragment : BaseFragment() {
                 onClickListener = { }
             )
         )
-        this.binding.settingOptionsListView.adapter = HNSimpleListAdapter(requireContext(),
-            dataArrayList)
+        this.binding.settingOptionsListView.adapter = HNSimpleListAdapter(
+            requireContext(),
+            dataArrayList
+        )
         this.binding.settingOptionsListView.isClickable = true
 
     }

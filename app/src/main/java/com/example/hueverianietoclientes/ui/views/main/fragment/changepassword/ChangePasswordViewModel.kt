@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hueverianietoclientes.data.local.AlertOkData
 import com.example.hueverianietoclientes.domain.usecase.ChangePasswordUseCase
-import com.example.hueverianietoclientes.ui.views.main.fragment.billing.BillingViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +26,7 @@ class ChangePasswordViewModel @Inject constructor(
     fun checkOldPassword(oldPass: String, newPass: String) {
         viewModelScope.launch {
             _viewState.value = ChangePasswordViewState(isLoading = true)
-            when(val result = changePasswordUseCase(oldPass, newPass)) {
+            when (val result = changePasswordUseCase(oldPass, newPass)) {
                 false -> {
                     _alertDialog.value = AlertOkData(
                         "Error",

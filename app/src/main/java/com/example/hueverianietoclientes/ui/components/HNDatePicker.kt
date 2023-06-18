@@ -1,7 +1,6 @@
 package com.example.hueverianietoclientes.ui.components
 
 import android.content.Context
-import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import com.example.hueverianietoclientes.databinding.ComponentDatePickerBinding
 
 class HNDatePicker : LinearLayout, BaseComponent {
 
-    private val binding : ComponentDatePickerBinding = ComponentDatePickerBinding.bind(
+    private val binding: ComponentDatePickerBinding = ComponentDatePickerBinding.bind(
         LayoutInflater
             .from(context)
             .inflate(R.layout.component_date_picker, this, true)
@@ -41,11 +40,11 @@ class HNDatePicker : LinearLayout, BaseComponent {
         this.binding.datePicker.inputType = inputType
     }
 
-    fun getDatePicker() : EditText {
+    fun getDatePicker(): EditText {
         return this.binding.datePicker
     }
 
-    fun setListener(listener: View.OnClickListener) {
+    fun setListener(listener: OnClickListener) {
         this.binding.datePicker.setOnClickListener(listener)
     }
 

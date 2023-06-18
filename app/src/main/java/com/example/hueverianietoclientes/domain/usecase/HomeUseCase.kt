@@ -5,6 +5,4 @@ import javax.inject.Inject
 
 class HomeUseCase @Inject constructor(
     private val authenticationService: AuthenticationService
-) {
-    // TODO: Logout
-}
+)

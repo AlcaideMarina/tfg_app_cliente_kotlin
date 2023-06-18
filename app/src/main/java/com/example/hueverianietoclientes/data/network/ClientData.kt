@@ -19,5 +19,5 @@ data class ClientData(
     var province: String,
     var uid: String,
     var user: String,
-    var documentId: String         // Este campo no se guarda en BBDD, es sólo para localizar en local
+    var documentId: String
 ) : Parcelable

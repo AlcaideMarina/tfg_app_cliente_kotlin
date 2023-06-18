@@ -1,13 +1,10 @@
 package com.example.hueverianietoclientes.ui.views.main
 
 import android.os.Build
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -30,10 +27,9 @@ class MainActivity : BaseActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val mainViewModel : MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
     lateinit var clientData: ClientData
     private lateinit var alertDialog: HNModalDialog
-
 
     override fun setUp() {
         clientData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -58,15 +54,15 @@ class MainActivity : BaseActivity() {
     }
 
     override fun configureUI() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun setObservers() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun updateUI(state: BaseState) {
@@ -76,6 +72,7 @@ class MainActivity : BaseActivity() {
     fun configNav(setHome: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(setHome)
     }
+
     fun changeTopBarName(newName: String) {
         supportActionBar?.title = newName
     }
@@ -113,6 +110,5 @@ class MainActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
 }

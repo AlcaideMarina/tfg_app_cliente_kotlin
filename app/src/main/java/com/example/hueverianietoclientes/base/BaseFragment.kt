@@ -56,5 +56,4 @@ abstract class BaseFragment : Fragment() {
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 
-
 }

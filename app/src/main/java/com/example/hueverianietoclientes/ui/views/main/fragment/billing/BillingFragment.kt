@@ -18,13 +18,12 @@ import com.example.hueverianietoclientes.databinding.FragmentBillingBinding
 import com.example.hueverianietoclientes.domain.model.BillingContainerItemModel
 import com.example.hueverianietoclientes.ui.components.hnbillingcontainer.HNBillingContainerAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import com.example.hueverianietoclientes.ui.views.main.fragment.myorders.MyOrdersFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BillingFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentBillingBinding
+    private lateinit var binding: FragmentBillingBinding
     private lateinit var clientData: ClientData
     private val billingViewModel: BillingViewModel by viewModels()
 
@@ -38,7 +37,7 @@ class BillingFragment : BaseFragment() {
             inflater, container, false
         )
 
-        val args : BillingFragmentArgs by navArgs()
+        val args: BillingFragmentArgs by navArgs()
         this.clientData = args.clientData
 
         return this.binding.root
@@ -81,7 +80,8 @@ class BillingFragment : BaseFragment() {
                     this.binding.containerWaringNoBilling.visibility = View.VISIBLE
                 } else {
                     this.binding.billingRecyclerView.layoutManager = LinearLayoutManager(context)
-                    this.binding.billingRecyclerView.adapter = HNBillingContainerAdapter(billingList)
+                    this.binding.billingRecyclerView.adapter =
+                        HNBillingContainerAdapter(billingList)
                     this.binding.containerWaringNoBilling.visibility = View.GONE
                     this.binding.billingRecyclerView.visibility = View.VISIBLE
                 }
@@ -90,7 +90,7 @@ class BillingFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun updateUI(state: BaseState) {
@@ -98,11 +98,6 @@ class BillingFragment : BaseFragment() {
             with(state as BillingViewState) {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
-                    if (state.error) {
-                        //setPopUp(errorMap(Constants.loginBadFormattedEmailError))
-                    } else if (state.isEmpty) {
-                        //setPopUp(errorMap(Constants.loginBadFormattedEmailError))
-                    }
                 }
             }
         } catch (e: Exception) {

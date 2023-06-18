@@ -1,6 +1,6 @@
 package com.example.hueverianietoclientes.data.network
 
-data class DBOrderFieldData (
+data class DBOrderFieldData(
     // XL - box
     var xlBoxPrice: Number? = null,
     var xlBoxQuantity: Number? = 0,

@@ -1,6 +1,5 @@
 package com.example.hueverianietoclientes.ui.views.main.fragment.orderdetail
 
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentOrderDetailBinding
-import com.example.hueverianietoclientes.domain.model.GridTextItemModel
 import com.example.hueverianietoclientes.ui.components.hngridview.CustomGridLayoutManager
 import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
@@ -28,7 +26,8 @@ class OrderDetailFragment : BaseFragment() {
     private lateinit var orderData: OrderData
     private lateinit var clientData: ClientData
     private val recyclerViewTitles = listOf(0, 7, 14, 21)
-    private val recyclerViewSubtitles = listOf(1, 3, 4, 6, 8, 10, 11, 13, 15, 17, 18, 20, 22, 24, 25, 27)
+    private val recyclerViewSubtitles =
+        listOf(1, 3, 4, 6, 8, 10, 11, 13, 15, 17, 18, 20, 22, 24, 25, 27)
     private val recyclerViewTextInputLayouts = listOf(2, 5, 9, 12, 16, 19, 23, 26)
 
     override fun onCreateView(
@@ -41,7 +40,7 @@ class OrderDetailFragment : BaseFragment() {
             inflater, container, false
         )
 
-        val args : OrderDetailFragmentArgs by navArgs()
+        val args: OrderDetailFragmentArgs by navArgs()
         this.orderData = args.orderData
         this.clientData = args.clientData
 
@@ -103,20 +102,27 @@ class OrderDetailFragment : BaseFragment() {
         }
 
         val statusApproxDeliveryDatetimeList = listOf<Long>(0, 1, 2)
-        val deliveryDatetimeField : String = if (statusApproxDeliveryDatetimeList.contains(orderData.status)) {
-            requireContext().getString(Utils.getKey(
-                Constants.orderStatus, orderData.status.toInt())!!) + " - " +
-                    Utils.parseTimestampToString(orderData.approxDeliveryDatetime)
-        } else if (orderData.status == (4).toLong()) {
-            Utils.parseTimestampToString(orderData.deliveryDatetime) ?: ""
-        } else if (orderData.status == (5).toLong()) {
-            requireContext().getString(Utils.getKey(
-                Constants.orderStatus, orderData.status.toInt())!!) + " - " +
-                    Utils.parseTimestampToString(orderData.deliveryDatetime)
-        } else {
-            Utils.parseTimestampToString(orderData.deliveryDatetime)
-                ?: Utils.parseTimestampToString(orderData.approxDeliveryDatetime)!!
-        }
+        val deliveryDatetimeField: String =
+            if (statusApproxDeliveryDatetimeList.contains(orderData.status)) {
+                requireContext().getString(
+                    Utils.getKey(
+                        Constants.orderStatus, orderData.status.toInt()
+                    )!!
+                ) + " - " +
+                        Utils.parseTimestampToString(orderData.approxDeliveryDatetime)
+            } else if (orderData.status == (4).toLong()) {
+                Utils.parseTimestampToString(orderData.deliveryDatetime) ?: ""
+            } else if (orderData.status == (5).toLong()) {
+                requireContext().getString(
+                    Utils.getKey(
+                        Constants.orderStatus, orderData.status.toInt()
+                    )!!
+                ) + " - " +
+                        Utils.parseTimestampToString(orderData.deliveryDatetime)
+            } else {
+                Utils.parseTimestampToString(orderData.deliveryDatetime)
+                    ?: Utils.parseTimestampToString(orderData.approxDeliveryDatetime)!!
+            }
 
         with(this.binding) {
             orderIdTextView.text = "ID pedido: " + orderData.orderId.toString()
@@ -127,9 +133,9 @@ class OrderDetailFragment : BaseFragment() {
             phoneTextInputLayoutPhone2.setText(phone2.value.toString())
             totalPriceTextInputLayout.setText(priceStr)
             orderDateTextInputLayout.setText(
-                Utils.parseTimestampToString(orderData.orderDatetime) ?: "")
+                Utils.parseTimestampToString(orderData.orderDatetime) ?: ""
+            )
             deliveryDateTextInputLayout.setText(deliveryDatetimeField)
-            //deliveryPersonTextInputLayout.setInputText(orderData.deliveryPerson ?: "")
             deliveryNoteTextInputLayout.setText(orderData.deliveryNote?.toString() ?: "")
             deliveryDniTextInputLayout.setText(orderData.deliveryDni ?: "")
             lotTextInputLayout.setText(orderData.lot)
@@ -150,7 +156,7 @@ class OrderDetailFragment : BaseFragment() {
         manager.spanSizeLookup = object : SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return if (recyclerViewTitles.contains(position)) 4
-                else if(recyclerViewTextInputLayouts.contains(position)) 2
+                else if (recyclerViewTextInputLayouts.contains(position)) 2
                 else 1
             }
         }
@@ -159,4 +165,5 @@ class OrderDetailFragment : BaseFragment() {
         this.binding.orderRecyclerView.adapter = HNGridTextAdapter(list)
 
     }
+
 }

@@ -11,7 +11,7 @@ import com.example.hueverianietoclientes.utils.Utils
 
 class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    val binding : ComponentOrderContainerBinding = ComponentOrderContainerBinding.bind(view)
+    val binding: ComponentOrderContainerBinding = ComponentOrderContainerBinding.bind(view)
 
     fun render(orderContainerModel: OrderContainerModel) {
 
@@ -36,11 +36,13 @@ class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         if (orderContainerModel.deliveryDni == null) {
             this.binding.deliveryDniText.visibility = View.GONE
         } else {
-            this.binding.deliveryDniText.text = "DNI de recogida: " + orderContainerModel.deliveryDni
+            this.binding.deliveryDniText.text =
+                "DNI de recogida: " + orderContainerModel.deliveryDni
         }
 
         this.binding.baseComponentOrderContainer.setOnClickListener(
-            orderContainerModel.onClickListener )
+            orderContainerModel.onClickListener
+        )
 
     }
 

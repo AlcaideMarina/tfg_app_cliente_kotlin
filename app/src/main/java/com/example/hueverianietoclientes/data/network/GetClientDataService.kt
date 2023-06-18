@@ -11,7 +11,7 @@ class GetClientDataService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun getClientData(uid: String) : ClientData? = runCatching {
+    suspend fun getClientData(uid: String): ClientData? = runCatching {
         firebaseClient.db
             .collection("client_info")
             .whereEqualTo("uid", uid)
@@ -19,11 +19,12 @@ class GetClientDataService @Inject constructor(
             .await()
     }.toClientData()
 
-    private fun Result<QuerySnapshot>.toClientData() = when(val result = getOrNull()) {
+    private fun Result<QuerySnapshot>.toClientData() = when (val result = getOrNull()) {
         null -> null
         else -> {
             if (!result.isEmpty && result.documents.size > 0 && result.documents[0] != null
-                && result.documents[0].data != null) {
+                && result.documents[0].data != null
+            ) {
                 ClientUtils.mapToParcelable(result.documents[0].data!!, result.documents[0].id)
             } else null
         }

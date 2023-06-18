@@ -9,29 +9,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
-import com.example.hueverianietoclientes.base.BaseActivity
-import com.example.hueverianietoclientes.data.network.ClientData
-import com.example.hueverianietoclientes.data.network.DBOrderFieldData
 import com.example.hueverianietoclientes.data.network.EggPricesData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.GetOrderIdUseCase
 import com.example.hueverianietoclientes.domain.usecase.GetPricesUseCase
 import com.example.hueverianietoclientes.domain.usecase.NewOrderUseCase
-import com.example.hueverianietoclientes.ui.components.hngridview.HNGridTextAdapter
-import com.example.hueverianietoclientes.ui.views.login.LoginViewState
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import com.example.hueverianietoclientes.ui.views.main.fragment.home.HomeViewModel
-import com.example.hueverianietoclientes.utils.Constants
-import com.example.hueverianietoclientes.utils.OrderUtils
-import com.example.hueverianietoclientes.utils.Utils
-import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,10 +34,10 @@ class NewOrderViewModel @Inject constructor(
     val viewState: StateFlow<NewOrderViewState> get() = _viewState
 
     private var _alertDialog = MutableLiveData(NewOrderViewState())
-    val alertDialog : LiveData<NewOrderViewState> get() = _alertDialog
+    val alertDialog: LiveData<NewOrderViewState> get() = _alertDialog
 
     private var _orderList = MutableLiveData<List<Int?>>()
-    val orderList : LiveData<List<Int?>> get() = _orderList
+    val orderList: LiveData<List<Int?>> get() = _orderList
 
     private var _orderData = MutableLiveData<OrderData>()
     val orderData: LiveData<OrderData> get() = _orderData
@@ -64,7 +53,7 @@ class NewOrderViewModel @Inject constructor(
                 step = 2,
                 null
             )
-            when(val orderId = getOrderIdUseCase(clientDocumentId)) {
+            when (val orderId = getOrderIdUseCase(clientDocumentId)) {
                 null -> {
                     _viewState.value = NewOrderViewState(
                         error = true,
@@ -75,7 +64,7 @@ class NewOrderViewModel @Inject constructor(
                 }
                 else -> {
                     orderData.orderId = orderId
-                    when(newOrderUseCase(clientDocumentId, orderData)) {
+                    when (newOrderUseCase(clientDocumentId, orderData)) {
                         false -> {
                             _viewState.value = NewOrderViewState(
                                 error = true,
@@ -97,6 +86,7 @@ class NewOrderViewModel @Inject constructor(
             }
         }
     }
+
     fun changePage(goToPage: Int) {
         if (goToPage == 1) {
             _viewState.value = NewOrderViewState(
@@ -118,7 +108,7 @@ class NewOrderViewModel @Inject constructor(
     fun getPrices() {
         viewModelScope.launch {
             _viewState.value = NewOrderViewState(isLoading = true)
-            when(val result = getPricesUseCase()) {
+            when (val result = getPricesUseCase()) {
                 null -> {
                     _viewState.value = NewOrderViewState(isLoading = false, error = true)
                     _eggPrices.value = EggPricesData()

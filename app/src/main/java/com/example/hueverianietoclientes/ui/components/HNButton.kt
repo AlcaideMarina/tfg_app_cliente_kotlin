@@ -87,7 +87,6 @@ open class HNButton : ConstraintLayout, BaseComponent {
         this.binding.buttonText.setTextColor(color)
     }
 
-    // TODO: revisar esta función - ¿hace lo que tiene que hacer?
     fun setHorizontalTextMargin(margin: Int) {
         val param = this.binding.buttonText.layoutParams as MarginLayoutParams
         param.setMargins(margin, 0, margin, 0)
@@ -117,4 +116,5 @@ open class HNButton : ConstraintLayout, BaseComponent {
     override fun getView(): View {
         return this
     }
+
 }

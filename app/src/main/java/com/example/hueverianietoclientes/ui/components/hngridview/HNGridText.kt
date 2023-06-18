@@ -22,11 +22,7 @@ class HNGridText : ConstraintLayout, BaseComponent {
         context,
         attrs,
         defStyleAttr
-    )/*
-
-    init {
-        this.addView(this.binding.root)
-    }*/
+    )
 
     override fun getComponentContext(): Context {
         return context

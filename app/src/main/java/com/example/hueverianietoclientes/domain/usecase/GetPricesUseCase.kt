@@ -5,15 +5,16 @@ import com.example.hueverianietoclientes.data.network.GetConstantService
 import javax.inject.Inject
 
 class GetPricesUseCase @Inject constructor(
-    private val getConstantService : GetConstantService
+    private val getConstantService: GetConstantService
 ) {
 
-    suspend operator fun invoke() : EggPricesData? {
-        return when(val result = getConstantService.getConstant("egg_prices").getOrNull()) {
+    suspend operator fun invoke(): EggPricesData? {
+        return when (val result = getConstantService.getConstant("egg_prices").getOrNull()) {
             null -> null
             else -> {
                 if (!result.isEmpty && result.documents.isNotEmpty()
-                    && result.documents[0].data != null ) {
+                    && result.documents[0].data != null
+                ) {
                     val values = result.documents[0].data!!["values"]!! as Map<String, Number>
                     EggPricesData(
                         values["xl_box"],

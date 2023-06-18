@@ -10,17 +10,17 @@ class ChangePasswordService @Inject constructor(
 ) {
 
     suspend fun changePassword(oldPass: String, newPass: String) = runCatching {
-            val email: String = firebaseClient.auth.currentUser!!.email!!
-            val credential = EmailAuthProvider.getCredential(email, oldPass)
-            firebaseClient.auth.currentUser!!
-                .reauthenticate(credential)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        firebaseClient.auth.currentUser!!
-                            .updatePassword(newPass)
-                    }
+        val email: String = firebaseClient.auth.currentUser!!.email!!
+        val credential = EmailAuthProvider.getCredential(email, oldPass)
+        firebaseClient.auth.currentUser!!
+            .reauthenticate(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    firebaseClient.auth.currentUser!!
+                        .updatePassword(newPass)
                 }
-                .await()
+            }
+            .await()
 
     }
 
