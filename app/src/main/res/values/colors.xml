@@ -25,5 +25,6 @@
     <color name="gray_color">#999999</color>
     <color name="light_gray_color">#C4C4C4</color>
     <color name="light_gray_color2">#80C4C4C4</color>
+    <color name="red_gray_light_secondary_color">#F4EDED</color>
 
 </resources>
