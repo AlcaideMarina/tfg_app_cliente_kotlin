@@ -68,12 +68,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.65">
+                app:layout_constraintVertical_bias="0.6">
 
                 <EditText
                     android:id="@+id/user_text_input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:textSize="14sp"
@@ -86,7 +86,7 @@
                 <EditText
                     android:id="@+id/password_text_input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:textSize="14sp"
@@ -97,16 +97,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/user_text_input_layout"/>
 
-                <com.example.hueverianietoclientes.ui.components.HNButton
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/login_button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_squared_button"
                     android:layout_marginTop="@dimen/size32"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/password_text_input_layout"
-                    app:layout_constraintVertical_bias="1" />
+                    app:layout_constraintTop_toBottomOf="@id/password_text_input_layout">
+
+                    <TextView
+                        android:id="@+id/button_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size24"
+                        android:textColor="@color/white_color"
+                        android:textSize="14dp"
+                        android:text="ENTRAR"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
