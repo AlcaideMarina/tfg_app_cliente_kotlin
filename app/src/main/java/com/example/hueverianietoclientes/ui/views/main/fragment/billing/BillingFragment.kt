@@ -19,6 +19,7 @@ import com.example.hueverianietoclientes.domain.model.BillingContainerItemModel
 import com.example.hueverianietoclientes.ui.components.hnbillingcontainer.HNBillingContainerAdapter
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class BillingFragment : BaseFragment() {
@@ -60,13 +61,24 @@ class BillingFragment : BaseFragment() {
                 val billingList = mutableListOf<BillingContainerItemModel>()
                 for (item in billingContainerList) {
                     if (item != null) {
+
+                        val billingCalendar = Calendar.getInstance()
+                        billingCalendar.time = item.initDate.toDate()
+                        val billingMonth = billingCalendar.get(Calendar.MONTH)
+
+                        val currentCalendar = Calendar.getInstance()
+                        val currentMonth = currentCalendar.get(Calendar.MONTH)
+
+                        val isThisMonth = billingMonth == currentMonth
+
                         var billingContainerItemModel = BillingContainerItemModel(
                             item
                         ) {
                             this.billingViewModel.navigateToBillingDetail(
                                 this.view,
                                 bundleOf(
-                                    "billingModel" to item.billingModel!!
+                                    "billingModel" to item.billingModel!!,
+                                    "isCurrentMonth" to isThisMonth
                                 )
                             )
                         }
