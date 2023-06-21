@@ -18,26 +18,24 @@ class HNOrderContainerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val sdf = SimpleDateFormat("dd/MM/yyyy")
         val dateStr = sdf.format(orderContainerModel.orderDate.toDate())
 
-        //TODO: Esto no funciona
         val priceStr = if (orderContainerModel.price == (-1).toLong()) {
             "-"
         } else {
             orderContainerModel.price.toString()
         }
-        // TODO: Transformar status
         var statusStr = Utils.getKey(Constants.orderStatus, orderContainerModel.status.toInt())
         if (statusStr == null) statusStr = R.string.unknown_status
 
         this.binding.dateText.text = dateStr
-        this.binding.orderDeliveryText.text = "Pedido: " + orderContainerModel.orderId.toString()
+        this.binding.orderIdText.text = orderContainerModel.orderId.toString()
         this.binding.orderSummaryText.text = orderContainerModel.orderSummary
-        this.binding.priceText.text = "Precio: " + priceStr + " €"
-        this.binding.deliveryInfoText.text = this.binding.root.context.getString(statusStr)
-        if (orderContainerModel.deliveryDni == null) {
-            this.binding.deliveryDniText.visibility = View.GONE
+        this.binding.priceText.text = "$priceStr €"
+        this.binding.statusDateText.text = this.binding.root.context.getString(statusStr)
+        if (orderContainerModel.deliveryDni == null || orderContainerModel.deliveryDni == "") {
+            this.binding.deliveryDniLayout.visibility = View.GONE
         } else {
             this.binding.deliveryDniText.text =
-                "DNI de recogida: " + orderContainerModel.deliveryDni
+                orderContainerModel.deliveryDni
         }
 
         this.binding.baseComponentOrderContainer.setOnClickListener(

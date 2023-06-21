@@ -85,7 +85,10 @@ class MyOrdersFragment : BaseFragment() {
     override fun setObservers() {
         myOrdersViewModel.orderList.observe(this) { orderDataList ->
             if (orderDataList == null) {
-                // Error
+                this.binding.orderRecyclerView.visibility = View.GONE
+                this.binding.containerWaringNoOrders.visibility = View.VISIBLE
+                this.binding.containerWaringNoOrders.setTitle("Error")
+                this.binding.containerWaringNoOrders.setText("Se ha producido un error cuando se estaban actualizado los datos del pedido. Por favor, revise los datos e inténtelo de nuevo.")
             } else {
                 val orderList = mutableListOf<OrderContainerModel>()
                 for (orderData in orderDataList) {

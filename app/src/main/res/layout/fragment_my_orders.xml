@@ -9,14 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/size32">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size8"
+            android:paddingTop="@dimen/size16"
+            android:paddingHorizontal="@dimen/size24"
             android:visibility="gone"
             android:nestedScrollingEnabled="false"/>
 
