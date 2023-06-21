@@ -13,18 +13,19 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_marginHorizontal="@dimen/size8"
             android:layout_marginVertical="@dimen/size8"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp" >
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            card_view:cardBackgroundColor="@color/red_gray_dark_secondary_color">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="16dp"
                 android:gravity="center"
@@ -32,19 +33,20 @@
 
                 <ImageView
                     android:id="@+id/iv_card"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/ic_launcher_background"
                     android:contentDescription="ImageView" />
 
                 <TextView
                     android:id="@+id/tv_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ajsutes"
+                    android:text="Ajustes"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/red_gray_light_secondary_color"
+                    android:layout_marginTop="24dp"/>
 
             </LinearLayout>
 

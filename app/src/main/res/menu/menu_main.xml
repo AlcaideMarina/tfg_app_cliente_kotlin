@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_logout"
-        android:icon="@drawable/ic_logout_red"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="always"
+        android:title="Cerrar sesión" />
 </menu>
