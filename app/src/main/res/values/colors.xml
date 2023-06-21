@@ -17,6 +17,7 @@
     <!-- Basic colors -->
 
     <color name="black_color">#212121</color>
+    <color name="black_light_color_80">#80545454</color>
     <color name="red_primary_color">#CC1E1B</color>
     <color name="red_gray_secondary_color">#DFD1D1</color>
     <color name="red_gray_dark_secondary_color">#CFB1B1</color>
@@ -25,7 +26,7 @@
     <color name="white_color">#FFFFFF</color>
     <color name="gray_color">#999999</color>
     <color name="light_gray_color">#C4C4C4</color>
-    <color name="light_gray_color2">#80C4C4C4</color>
+    <color name="light_gray_color2">#30C4C4C4</color>
     <color name="red_gray_light_secondary_color">#F4EDED</color>
 
 </resources>

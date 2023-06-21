@@ -9,371 +9,433 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp">
+        android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:id="@+id/company_text_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/base_form_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:padding="24dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/company_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Empresa:" />
-
-            <EditText
-                android:id="@+id/company_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/direction_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/company_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/direction_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Dirección:" />
-
-            <EditText
-                android:id="@+id/direction_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/city_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/direction_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/city_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Ciudad:" />
-
-            <EditText
-                android:id="@+id/city_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/province_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/city_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/province_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Provincia:" />
-
-            <EditText
-                android:id="@+id/province_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/postal_code_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/province_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/postal_code_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Código postal:" />
-
-            <EditText
-                android:id="@+id/postal_code_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cif_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/postal_code_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/cif_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="CIF:" />
-
-            <EditText
-                android:id="@+id/cif_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/phone_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/cif_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/phone_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Teléfono:" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" >
 
             <LinearLayout
-                android:id="@+id/phone_text_input_layout_1"
+                android:id="@+id/company_text_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false" >
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/company_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Empresa:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
 
                 <EditText
-                    android:id="@+id/phone_text_input_layout_name_1"
-                    android:layout_width="0dp"
+                    android:id="@+id/company_text_input_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
                     android:textSize="16sp"
                     android:background="@drawable/custom_input"
                     android:paddingHorizontal="12dp"
-                    android:layout_marginTop="@dimen/size24"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginStart="16dp"
-                    android:autofillHints="name"/>
-
-                <EditText
-                    android:id="@+id/phone_text_input_layout_phone_1"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:textSize="16sp"
-                    android:background="@drawable/custom_input"
-                    android:paddingHorizontal="12dp"
-                    android:layout_marginTop="@dimen/size24"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:autofillHints="phone"/>
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/phone_text_input_layout_2"
+                android:id="@+id/direction_text_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false" >
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/company_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/direction_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Dirección:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
 
                 <EditText
-                    android:id="@+id/phone_text_input_layout_name_2"
-                    android:layout_width="0dp"
+                    android:id="@+id/direction_text_input_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="text"
                     android:textSize="16sp"
                     android:background="@drawable/custom_input"
                     android:paddingHorizontal="12dp"
-                    android:layout_marginTop="@dimen/size8"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginStart="16dp"
-                    android:autofillHints="name"/>
-
-                <EditText
-                    android:id="@+id/phone_text_input_layout_phone_2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:textSize="16sp"
-                    android:background="@drawable/custom_input"
-                    android:paddingHorizontal="12dp"
-                    android:layout_marginTop="@dimen/size8"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:autofillHints="phone"/>
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/user_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/user_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Usuario:" />
-
-            <EditText
-                android:id="@+id/user_text_input_layout"
+            <LinearLayout
+                android:id="@+id/city_text_layout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="username"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/direction_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/city_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Ciudad:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
 
-        <LinearLayout
-            android:id="@+id/email_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/user_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+                <EditText
+                    android:id="@+id/city_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
 
-            <TextView
-                android:id="@+id/email_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Correo:" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/email_text_input_layout"
+            <LinearLayout
+                android:id="@+id/province_text_layout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size24"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="email"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/city_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/province_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Provincia:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
 
-        <TextView
-            android:id="@+id/no_changes_allowed_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lamentablemente, no está permitida la modificación de los datos de su perfil. Si desean modificar alguno, por favor, llámenos a Huevería Nieto, y estaremos encantados de atenderle."
-            android:layout_marginTop="32dp"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/email_text_layout"
+                <EditText
+                    android:id="@+id/province_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/postal_code_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/province_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/postal_code_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Código postal:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/postal_code_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cif_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/postal_code_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/cif_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="CIF:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/cif_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phone_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/cif_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/phone_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Teléfono:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <LinearLayout
+                    android:id="@+id/phone_text_input_layout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false" >
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_name_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginStart="16dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="16dp"
+                        android:autofillHints="phone"
+                        android:textColor="@color/black_light_color_80"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/phone_text_input_layout_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false" >
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_name_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginStart="16dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="16dp"
+                        android:autofillHints="phone"
+                        android:textColor="@color/black_light_color_80"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/user_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Usuario:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/user_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="username"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/email_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/user_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/email_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Correo:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/email_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="email"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:background="@color/red_gray_secondary_color"
+            app:layout_constraintTop_toBottomOf="@id/base_form_container"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+
+            <TextView
+                android:id="@+id/no_changes_allowed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lamentablemente, no está permitida la modificación de los datos de su perfil. Si desean modificar alguno, por favor, llámenos a Huevería Nieto, y estaremos encantados de atenderle."
+                android:layout_marginTop="24dp"
+                android:paddingBottom="16dp"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
