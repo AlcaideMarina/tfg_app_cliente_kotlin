@@ -25,10 +25,6 @@ class OrderDetailFragment : BaseFragment() {
     private lateinit var binding: FragmentOrderDetailBinding
     private lateinit var orderData: OrderData
     private lateinit var clientData: ClientData
-    private val recyclerViewTitles = listOf(0, 7, 14, 21)
-    private val recyclerViewSubtitles =
-        listOf(1, 3, 4, 6, 8, 10, 11, 13, 15, 17, 18, 20, 22, 24, 25, 27)
-    private val recyclerViewTextInputLayouts = listOf(2, 5, 9, 12, 16, 19, 23, 26)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,8 +121,8 @@ class OrderDetailFragment : BaseFragment() {
             }
 
         with(this.binding) {
-            orderIdTextView.text = "ID pedido: " + orderData.orderId.toString()
-            companyTextInputLayout.setText(clientData.company)
+            orderIdTextView.text = orderData.orderId.toString()
+            companyAutoCompleteTextView.setText(clientData.company)
             directionTextInputLayout.setText(clientData.direction)
             cifTextInputLayout.setText(clientData.cif)
             phoneTextInputLayoutPhone1.setText(phone1.value.toString())
@@ -149,20 +145,37 @@ class OrderDetailFragment : BaseFragment() {
 
     private fun setRecyclerView() {
 
-        val list = OrderUtils.getOrderDataGridModel(orderData)
+        val bdOrderModel = OrderUtils.orderDataToBDOrderModel(orderData)
 
-        val manager = CustomGridLayoutManager(this.context, 4)
-        manager.setScrollEnabled(false)
-        manager.spanSizeLookup = object : SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (recyclerViewTitles.contains(position)) 4
-                else if (recyclerViewTextInputLayouts.contains(position)) 2
-                else 1
-            }
+        with(this.binding) {
+            this.xlDozenTextInputLayout.setText(bdOrderModel.xlDozenQuantity.toString())
+            this.xlDozenPriceTextInputLayout.text = (bdOrderModel.xlDozenPrice ?: "-").toString() + " €/ud"
+            this.xlDozenTextInputLayout.isEnabled = false
+            this.xlBoxTextInputLayout.setText(bdOrderModel.xlBoxQuantity.toString())
+            this.xlBoxPriceTextInputLayout.text = (bdOrderModel.xlBoxPrice ?: "-").toString() + " €/ud"
+            this.xlBoxTextInputLayout.isEnabled = false
+
+            this.lDozenTextInputLayout.setText(bdOrderModel.lDozenQuantity.toString())
+            this.lDozenPriceTextInputLayout.text = (bdOrderModel.lDozenPrice ?: "-").toString() + " €/ud"
+            this.lDozenTextInputLayout.isEnabled = false
+            this.lBoxTextInputLayout.setText(bdOrderModel.lBoxQuantity.toString())
+            this.lBoxPriceTextInputLayout.text = (bdOrderModel.lBoxPrice ?: "-").toString() + " €/ud"
+            this.lBoxTextInputLayout.isEnabled = false
+
+            this.mDozenTextInputLayout.setText(bdOrderModel.mDozenQuantity.toString())
+            this.mDozenPriceTextInputLayout.text = (bdOrderModel.mDozenPrice ?: "-").toString() + " €/ud"
+            this.mDozenTextInputLayout.isEnabled = false
+            this.mBoxTextInputLayout.setText(bdOrderModel.mBoxQuantity.toString())
+            this.mBoxPriceTextInputLayout.text = (bdOrderModel.mBoxPrice ?: "-").toString() + " €/ud"
+            this.mBoxTextInputLayout.isEnabled = false
+
+            this.sDozenTextInputLayout.setText(bdOrderModel.sDozenQuantity.toString())
+            this.sDozenPriceTextInputLayout.text = (bdOrderModel.sDozenPrice ?: "-").toString() + " €/ud"
+            this.sDozenTextInputLayout.isEnabled = false
+            this.sBoxTextInputLayout.setText(bdOrderModel.sBoxQuantity.toString())
+            this.sBoxPriceTextInputLayout.text = (bdOrderModel.sBoxPrice ?: "-").toString() + " €/ud"
+            this.sBoxTextInputLayout.isEnabled = false
         }
-
-        this.binding.orderRecyclerView.layoutManager = manager
-        this.binding.orderRecyclerView.adapter = HNGridTextAdapter(list)
 
     }
 
