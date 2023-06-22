@@ -43,7 +43,6 @@ class ChangePasswordFragment : BaseFragment() {
     }
 
     override fun configureUI() {
-        this.binding.saveButton.setText("Cambiar contraseña")
         lifecycleScope.launchWhenStarted {
             changePasswordViewModel.viewState.collect { viewState ->
                 updateUI(viewState)
