@@ -30,7 +30,7 @@ class ChangePasswordViewModel @Inject constructor(
                 false -> {
                     _alertDialog.value = AlertOkData(
                         "Error",
-                        "Se ha producido un error cuando se estaban actualizado los datos. Por favor, revise los datos e inténtelo de nuevo.",
+                        "Se ha producido un error cuando se estaban actualizado los datos. Recuerde que la contraseña debe tener, al menos, 6 caracteres. Por favor, revise los datos e inténtelo de nuevo.",
                         true
                     )
                 }
