@@ -31,4 +31,10 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1"
+        android:background="@color/light_gray_color2"/>
+
 </LinearLayout>

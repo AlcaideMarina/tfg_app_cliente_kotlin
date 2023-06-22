@@ -50,10 +50,6 @@ class SettingsFragment : BaseFragment() {
                         )
                     )
                 }
-            ),
-            SimpleListModel(
-                title = "Cambiar idioma",
-                onClickListener = { }
             )
         )
         this.binding.settingOptionsListView.adapter = HNSimpleListAdapter(
