@@ -8,7 +8,7 @@ class GetOrderIdService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun getOrderId(documentId: String) : Long? = runCatching {
+    suspend fun getOrderId(documentId: String): Long? = runCatching {
         firebaseClient.db
             .collection("client_info")
             .document(documentId)
@@ -17,7 +17,7 @@ class GetOrderIdService @Inject constructor(
             .await()
     }.parseToInt()
 
-    private fun Result<QuerySnapshot>.parseToInt() = when(val result = getOrNull()) {
+    private fun Result<QuerySnapshot>.parseToInt() = when (val result = getOrNull()) {
         null -> null
         else -> (result.documents.size).toLong()
     }

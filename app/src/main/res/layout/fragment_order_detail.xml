@@ -8,828 +8,937 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/order_id_text_view"
-            android:layout_marginTop="@dimen/size8"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="ID pedido:"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/base_form_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingHorizontal="@dimen/size24"
+            android:paddingBottom="@dimen/size16"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/company_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/order_id_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/company_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Empresa: " />
-
-            <EditText
-                android:id="@+id/company_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/direction_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/company_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/direction_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Dirección: " />
-
-            <EditText
-                android:id="@+id/direction_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cif_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/direction_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/cif_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="CIF: " />
-
-            <EditText
-                android:id="@+id/cif_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/phone_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/cif_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/phone_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Teléfono:" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                android:id="@+id/phone_text_input_layout_1"
+                android:id="@+id/order_id_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:baselineAligned="false" >
-
-                <EditText
-                    android:id="@+id/phone_text_input_layout_phone_1"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:textSize="16sp"
-                    android:paddingHorizontal="12dp"
-                    android:background="@drawable/custom_input"
-                    android:autofillHints="phone"
-                    android:layout_marginEnd="4dp" />
-
-                <EditText
-                    android:id="@+id/phone_text_input_layout_phone_2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:textSize="16sp"
-                    android:paddingHorizontal="12dp"
-                    android:background="@drawable/custom_input"
-                    android:autofillHints="phone"
-                    android:layout_marginStart="4dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- TODO: Cantidades, precios y unidades -->
-
-        <LinearLayout
-            android:id="@+id/order_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"  >
-
-            <TextView
-                android:id="@+id/order_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size8"
-                android:text="Pedido:" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/order_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-
-
-
-
-        <LinearLayout
-            android:id="@+id/total_price_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/order_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/total_price_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Precio total: " />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:layout_marginTop="@dimen/size8" >
-
-                <EditText
-                    android:id="@+id/total_price_text_input_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
-                    android:textSize="16sp"
-                    android:background="@drawable/custom_input"
-                    android:autofillHints="name"
-                    android:layout_marginEnd="12dp"
-                    android:paddingHorizontal="12dp" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" >
 
                 <TextView
-                    android:id="@+id/euro_text"
+                    android:id="@+id/order_id_title_text_view"
+                    android:paddingBottom="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="€"
-                    android:textSize="24sp"
-                    android:gravity="center" />
+                    android:text="ID Pedido:"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_color"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/order_id_text_view"
+                    android:paddingBottom="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="ID"
+                    android:textColor="@color/black_color"/>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/company_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/order_id_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <CheckedTextView
-            android:id="@+id/paid_checked_text_view"
-            android:checked="false"
-            android:gravity="center"
-            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Pagado"
-            app:layout_constraintTop_toBottomOf="@id/total_price_text_layout"
+                <TextView
+                    android:id="@+id/company_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Empresa: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/company_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:background="@drawable/custom_input"
+                    android:textColor="@color/black_light_color_80"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp" >
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/company_auto_complete_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="15sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:maxLines="1"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="4dp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_light_color_80"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/direction_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/company_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/direction_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Dirección: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <EditText
+                    android:id="@+id/direction_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cif_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/direction_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/cif_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="CIF: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <EditText
+                    android:id="@+id/cif_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phone_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/cif_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/phone_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Teléfono:"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <LinearLayout
+                    android:id="@+id/phone_text_input_layout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:baselineAligned="false" >
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:paddingHorizontal="12dp"
+                        android:background="@drawable/custom_input"
+                        android:autofillHints="phone"
+                        android:layout_marginEnd="4dp"
+                        android:textColor="@color/black_light_color_80" />
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:paddingHorizontal="12dp"
+                        android:background="@drawable/custom_input"
+                        android:autofillHints="phone"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/black_light_color_80" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"  >
+
+                <TextView
+                    android:id="@+id/order_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pedido:"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <TextView
+                    android:id="@+id/xl_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño XL:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/xl_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/xl_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/xl_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/xl_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/l_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño L:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/l_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/l_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/l_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/l_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/m_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño M:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/m_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/m_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/m_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/m_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/s_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño S:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/s_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/s_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/s_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/s_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/total_price_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/size24"
+                app:layout_constraintTop_toBottomOf="@+id/order_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/total_price_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Precio total: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:layout_marginTop="4dp" >
+
+                    <EditText
+                        android:id="@+id/total_price_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:autofillHints="name"
+                        android:layout_marginEnd="12dp"
+                        android:paddingHorizontal="12dp"
+                        android:textColor="@color/black_light_color_80" />
+
+                    <TextView
+                        android:id="@+id/euro_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="€"
+                        android:textSize="24sp"
+                        android:gravity="center"
+                        android:textColor="@color/black_color"  />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <CheckedTextView
+                android:id="@+id/paid_checked_text_view"
+                android:checked="false"
+                android:gravity="center"
+                android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pagado"
+                android:textSize="12sp"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toBottomOf="@id/total_price_text_layout"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/payment_method_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/paid_checked_text_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/payment_method_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Método de pago: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/payment_method_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:background="@drawable/custom_input"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:textColor="@color/black_light_color_80" >
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/payment_method_auto_complete_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="15sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:maxLines="1"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="@dimen/size8"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_light_color_80" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_date_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/payment_method_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/order_date_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fecha pedido: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <EditText
+                    android:id="@+id/order_date_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="datetime"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delivery_date_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/order_date_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/delivery_date_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fecha entrega: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <EditText
+                    android:id="@+id/delivery_date_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="none"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delivery_person_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_date_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/delivery_person_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Repartidor: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/delivery_person_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:background="@drawable/custom_input"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:textColor="@color/black_light_color_80" >
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/delivery_person_auto_complete_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="15sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:inputType="none"
+                        android:enabled="false"
+                        android:maxLines="1"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="4dp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_light_color_80" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delivery_note_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_person_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/delivery_note_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Albarán: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
+
+                <EditText
+                    android:id="@+id/delivery_note_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lot_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_note_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/lot_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Lote: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/lot_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delivery_dni_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/lot_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/delivery_dni_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="DNI de entrega: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color" />
+
+                <EditText
+                    android:id="@+id/delivery_dni_text_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:background="@drawable/custom_input"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:background="@color/red_gray_secondary_color"
+            android:layout_marginTop="@dimen/size8"
+            app:layout_constraintTop_toBottomOf="@id/base_form_container"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/payment_method_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/paid_checked_text_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/payment_method_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Método de pago: " />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/payment_method_text_input_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:background="@drawable/custom_input"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp" >
-
-                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/payment_method_auto_complete_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeMaxTextSize="15sp"
-                    app:autoSizeStepGranularity="1sp"
-                    android:enabled="false"
-                    android:inputType="none"
-                    android:maxLines="1"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="10dp"
-                    android:layout_marginTop="@dimen/size8"
-                    android:singleLine="true"
-                    android:textAlignment="viewStart" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/order_date_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/payment_method_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/order_date_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Fecha pedido: " />
-
-            <EditText
-                android:id="@+id/order_date_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="datetime"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/delivery_date_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/order_date_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/delivery_date_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Fecha entrega: " />
-
-            <EditText
-                android:id="@+id/delivery_date_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="none"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/delivery_person_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_date_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/delivery_person_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Repartidor: " />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/delivery_person_text_input_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:background="@drawable/custom_input"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp" >
-
-                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/delivery_person_auto_complete_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeMaxTextSize="15sp"
-                    app:autoSizeStepGranularity="1sp"
-                    android:inputType="none"
-                    android:enabled="false"
-                    android:maxLines="1"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="10dp"
-                    android:layout_marginTop="@dimen/size8"
-                    android:singleLine="true"
-                    android:textAlignment="viewStart" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/delivery_note_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_person_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/delivery_note_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Albarán: " />
-
-            <EditText
-                android:id="@+id/delivery_note_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lot_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_note_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/lot_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Lote: " />
-
-            <EditText
-                android:id="@+id/lot_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/delivery_dni_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@+id/lot_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/delivery_dni_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="DNI de entrega: " />
-
-            <EditText
-                android:id="@+id/delivery_dni_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/no_changes_allowed_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No se puede modificar ni anular el pedido. Para cualquier duda o problema, póngase en contacto con nosotros."
-            android:layout_marginTop="32dp"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/delivery_dni_text_layout"
+            android:textStyle="italic"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="@dimen/size16"
+            android:paddingHorizontal="@dimen/size24"
+            android:paddingBottom="@dimen/size16"
+            app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!--<LinearLayout
-            android:id="@+id/order_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/order_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Pedido:" />
-
-             TODO: Grid
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/payment_method_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/order_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/payment_method_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Método de pago:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNDropdown
-                android:id="@+id/payment_method_dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/delivery_datetime_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/payment_method_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/delivery_datetime_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Fecha de entrega:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNDatePicker
-                android:id="@+id/delivery_date_picker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16" />
-
-             <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/delivery_datetime_dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-                <EditText
-                android:id="@+id/delivery_datetime_dropdown"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:focusable="false"
-                android:clickable="true"
-                android:maxLines="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/notes_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/notes_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Notas:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/notes_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/price_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="En un plazo de 24h nos pondremos en contacto con usted para confirmar el precio de cada producto, así como para confirmar la compra."
-            android:layout_marginTop="32dp"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.example.hueverianietoclientes.ui.components.HNButton
-            android:id="@+id/confirm_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/price_warning"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
--->
-
-
-
-
-
-        <!-- <LinearLayout
-            android:id="@+id/province_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/payment_method_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/province_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Provincia:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/province_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/postal_code_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/province_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/postal_code_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Código postal:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/postal_code_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cif_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/postal_code_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/cif_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="CIF:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/cif_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/user_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/user_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Usuario:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/user_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/email_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/user_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/email_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Correo:" />
-
-            <com.example.hueverianietoclientes.ui.components.HNTextInputLayout
-                android:id="@+id/email_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/size16"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/no_changes_allowed_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lamentablemente, no está permitida la modificación de los datos de su perfil. Si desean modificar alguno, por favor, llámenos a Huevería Nieto, y estaremos encantados de atenderle."
-            android:layout_marginTop="32dp"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/email_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

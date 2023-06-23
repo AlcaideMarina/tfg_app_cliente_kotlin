@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class MyOrdersUseCase @Inject constructor(
     private val myOrdersService: MyOrdersService
-){
+) {
 
-    suspend operator fun invoke(documentId : String) : List<OrderData?>? =
+    suspend operator fun invoke(documentId: String): List<OrderData?>? =
         myOrdersService.getOrders(documentId)
 
 }

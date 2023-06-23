@@ -10,9 +10,10 @@ import com.example.hueverianietoclientes.databinding.ComponentWarningContainerBi
 
 class HNWarningContainer : ConstraintLayout, BaseComponent {
 
-    private var binding: ComponentWarningContainerBinding = ComponentWarningContainerBinding.inflate(
-        LayoutInflater.from(this.context)
-    )
+    private var binding: ComponentWarningContainerBinding =
+        ComponentWarningContainerBinding.inflate(
+            LayoutInflater.from(this.context)
+        )
 
     constructor(context: Context) : super(context)
 
@@ -43,4 +44,6 @@ class HNWarningContainer : ConstraintLayout, BaseComponent {
     fun setText(text: String) {
         this.binding.containerText.text = text
     }
+
 }
+

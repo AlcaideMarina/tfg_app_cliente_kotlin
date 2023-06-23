@@ -8,7 +8,7 @@ class BillingUseCase @Inject constructor(
     private val billingService: BillingService
 ) {
 
-    suspend operator fun invoke(documentId: String) : List<OrderData?>? =
+    suspend operator fun invoke(documentId: String): List<OrderData?>? =
         billingService.getMonthlyOrders(documentId)
 
 }

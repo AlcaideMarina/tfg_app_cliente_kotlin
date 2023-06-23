@@ -21,7 +21,7 @@ open class HNDropdown : CoordinatorLayout, BaseComponent {
         context, attrs, defStyleAttr
     )
 
-    private var binding : ComponentDropdownBinding = ComponentDropdownBinding.bind(
+    private var binding: ComponentDropdownBinding = ComponentDropdownBinding.bind(
         LayoutInflater
             .from(context)
             .inflate(R.layout.component_dropdown, this, true)
@@ -35,11 +35,11 @@ open class HNDropdown : CoordinatorLayout, BaseComponent {
         return this
     }
 
-    private fun createArrayAdapter(itemList : List<String>) : ArrayAdapter<String> {
+    private fun createArrayAdapter(itemList: List<String>): ArrayAdapter<String> {
         return ArrayAdapter(context, R.layout.component_dropdown_list_item, itemList)
     }
 
-    fun setAdapter(itemList : List<String>) {
+    fun setAdapter(itemList: List<String>) {
         this.binding.autoCompleteTextView.setAdapter(createArrayAdapter(itemList))
     }
 
@@ -47,12 +47,12 @@ open class HNDropdown : CoordinatorLayout, BaseComponent {
         this.binding.autoCompleteTextView.onItemClickListener = listener
     }
 
-    fun getSelectedItem() : String {
+    fun getSelectedItem(): String {
         return this.binding.autoCompleteTextView.text.toString()
     }
 
-    fun getAutoCompleteTextView() : AutoCompleteTextView = this.binding.autoCompleteTextView
+    fun getAutoCompleteTextView(): AutoCompleteTextView = this.binding.autoCompleteTextView
 
-    fun getTextInputLayout() : TextInputLayout = this.binding.textInputLayout
+    fun getTextInputLayout(): TextInputLayout = this.binding.textInputLayout
 
 }

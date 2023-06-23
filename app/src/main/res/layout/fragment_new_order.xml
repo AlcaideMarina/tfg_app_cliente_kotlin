@@ -10,112 +10,156 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
         android:paddingVertical="@dimen/size8">
 
-        <TextView
-            android:id="@+id/no_changes_allowed_text_1"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/texts_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'CONFIRMAR' para formalizar el pedido."
-            android:textAlignment="center"
+            android:paddingHorizontal="24dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/no_changes_allowed_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por favor, revise los datos que hay a continuación y pulse en el botón de 'CONFIRMAR' para formalizar el pedido."
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/no_changes_allowed_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recuerde que una vez haya concluido el pedido no se podrá modificar ni cancelar, salvo con causa justificada llamándonos directamente."
+                android:layout_marginTop="8dp"
+                android:paddingBottom="@dimen/size16"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:background="@color/red_gray_secondary_color"
+            android:layout_marginTop="@dimen/size8"
+            app:layout_constraintTop_toBottomOf="@id/texts_container"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/no_changes_allowed_text_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recuerde que una vez haya concluido el pedido no se podrá modificar ni cancelar, salvo con causa justificada llamándonos directamente."
-            android:layout_marginTop="8dp"
-            android:paddingBottom="@dimen/size16"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/direction_text_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/base_form_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/no_changes_allowed_text_2"
+            android:paddingHorizontal="24dp"
+            app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" >
-
-            <TextView
-                android:id="@+id/direction_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Dirección:" />
-
-            <EditText
-                android:id="@+id/direction_text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"
-                android:background="@drawable/custom_input"
-                android:paddingHorizontal="12dp"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_marginHorizontal="@dimen/size16"
-                android:autofillHints="name"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/phone_text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/size16"
-            app:layout_constraintTop_toBottomOf="@id/direction_text_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" >
-
-            <TextView
-                android:id="@+id/phone_text_view"
-                android:layout_marginTop="@dimen/size8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Teléfono:" />
 
             <LinearLayout
-                android:id="@+id/phone_text_input_layout_1"
+                android:id="@+id/direction_text_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:paddingHorizontal="@dimen/size16">
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/direction_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Dirección: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
 
                 <EditText
-                    android:id="@+id/phone_text_input_layout_phone_1"
-                    android:layout_width="0dp"
+                    android:id="@+id/direction_text_input_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:textSize="16sp"
-                    android:paddingHorizontal="12dp"
                     android:background="@drawable/custom_input"
-                    android:autofillHints="phone"
-                    android:layout_marginEnd="4dp" />
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80"/>
 
-                <EditText
-                    android:id="@+id/phone_text_input_layout_phone_2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="phone"
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phone_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/direction_text_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/phone_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Teléfono:"
+                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:paddingHorizontal="12dp"
-                    android:background="@drawable/custom_input"
-                    android:autofillHints="phone"
-                    android:layout_marginStart="4dp" />
+                    android:textColor="@color/black_color"  />
+
+                <LinearLayout
+                    android:id="@+id/phone_text_input_layout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="@dimen/size16"
+                    android:baselineAligned="false" >
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:paddingHorizontal="12dp"
+                        android:background="@drawable/custom_input"
+                        android:autofillHints="phone"
+                        android:layout_marginEnd="4dp"
+                        android:textColor="@color/black_light_color_80" />
+
+                    <EditText
+                        android:id="@+id/phone_text_input_layout_phone_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:textSize="16sp"
+                        android:paddingHorizontal="12dp"
+                        android:background="@drawable/custom_input"
+                        android:autofillHints="phone"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/black_light_color_80" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -124,22 +168,327 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="@dimen/size16"
+                android:layout_marginTop="24dp"
                 app:layout_constraintTop_toBottomOf="@id/phone_text_layout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"  >
 
                 <TextView
                     android:id="@+id/order_text_view"
-                    android:layout_marginTop="@dimen/size8"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Pedido:" />
+                    android:layout_height="wrap_content"
+                    android:text="Pedido:"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/order_recycler_view"
+                <TextView
+                    android:id="@+id/xl_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño XL:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/xl_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/xl_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/xl_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/xl_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/l_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño L:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/l_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/l_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/l_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/l_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/m_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño M:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/m_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/m_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/m_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/m_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/s_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huevos tamaño S:"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_color"
+                    android:layout_marginBottom="4dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Docena:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/s_dozen_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/s_dozen_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Caja:"
+                        android:layout_marginEnd="8dp"
+                        android:paddingHorizontal="12dp" />
+                    <EditText
+                        android:id="@+id/s_box_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_columnWeight="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:background="@drawable/custom_input"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints="name"
+                        android:textColor="@color/black_light_color_80"/>
+                    <TextView
+                        android:id="@+id/s_box_price_text_input_layout"
+                        android:layout_width="104dp"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="16sp"
+                        android:gravity="end"
+                        android:textColor="@color/black_color"
+                        android:paddingHorizontal="12dp"  />
+
+                </GridLayout>
 
             </LinearLayout>
 
@@ -148,28 +497,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="@dimen/size16"
-                app:layout_constraintTop_toBottomOf="@id/order_text_layout"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/order_text_layout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:id="@+id/payment_method_text_view"
-                    android:layout_marginTop="@dimen/size8"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Método de pago:" />
+                    android:text="Método de pago: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/payment_method_text_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="@dimen/size8"
+                    android:layout_marginTop="4dp"
                     android:layout_marginHorizontal="@dimen/size16"
                     android:background="@drawable/custom_input"
                     app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp" >
+                    app:boxStrokeWidthFocused="0dp"
+                    android:textColor="@color/black_light_color_80" >
 
                     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                         android:id="@+id/payment_method_auto_complete_text_view"
@@ -187,28 +539,31 @@
                         android:paddingBottom="10dp"
                         android:layout_marginTop="@dimen/size8"
                         android:singleLine="true"
-                        android:textAlignment="viewStart" />
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_light_color_80" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/delivery_datetime_text_layout"
+                android:id="@+id/delivery_date_text_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="@dimen/size16"
-                app:layout_constraintTop_toBottomOf="@id/payment_method_text_layout"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/payment_method_text_layout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:id="@+id/delivery_datetime_text_view"
-                    android:layout_marginTop="@dimen/size8"
+                    android:id="@+id/delivery_date_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Fecha de entrega:" />
+                    android:text="Fecha de entrega: "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black_color"  />
 
                 <EditText
                     android:id="@+id/delivery_date_text_input_layout"
@@ -219,36 +574,73 @@
                     android:textSize="16sp"
                     android:background="@drawable/custom_input"
                     android:paddingHorizontal="12dp"
-                    android:layout_marginTop="@dimen/size8"
+                    android:layout_marginTop="4dp"
                     android:layout_marginHorizontal="@dimen/size16"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:autofillHints="name"/>
+                    android:autofillHints="name"
+                    android:textColor="@color/black_light_color_80" />
 
             </LinearLayout>
 
-            <com.example.hueverianietoclientes.ui.components.HNButton
-                android:id="@+id/confirm_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@id/delivery_datetime_text_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.example.hueverianietoclientes.ui.components.HNButton
-                android:id="@+id/modify_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size16"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/confirm_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_squared_button"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="@dimen/size24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/base_form_container">
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/confirm_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size24"
+                android:textColor="@color/white_color"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="CONFIRMAR" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/modify_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_squared_button"
+            android:layout_marginTop="@dimen/size8"
+            android:layout_marginHorizontal="@dimen/size24"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirm_button">
+
+            <TextView
+                android:id="@+id/modify_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size24"
+                android:textColor="@color/white_color"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="GUARDAR" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/extra_components_container"

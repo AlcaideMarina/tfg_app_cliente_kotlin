@@ -51,7 +51,6 @@
             android:layout_height="1dp"
             android:background="@color/red_primary_color" />
 
-        <!-- TODO: Esto hay que hacer para que tenga opción a 2 botones -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

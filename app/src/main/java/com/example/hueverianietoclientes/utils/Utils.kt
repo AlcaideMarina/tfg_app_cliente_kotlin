@@ -19,22 +19,22 @@ object Utils {
         return null
     }
 
-    fun parseTimestampToString(timestamp: Timestamp?) : String? {
-        return if(timestamp == null) {
+    fun parseTimestampToString(timestamp: Timestamp?): String? {
+        return if (timestamp == null) {
             null
         } else {
             SimpleDateFormat(Constants.dateFormat).format(timestamp.toDate())
         }
     }
 
-    fun parseStringToTimestamp(dateStr : String, pattern : String? = Constants.dateFormat) :
+    fun parseStringToTimestamp(dateStr: String, pattern: String? = Constants.dateFormat):
             Timestamp = Timestamp(SimpleDateFormat(pattern).parse(dateStr))
 
-    fun parseDateToString(date: Date, format: String? = null) :
+    fun parseDateToString(date: Date, format: String? = null):
             String = SimpleDateFormat(format ?: Constants.dateFormat).format(date)
 
 
-    fun addToDate(date: Date, daysToAdd: Int = 0, monthsToAdd: Int = 0) : Date {
+    fun addToDate(date: Date, daysToAdd: Int = 0, monthsToAdd: Int = 0): Date {
         val c = Calendar.getInstance()
         c.time = date
         c.add(Calendar.DATE, daysToAdd)
@@ -42,10 +42,12 @@ object Utils {
         return c.time
     }
 
-    fun setPopUp(alertDialog: HNModalDialog, context: Context, title: String,
-                         message: String, leftButton: String, rightButton: String?,
-                         leftButtonListener: View.OnClickListener,
-                         rightButtonListener: View.OnClickListener?) {
+    fun setPopUp(
+        alertDialog: HNModalDialog, context: Context, title: String,
+        message: String, leftButton: String, rightButton: String?,
+        leftButtonListener: View.OnClickListener,
+        rightButtonListener: View.OnClickListener?
+    ) {
         alertDialog.show(
             context,
             ModalDialogModel(

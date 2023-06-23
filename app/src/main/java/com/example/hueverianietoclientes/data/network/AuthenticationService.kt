@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthenticationService @Inject constructor(private val firebaseClient: FirebaseClient) {
 
-    suspend fun login(email: String, password: String) : LoginResponse = runCatching {
+    suspend fun login(email: String, password: String): LoginResponse = runCatching {
         firebaseClient.auth.signInWithEmailAndPassword(email, password).await()
     }.toLoginResult()
 

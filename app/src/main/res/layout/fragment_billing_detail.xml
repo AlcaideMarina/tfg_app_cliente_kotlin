@@ -2,131 +2,198 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingVertical="@dimen/size16"
-    android:paddingHorizontal="32dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/current_month_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size16"
-        android:text="Esta factura es del mes vigente, por lo que no es una versión definitiva."/>
+        android:layout_marginVertical="@dimen/size16"
+        android:layout_marginHorizontal="@dimen/size32"
+        android:text="Esta factura es del mes vigente, por lo que no es una versión definitiva."
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textColor="@color/black_color"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/divider_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1"
+        android:background="@color/red_primary_color"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/size32"
+        android:layout_marginVertical="@dimen/size16" >
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pagos al contado: " />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/cash_text_view"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Compras al contado: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/cash_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSize16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" €" />
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Compras por recibo: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/receipt_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSize16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/size16">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Compras por transferencia: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/transfer_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSize16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pagado hasta ahora: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/paid_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSize16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pendiente de pago: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/to_be_paid_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSize16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1"
+        android:background="@color/red_gray_light_secondary_color"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/size32"
+        android:layout_marginVertical="@dimen/size16" >
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pagos por recibo: " />
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/receipt_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" €" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PRECIO TOTAL: "
+                android:textStyle="bold"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/total_price_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" €"
+                android:textColor="@color/black_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/divider_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/size16">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pagos por recibo: " />
-
-        <TextView
-            android:id="@+id/transfer_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" €" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pagado hasta ahora: " />
-
-        <TextView
-            android:id="@+id/paid_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" €" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/size32">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pendiente de pago: " />
-
-        <TextView
-            android:id="@+id/to_be_paid_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" €" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pago total: " />
-
-        <TextView
-            android:id="@+id/total_price_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" €" />
-
-    </LinearLayout>
+        android:layout_height="@dimen/size1"
+        android:background="@color/red_gray_light_secondary_color"/>
 
 </LinearLayout>

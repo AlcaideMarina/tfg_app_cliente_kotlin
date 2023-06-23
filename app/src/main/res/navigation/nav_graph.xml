@@ -102,5 +102,8 @@
         <argument
             android:name="billingModel"
             app:argType="com.example.hueverianietoclientes.domain.model.BillingModel" />
+        <argument
+            android:name="isCurrentMonth"
+            app:argType="boolean" />
     </fragment>
 </navigation>

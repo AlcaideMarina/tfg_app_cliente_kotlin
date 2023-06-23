@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
         view?.findNavController()?.navigate(R.id.action_homeFragment_to_myOrdersFragment, bundle)
             ?: Log.e(
                 HomeViewModel::class.java.simpleName,
-            "Error en la navegación a 'Mis pedidos'"
+                "Error en la navegación a 'Mis pedidos'"
             )
     }
 
@@ -60,10 +60,6 @@ class HomeViewModel @Inject constructor(val homeUseCase: HomeUseCase) : ViewMode
                 HomeViewModel::class.java.simpleName,
                 "Error en la navegación a 'Ajustes'"
             )
-    }
-
-    fun navigateToLogin(context: Context, clientData: Parcelable?) {
-        // TODO
     }
 
 }

@@ -6,12 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.domain.model.OrderContainerModel
 
-class HNOrderContainerAdapter (private val orderContainerModelList: List<OrderContainerModel>) :
+class HNOrderContainerAdapter(private val orderContainerModelList: List<OrderContainerModel>) :
     RecyclerView.Adapter<HNOrderContainerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HNOrderContainerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return HNOrderContainerViewHolder(layoutInflater.inflate(R.layout.component_order_container, parent, false))
+        return HNOrderContainerViewHolder(
+            layoutInflater.inflate(
+                R.layout.component_order_container,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = orderContainerModelList.size

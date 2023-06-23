@@ -12,18 +12,18 @@ object Constants {
     const val loginInvalidPasswordError: String =
         "The password is invalid or the user does not have a password."
 
-    val typeEggUnits : Map<Int, Int> = mapOf(
+    val typeEggUnits: Map<Int, Int> = mapOf(
         R.string.dozen_singular_units to 0,
         R.string.box_singular_units to 1
     )
 
-    val paymentMethod : Map<Int, Int> = mapOf(
+    val paymentMethod: Map<Int, Int> = mapOf(
         R.string.in_cash to 0,
         R.string.per_receipt to 1,
         R.string.transfer to 2
     )
 
-    val orderStatus : Map<Int, Int> = mapOf(
+    val orderStatus: Map<Int, Int> = mapOf(
         R.string.price_pending to 0,
         R.string.backordered to 1,
         R.string.in_delivery to 2,

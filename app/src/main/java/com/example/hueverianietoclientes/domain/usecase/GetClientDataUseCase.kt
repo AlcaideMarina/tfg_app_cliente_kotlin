@@ -8,7 +8,7 @@ class GetClientDataUseCase @Inject constructor(
     private val getClientDataService: GetClientDataService
 ) {
 
-    suspend operator fun invoke(uid: String) : ClientData? =
+    suspend operator fun invoke(uid: String): ClientData? =
         getClientDataService.getClientData(uid)
 
 }

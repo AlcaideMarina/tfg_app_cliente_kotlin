@@ -13,7 +13,8 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor() : ViewModel() {
 
     fun navigateToChangePassword(view: View?, bundle: Bundle) {
-        view?.findNavController()?.navigate(R.id.action_settingsFragment_to_changePasswordFragment, bundle)
+        view?.findNavController()
+            ?.navigate(R.id.action_settingsFragment_to_changePasswordFragment, bundle)
             ?: Log.e(
                 SettingsViewModel::class.java.simpleName,
                 "Error en la navegación a Cambiar contraseña"

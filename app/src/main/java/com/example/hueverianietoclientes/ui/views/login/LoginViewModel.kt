@@ -3,14 +3,13 @@ package com.example.hueverianietoclientes.ui.views.login
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
-import android.service.autofill.UserData
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hueverianietoclientes.base.BaseActivity
-import com.example.hueverianietoclientes.core.Event
+import com.example.hueverianietoclientes.base.core.Event
 import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.ClientLoginData
 import com.example.hueverianietoclientes.data.network.LoginResponse
@@ -22,10 +21,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 @HiltViewModel
-class LoginViewModel @Inject constructor (
+class LoginViewModel @Inject constructor(
     val loginUseCase: LoginUseCase,
     val getClientDataUseCase: GetClientDataUseCase
 ) : ViewModel() {
@@ -48,13 +46,13 @@ class LoginViewModel @Inject constructor (
         if (checkValidEmail(email)) {
             viewModelScope.launch {
                 _viewState.value = LoginViewState(isLoading = true)
-                when(val result = loginUseCase(email, password)) {
+                when (val result = loginUseCase(email, password)) {
                     LoginResponse.Error -> {
                         _alertDialog.value = ClientLoginData(email, password, true)
                         _viewState.value = LoginViewState(false)
                     }
                     is LoginResponse.Success -> {
-                        when(val client = getClientDataUseCase(result.uid)) {
+                        when (val client = getClientDataUseCase(result.uid)) {
                             null -> {
                                 _alertDialog.value = ClientLoginData(email, password, true)
                                 _viewState.value = LoginViewState(false)
@@ -77,7 +75,6 @@ class LoginViewModel @Inject constructor (
                 isValidEmail = checkValidEmail(email)
             )
         }
-        _viewState.value = LoginViewState(isLoading = false)
     }
 
     fun navigateToMainActivity(context: Context, clientData: Parcelable) {

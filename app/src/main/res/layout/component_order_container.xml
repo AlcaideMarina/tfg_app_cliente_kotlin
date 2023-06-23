@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/base_component_order_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,44 +28,114 @@
                 android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Fecha"
-                android:textSize="10sp" />
+                android:textSize="11sp"
+                android:textColor="@color/black_color"
+                tools:text="Fecha"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="ID Pedido:"
+                    android:layout_marginEnd="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_color" />
+
+                <TextView
+                    android:id="@+id/order_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black_color"
+                    tools:text="ID" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginStart="12dp"
+                android:background="@color/red_gray_light_secondary_color" />
 
             <TextView
-                android:id="@+id/order_delivery_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Pedido - Reparto"
-                android:textSize="16sp" />
+                android:text="Resumen del pedido:"
+                android:textColor="@color/black_color"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/order_summary_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Resumen del pedido"
-                android:textSize="16sp" />
+                android:textColor="@color/black_color"
+                tools:text="Resumen" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/red_gray_light_secondary_color"
+                android:layout_marginStart="12dp"
+                android:layout_marginVertical="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Precio:"
+                    android:layout_marginEnd="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_color" />
+
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_color"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textSize16"
+                    tools:text="€" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/price_text"
+                android:id="@+id/status_date_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Precio"
-                android:textSize="16sp" />
+                android:textColor="@color/black_color"
+                tools:text="Estado - Fecha"/>
 
-            <TextView
-                android:id="@+id/delivery_info_text"
+            <LinearLayout
+                android:id="@+id/delivery_dni_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Información del reparto"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/delivery_dni_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="DNI de recogida"
-                android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DNI de recogida:"
+                    android:layout_marginEnd="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_color" />
 
+                <TextView
+                    android:id="@+id/delivery_dni_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_color"
+                    tools:text="€" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

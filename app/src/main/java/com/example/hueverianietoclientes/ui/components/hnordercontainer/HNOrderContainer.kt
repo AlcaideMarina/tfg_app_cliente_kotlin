@@ -36,28 +36,4 @@ class HNOrderContainer : ConstraintLayout, BaseComponent {
         return this
     }
 
-    fun setDateText(idText: String) {
-        this.binding.dateText.text = idText
-    }
-
-    fun setOrderDeliveryText(deliveryText: String) {
-        this.binding.orderDeliveryText.text = deliveryText
-    }
-
-    fun setDeliveryDNIText(companyText: String) {
-        this.binding.deliveryDniText.text = companyText
-    }
-
-    fun setOrderSummaryText(orderSummaryText: String) {
-        this.binding.orderSummaryText.text = orderSummaryText
-    }
-
-    fun setPriceText(priceText: String) {
-        this.binding.priceText.text = priceText
-    }
-
-    fun setDeliveryInfoText(deliveryInfoText: String) {
-        this.binding.deliveryInfoText.text = deliveryInfoText
-    }
-
 }

@@ -44,18 +44,17 @@ class LoginActivity : BaseActivity() {
     override fun configureUI() {
 
         this.binding.userTextInputLayout.hint = resources.getString(R.string.user_text_input_layout)
-        this.binding.userTextInputLayout.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-        this.binding.passwordTextInputLayout.hint = resources.getString(R.string.password_text_input_layout)
-        this.binding.passwordTextInputLayout.setTransformationMethod(PasswordTransformationMethod.getInstance())
+        this.binding.userTextInputLayout.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        this.binding.passwordTextInputLayout.hint =
+            resources.getString(R.string.password_text_input_layout)
+        this.binding.passwordTextInputLayout.transformationMethod = PasswordTransformationMethod.getInstance()
 
-        this.binding.loginButton.setText(resources.getString(R.string.login_button).uppercase())
-        this.binding.loginButton.setTextBold(true)
         this.binding.loginButton.isEnabled = false
 
         this.alertDialog = HNModalDialog(this)
 
         lifecycleScope.launchWhenStarted {
-            loginViewModel.viewState.collect {viewState ->
+            loginViewModel.viewState.collect { viewState ->
                 updateUI(viewState)
             }
         }
@@ -81,7 +80,8 @@ class LoginActivity : BaseActivity() {
             this.clientData = clientData
         }
         loginViewModel.navigateToMainActivity.observe(this) { event ->
-            event.getControlled()?.let { this.loginViewModel.navigateToMainActivity(this, clientData) }
+            event.getControlled()
+                ?.let { this.loginViewModel.navigateToMainActivity(this, clientData) }
         }
     }
 
@@ -91,8 +91,8 @@ class LoginActivity : BaseActivity() {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         override fun afterTextChanged(s: Editable) {
             this@LoginActivity.binding.loginButton.isEnabled =
-                !(this@LoginActivity.binding.userTextInputLayout.getText().isEmpty()
-                        || this@LoginActivity.binding.passwordTextInputLayout.getText().isEmpty())
+                !(this@LoginActivity.binding.userTextInputLayout.text.isEmpty()
+                        || this@LoginActivity.binding.passwordTextInputLayout.text.isEmpty())
         }
 
     }
@@ -106,92 +106,12 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun checkCredentials(email: String, password: String) {
-
-        initProgressBar()
-// TODO: If email, password != ""
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-
-                    if (user != null) {
-                        val db = Firebase.firestore
-                        db.collection("client_info")
-                            .whereEqualTo("uid", user.uid)
-                            .whereEqualTo("deleted", false)
-                            .limit(1)
-                            .get()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val documents = task.result
-                                    if (!documents.isEmpty) {
-                                        // TODO: Control de nulos
-                                        val document =
-                                            documents.documents[0].data as MutableMap<String, Any?>?
-                                        if (ClientUtils.checkErrorMap(document) == null) {
-                                            val data = document as MutableMap<String, Any?>
-                                            val userData = ClientUtils.mapToParcelable(
-                                                data,
-                                                documents.documents[0].id
-                                            )
-                                            /*val intent = Intent(this, MainActivity::class.java)
-                                            intent.putExtra("current_user", userData)
-                                            startActivity(intent)
-                                            closeProgressBar()
-                                            finish()*/
-                                        } else {
-                                            if (ClientUtils.checkErrorMap(document) == "empty input map") {
-                                                setPopUp("Ha habido un problema con tu usuario. Por favor, vuelve a intentarlo, y si el error persiste, ponte en contacto con nosotros.")
-                                            }
-                                        }
-                                    }
-
-                                } else {
-                                    setPopUp("Ha habido un en el proceso de login. Por favor, inténtalo de nuevo.")
-                                }
-                            }.addOnFailureListener {
-                                setPopUp("Ha habido un en el proceso de login. Por favor, inténtalo de nuevo.")
-                            }
-                    } else {
-                        setPopUp("No hemos podido encontrar tu usuario en nuestra base de datos. Por favor, ponte en contacto con nosotros.")
-                    }
-                } else {
-                    val errorMessage: String = if (task.exception != null) {
-                        task.exception!!.message.toString()
-                    } else {
-                        "generic error"
-                    }
-                    setPopUp(errorMap(errorMessage))
-
-                }
-            }
-        closeProgressBar()
-    }
-
-    private fun initProgressBar() {
-        this.binding.loadingComponent.visibility = View.VISIBLE
-        this.binding.extraComponentsContainer.visibility = View.VISIBLE
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-        )
-    }
-
-    private fun closeProgressBar() {
-        this.binding.loadingComponent.visibility = View.GONE
-        this.binding.extraComponentsContainer.visibility = View.GONE
-        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-    }
-
     private fun setPopUp(errorMessage: String) {
         // TODO: Close button
         alertDialog.show(
             this,
             ModalDialogModel(
-                "Vaya... ha habido un error",
+                "Error",
                 errorMessage,
                 "De acuerdo",
                 null,
@@ -217,6 +137,7 @@ class LoginActivity : BaseActivity() {
             with(state as LoginViewState) {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
+                    this.loginBaseContainer.isVisible = !state.isLoading
                     if (!state.isValidEmail) {
                         setPopUp(errorMap(Constants.loginBadFormattedEmailError))
                     }
@@ -225,7 +146,6 @@ class LoginActivity : BaseActivity() {
         } catch (e: Exception) {
             Log.e(TAG, e.message.toString())
         }
-
 
     }
 

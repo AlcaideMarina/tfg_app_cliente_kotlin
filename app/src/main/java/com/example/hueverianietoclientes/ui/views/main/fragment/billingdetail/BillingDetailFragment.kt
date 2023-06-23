@@ -10,12 +10,13 @@ import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.databinding.FragmentBillingDetailBinding
 import com.example.hueverianietoclientes.domain.model.BillingModel
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import com.example.hueverianietoclientes.ui.views.main.fragment.billing.BillingFragmentArgs
+import kotlin.properties.Delegates
 
 class BillingDetailFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentBillingDetailBinding
-    private lateinit var billingModel : BillingModel
+    private lateinit var binding: FragmentBillingDetailBinding
+    private lateinit var billingModel: BillingModel
+    private var isCurrentMonth by Delegates.notNull<Boolean>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,14 +27,15 @@ class BillingDetailFragment : BaseFragment() {
         this.binding = FragmentBillingDetailBinding.inflate(
             inflater, container, false
         )
-        val args : BillingDetailFragmentArgs by navArgs()
+        val args: BillingDetailFragmentArgs by navArgs()
         this.billingModel = args.billingModel
+        this.isCurrentMonth = args.isCurrentMonth
         return this.binding.root
     }
 
-    // TODO: Falta por ocultar el texto cuando no es el mes actual
     override fun configureUI() {
         with(this.binding) {
+            this.currentMonthWarning.visibility = if (isCurrentMonth) View.VISIBLE else View.GONE
             cashTextView.text = billingModel.paymentByCash.toString() + " €"
             receiptTextView.text = billingModel.paymentByReceipt.toString() + " €"
             transferTextView.text = billingModel.paymentByTransfer.toString() + " €"
@@ -44,14 +46,15 @@ class BillingDetailFragment : BaseFragment() {
     }
 
     override fun setObservers() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun setListeners() {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
 
     override fun updateUI(state: BaseState) {
-        //TODO("Not yet implemented")
+        // Not necessary
     }
+
 }

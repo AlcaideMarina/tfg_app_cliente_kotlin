@@ -8,8 +8,8 @@ import com.example.hueverianietoclientes.domain.model.GridItemModel
 class HNGridViewHolder(view: View, width: Int) :
     RecyclerView.ViewHolder(view) {
 
-    private val binding : ComponentGridItemBinding = ComponentGridItemBinding.bind(view)
-    private val w : Int = width
+    private val binding: ComponentGridItemBinding = ComponentGridItemBinding.bind(view)
+    private val w: Int = width
 
     fun render(gridItemModel: GridItemModel) {
         this.binding.tvCard.text = gridItemModel.label
@@ -17,4 +17,5 @@ class HNGridViewHolder(view: View, width: Int) :
         this.binding.card.setOnClickListener(gridItemModel.onClickListener)
         this.binding.cardFrameLayout.layoutParams.width = w
     }
+
 }

@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.example.hueverianietoclientes.R
-import com.example.hueverianietoclientes.data.network.ClientData
 import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.domain.usecase.MyOrdersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +28,7 @@ class MyOrdersViewModel @Inject constructor(
     private val _orderList = MutableLiveData<List<OrderData?>?>()
     val orderList: LiveData<List<OrderData?>?> get() = _orderList
 
-    fun getOrdersData(documentId : String) {
+    fun getOrdersData(documentId: String) {
         _viewState.value = MyOrdersViewState(isLoading = false)
         viewModelScope.launch {
             _viewState.value = MyOrdersViewState(isLoading = true)
@@ -51,7 +50,8 @@ class MyOrdersViewModel @Inject constructor(
     }
 
     fun navigateToOrderDetail(view: View?, bundle: Bundle) {
-        view?.findNavController()?.navigate(R.id.action_myOrdersFragment_to_orderDetailFragment, bundle)
+        view?.findNavController()
+            ?.navigate(R.id.action_myOrdersFragment_to_orderDetailFragment, bundle)
             ?: Log.e(
                 MyOrdersViewModel::class.java.simpleName,
                 "Error en la navegación a Detalle de pedido"

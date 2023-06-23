@@ -1,4 +1,4 @@
-package com.example.hueverianietoclientes.core
+package com.example.hueverianietoclientes.base.core
 
 open class Event<out T>(private val content: T) {
 

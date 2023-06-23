@@ -8,7 +8,7 @@ class GetConstantService @Inject constructor(
     private val firebaseClient: FirebaseClient
 ) {
 
-    suspend fun getConstant(constantName: String) : Result<QuerySnapshot> = runCatching {
+    suspend fun getConstant(constantName: String): Result<QuerySnapshot> = runCatching {
         firebaseClient.db
             .collection("default_constants")
             .whereEqualTo("constant_name", constantName)

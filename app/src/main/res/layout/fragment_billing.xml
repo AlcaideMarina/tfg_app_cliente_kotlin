@@ -6,42 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.main.MainActivity" >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/size32">
+        android:layout_height="match_parent" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/billing_recycler_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/texts_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size8"
-            android:visibility="gone"
-            android:nestedScrollingEnabled="false"/>
-
-        <com.example.hueverianietoclientes.ui.components.HNWarningContainer
-            android:id="@+id/container_waring_no_billing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_marginVertical="32dp" />
-
-        <ProgressBar
-            android:id="@+id/loading_component"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="64dp"
-            android:elevation="2dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/size16"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" >
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="En esta sección, podrá consutlar la facturación de cada mes. A continuación, se muestran los meses disponibles."
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recuerde que la facturación del mes vigente no es definitva"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textColor="@color/black_color"
+                app:layout_constraintTop_toBottomOf="@id/text_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:background="@color/red_primary_color"
+            app:layout_constraintTop_toBottomOf="@id/texts_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/size24"
+            android:layout_marginVertical="@dimen/size16"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/billing_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size8"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false"/>
+
+            <com.example.hueverianietoclientes.ui.components.HNWarningContainer
+                android:id="@+id/container_waring_no_billing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginVertical="32dp" />
+
+            <ProgressBar
+                android:id="@+id/loading_component"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:layout_marginBottom="64dp"
+                android:elevation="2dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>

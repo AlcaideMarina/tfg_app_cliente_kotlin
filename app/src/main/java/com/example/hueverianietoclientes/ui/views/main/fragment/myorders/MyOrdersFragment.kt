@@ -14,19 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hueverianietoclientes.base.BaseFragment
 import com.example.hueverianietoclientes.base.BaseState
 import com.example.hueverianietoclientes.data.network.ClientData
-import com.example.hueverianietoclientes.data.network.OrderData
 import com.example.hueverianietoclientes.databinding.FragmentMyOrdersBinding
 import com.example.hueverianietoclientes.domain.model.OrderContainerModel
 import com.example.hueverianietoclientes.ui.components.HNModalDialog
 import com.example.hueverianietoclientes.ui.components.hnordercontainer.HNOrderContainerAdapter
 import com.example.hueverianietoclientes.ui.views.login.LoginActivity
-import com.example.hueverianietoclientes.ui.views.login.LoginViewState
 import com.example.hueverianietoclientes.ui.views.main.MainActivity
-import com.example.hueverianietoclientes.utils.Constants
 import com.example.hueverianietoclientes.utils.OrderUtils
 import com.example.hueverianietoclientes.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
@@ -34,7 +30,7 @@ class MyOrdersFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMyOrdersBinding
     private lateinit var clientData: ClientData
-    private val myOrdersViewModel : MyOrdersViewModel by viewModels()
+    private val myOrdersViewModel: MyOrdersViewModel by viewModels()
     private var fromNewOrderFragment by Delegates.notNull<Boolean>()
     private lateinit var alertDialog: HNModalDialog
     private var isFirst = true
@@ -49,7 +45,7 @@ class MyOrdersFragment : BaseFragment() {
             inflater, container, false
         )
 
-        val args : MyOrdersFragmentArgs by navArgs()
+        val args: MyOrdersFragmentArgs by navArgs()
         this.clientData = args.clientData
         if (isFirst) {
             this.fromNewOrderFragment = args.fromNewOrder
@@ -89,7 +85,10 @@ class MyOrdersFragment : BaseFragment() {
     override fun setObservers() {
         myOrdersViewModel.orderList.observe(this) { orderDataList ->
             if (orderDataList == null) {
-                // Error
+                this.binding.orderRecyclerView.visibility = View.GONE
+                this.binding.containerWaringNoOrders.visibility = View.VISIBLE
+                this.binding.containerWaringNoOrders.setTitle("Error")
+                this.binding.containerWaringNoOrders.setText("Se ha producido un error cuando se estaban actualizado los datos del pedido. Por favor, revise los datos e inténtelo de nuevo.")
             } else {
                 val orderList = mutableListOf<OrderContainerModel>()
                 for (orderData in orderDataList) {
@@ -106,17 +105,22 @@ class MyOrdersFragment : BaseFragment() {
                                 view, bundleOf(
                                     "orderData" to orderData,
                                     "clientData" to this.clientData
-                                ))
+                                )
+                            )
                         }
                         orderList.add(orderContainerModel)
                     }
                 }
                 if (orderList.isEmpty()) {
-                    // TODO: Vacío
+                    this.binding.containerWaringNoOrders.setText("No hay pedidos")
+                    this.binding.containerWaringNoOrders.setText("No hay registro de pedidos en la base de datos.")
+                    this.binding.containerWaringNoOrders.visibility = View.VISIBLE
+                    this.binding.orderRecyclerView.visibility = View.GONE
                 } else {
                     this.binding.orderRecyclerView.layoutManager = LinearLayoutManager(context)
                     this.binding.orderRecyclerView.adapter = HNOrderContainerAdapter(orderList)
                     this.binding.orderRecyclerView.visibility = View.VISIBLE
+                    this.binding.containerWaringNoOrders.visibility = View.GONE
                 }
             }
         }
@@ -131,11 +135,6 @@ class MyOrdersFragment : BaseFragment() {
             with(state as MyOrdersViewState) {
                 with(binding) {
                     this.loadingComponent.isVisible = state.isLoading
-                    if (state.error) {
-                        //setPopUp(errorMap(Constants.loginBadFormattedEmailError))
-                    } else if (state.isEmpty) {
-                        //setPopUp(errorMap(Constants.loginBadFormattedEmailError))
-                    }
                 }
             }
         } catch (e: Exception) {
@@ -147,4 +146,5 @@ class MyOrdersFragment : BaseFragment() {
     companion object {
         private val TAG = LoginActivity::class.java.simpleName
     }
+
 }

@@ -1,10 +1,7 @@
 package com.example.hueverianietoclientes.ui.components.hngridview
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hueverianietoclientes.R
 import com.example.hueverianietoclientes.domain.model.GridItemModel
@@ -22,10 +19,14 @@ class HNGridViewAdapter(private val gridItemModelList: List<GridItemModel>) :
         var width = parent.measuredWidth / 2
         // then, let's remove recyclerview padding
         width -= parent.context.resources.getDimensionPixelSize(R.dimen.size32)
-        return HNGridViewHolder(layoutInflater.inflate(R.layout.component_grid_item, parent, false), width)
+        return HNGridViewHolder(
+            layoutInflater.inflate(R.layout.component_grid_item, parent, false),
+            width
+        )
     }
 
     override fun onBindViewHolder(holder: HNGridViewHolder, position: Int) {
         holder.render(gridItemModelList[position])
     }
+
 }
